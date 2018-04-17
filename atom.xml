@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>七秒悲伤的博客</title>
+  
+  <subtitle>一个深藏功与名的软件开发爱好者</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://1016990109.github.io/"/>
+  <updated>2018-04-17T07:47:16.201Z</updated>
+  <id>http://1016990109.github.io/</id>
+  
+  <author>
+    <name>七秒悲伤</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Vue 的一些注意事项</title>
+    <link href="http://1016990109.github.io/2018/04/17/Vue-%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/"/>
+    <id>http://1016990109.github.io/2018/04/17/Vue-的一些注意事项/</id>
+    <published>2018-04-17T07:47:16.000Z</published>
+    <updated>2018-04-17T07:47:16.201Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://1016990109.github.io/2018/04/17/hello-world/"/>
+    <id>http://1016990109.github.io/2018/04/17/hello-world/</id>
+    <published>2018-04-17T07:29:54.903Z</published>
+    <updated>2018-04-17T07:29:54.903Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><a id="more"></a><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>rbac分析（php源码）</title>
+    <link href="http://1016990109.github.io/2016/05/23/rbac-php/"/>
+    <id>http://1016990109.github.io/2016/05/23/rbac-php/</id>
+    <published>2016-05-23T14:23:47.000Z</published>
+    <updated>2018-04-17T07:29:54.904Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="rbac简介"><a href="#rbac简介" class="headerlink" title="rbac简介"></a>rbac简介</h2><blockquote><p>基于角色的访问控制（Role-Based Access Control）作为传统访问控制（自主访问，强制访问）的有前景的代替受到广泛的关注。在RBAC中，权限与角色相关联，用户通过成为适当角色的成员而得到这些角色的权限。这就极大地简化了权限的管理。在一个组织中，角色是为了完成各种工作而创造，用户则依据它的责任和资格来被指派相应的角色，用户可以很容易地从一个角色被指派到另一个角色。角色可依新的需求和系统的合并而赋予新的权限，而权限也可根据需要而从某角色中回收。角色与角色的关系可以建立起来以囊括更广泛的客观情况。</p></blockquote><a id="more"></a><p>用一张图来简单地描述一下</p><p><img src="/assets/img/rbac_intro.png" alt="rbac图解"></p><p>rbac有3个重要概念：<strong>用户</strong>、<strong>角色</strong>、<strong>权限</strong>。通俗地来说，就是把若干个<strong>权限</strong>分配给某个<strong>角色</strong>，然后在需要时把若干个<strong>角色</strong>分配给指定的<strong>用户</strong>，rbac就是通过这种方式实现访问控制的。</p><p>管理员通过分配给一个用户角色来允许该用户可以做某些事情。</p><p><strong>RBAC支持三个著名的安全原则</strong>：</p><ol><li>最小权限原则<br>将其角色配置成其完成任务所需要的最小的权限集</li><li>责任分离原则<br>可以通过调用相互独立互斥的角色来共同完成敏感的任务而体现，比如要求一个计帐员和财务管理员共参与同一过帐</li><li>数据抽象<br>可以通过权限的抽象来体现，如财务操作用借款、存款等抽象权限，而不用操作系统提供的典型的读、写、执行权限</li></ol><h2 id="为什么使用rbac"><a href="#为什么使用rbac" class="headerlink" title="为什么使用rbac"></a>为什么使用rbac</h2><p>普通的ACL在权限越来越多的时候需要维护的权限太多，这造成了ACL的瓶颈。而rbac可以有效地解决这个问题。</p><h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul><li>仍然有很多权限存在于系统（问题）</li><li>人员移动的时候只需要改变人员的角色</li><li>维护大量的权限仍然是个问题</li><li>维护分配给每个角色的权限比较容易</li><li>角色的权限分配需要双重检查确保不会分配错误的权限给任何角色</li></ul><h2 id="一款开源的rbac库——PHP-RBAC"><a href="#一款开源的rbac库——PHP-RBAC" class="headerlink" title="一款开源的rbac库——PHP-RBAC"></a>一款开源的rbac库——PHP-RBAC</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p><a href="http://phprbac.net/" title="PHP-RBAC" target="_blank" rel="noopener">PHP-RBAC</a>是php的一个简单库，实现了rbac一些基本的功能（不包括用户组），它为开发者提供了NIST Level 2 Standard Role Based Access Control。</p><p>下面是PHP-RBAC的一个demo：它实现了角色的分层管理，更贴近实际。<br><img src="http://phprbac.net/img/rbac.png" alt="rbac-demo"></p><p>我自己简单地试了下库，代码是这样：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// turn on all errors</span></span><br><span class="line">error_reporting(E_ALL);</span><br><span class="line"><span class="keyword">use</span> <span class="title">PhpRbac</span>\<span class="title">Rbac</span>;</span><br><span class="line"><span class="comment">// autoloader</span></span><br><span class="line"><span class="keyword">require</span> dirname(<span class="keyword">__DIR__</span>) . <span class="string">'/autoload.php'</span>;</span><br><span class="line"></span><br><span class="line">$test = <span class="keyword">new</span> Test();</span><br><span class="line">$test-&gt;myTest();</span><br><span class="line"><span class="comment">// myTest();</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">$rbac = <span class="keyword">new</span> Rbac(<span class="string">'unit_test'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">myTest</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">$rbac = <span class="keyword">new</span> Rbac();</span><br><span class="line">$rbac-&gt;reset(<span class="keyword">true</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Create a Permission</span></span><br><span class="line">$perm_id = $rbac-&gt;Permissions-&gt;add(<span class="string">'delete_posts'</span>, <span class="string">'Can delete forum posts'</span>);</span><br><span class="line">$perm_id2 = $rbac-&gt;Permissions-&gt;add(<span class="string">'add_posts'</span>, <span class="string">'Can add forum posts'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Create a Role</span></span><br><span class="line">$role_id = $rbac-&gt;Roles-&gt;add(<span class="string">'forum_moderator'</span>, <span class="string">'User can moderate forums'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// The following are equivalent statements</span></span><br><span class="line">$rbac-&gt;assign($role_id, $perm_id);</span><br><span class="line">$rbac-&gt;assign($role_id, $perm_id2);</span><br><span class="line"></span><br><span class="line">$rbac-&gt;Users-&gt;assign($role_id, <span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">$res = $rbac-&gt;Roles-&gt;permissions(<span class="string">"2"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> ($res <span class="keyword">as</span> $perm) &#123;</span><br><span class="line"><span class="keyword">print</span>($rbac-&gt;Permissions-&gt;getDescription($perm).<span class="string">' '</span>);</span><br><span class="line"><span class="keyword">print</span>($rbac-&gt;Permissions-&gt;depth($perm).<span class="string">' '</span>);</span><br><span class="line"><span class="keyword">print</span>($rbac-&gt;Permissions-&gt;getPath($perm).<span class="string">' '</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;/br&gt;"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>结果：<br><img src="/assets/img/phprbac_result.png" alt="运行结果"><br>使用非常容易吧，这是一个轻量的库，只有几百k的大小，所以对于一些对权限管理要求不是特别复杂的（没有用户组、分类等）系统可以考虑使用哦！</p><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>PHP-RBAC的表设计同许多rbac的软件类似：<br><img src="/assets/img/rbac_table.png" alt="rbac表"><br><img src="/assets/img/phprbac_table.png" alt="php-rbac表"></p><p>PHP-RBAC分层实现：<br>使用树形结构实现（嵌套集合）：<br><img src="/assets/img/phprbac_tree.png" alt="树形结构数据库实现"><br><img src="/assets/img/phprbac_tree_em.png" alt="php-rbac例子"></p><p>End.<br><em>关于rbac的扩展以后有时间再给大家讲讲。</em></p><p>参考资料：</p><ol><li><a href="http://baike.baidu.com/link?url=5FPK3srV0UpUKEJProX7MIJDmX4FFlEp8tQI5VQ8-pnI1xMUv8BY9E4TDeM89astDTGW9Mr0uBWOXpwk_2egr" target="_blank" rel="noopener">http://baike.baidu.com/link?url=5FPK3srV0UpUKEJProX7MIJDmX4FFlEp8tQI5VQ8-pnI1xMUv8BY9E4TDeM89astDTGW9Mr0uBWOXpwk_2egr</a>_</li><li><a href="http://phprbac.net/" target="_blank" rel="noopener">http://phprbac.net/</a></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;rbac简介&quot;&gt;&lt;a href=&quot;#rbac简介&quot; class=&quot;headerlink&quot; title=&quot;rbac简介&quot;&gt;&lt;/a&gt;rbac简介&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;基于角色的访问控制（Role-Based Access Control）作为传统访问控制（自主访问，强制访问）的有前景的代替受到广泛的关注。在RBAC中，权限与角色相关联，用户通过成为适当角色的成员而得到这些角色的权限。这就极大地简化了权限的管理。在一个组织中，角色是为了完成各种工作而创造，用户则依据它的责任和资格来被指派相应的角色，用户可以很容易地从一个角色被指派到另一个角色。角色可依新的需求和系统的合并而赋予新的权限，而权限也可根据需要而从某角色中回收。角色与角色的关系可以建立起来以囊括更广泛的客观情况。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="源码" scheme="http://1016990109.github.io/tags/%E6%BA%90%E7%A0%81/"/>
+    
+      <category term="php" scheme="http://1016990109.github.io/tags/php/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>开始我的instagrame</title>
+    <link href="http://1016990109.github.io/2016/05/20/instagrame/"/>
+    <id>http://1016990109.github.io/2016/05/20/instagrame/</id>
+    <published>2016-05-20T07:09:39.000Z</published>
+    <updated>2018-04-17T07:29:54.903Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一次偶然的机会，我认识了instagrame"><a href="#一次偶然的机会，我认识了instagrame" class="headerlink" title="一次偶然的机会，我认识了instagrame"></a>一次偶然的机会，我认识了instagrame</h2><p>一天，一个偶然，我逛了下<a href="http://litten.github.io/" title="litten的博客" target="_blank" rel="noopener">litten</a>的博客，发现了他把自己的照片分享在了博客上，于是我便很好奇博主是用了什么方法分享的。于是我查看了博主搭建博客的过程，了解到他是分享了在instagrame上的照片，这就是我第一次认识instagrame。</p><h2 id="开始了解instagrame"><a href="#开始了解instagrame" class="headerlink" title="开始了解instagrame"></a>开始了解instagrame</h2><p>秉着好学的心态，我也想在自己的博客上搭建一个这样分享照片的平台，就这样我开始了我的instagrame之旅。<br><a id="more"></a></p><h3 id="百度百科的介绍："><a href="#百度百科的介绍：" class="headerlink" title="百度百科的介绍："></a>百度百科的介绍：</h3><blockquote><p>Instagram是一款最初运行在iOS平台上的移动应用，以一种快速、美妙和有趣的方式将你随时抓拍下的图片分享彼此，安卓版Instagram于2012年4月3日起登陆Android应用商店Google Play。2012年4月10号，Facebook宣布以10亿美元收购Instagram。2012年10月25号，Facebook以总值7.15亿美元收购Instagram。2012年12月，Facebook旗下的图片共享服务Instagram因其使用图片共享服务的新条款而在互联网上引起轩然大波，Instagram对此进行了澄清，称不会在广告中使用或销售用户的照片，从而打消了用户的顾虑。北京时间2013年10月22日，诺基亚宣布instagram将会入驻Windows Phone市场，11月21日Instagram正式登录Windows Phone 8平台。</p></blockquote><h3 id="特性："><a href="#特性：" class="headerlink" title="特性："></a>特性：</h3><blockquote><p>☆ 100%免费自定义设计的过滤器和边框，例如XPro-II、Earlybird、Rise、Amaro、Hudson、Lo-fi、Sutro、Toaster、 Brannan、Inkwell、Walden、Hefe、Nashville、1977等等[8]<br>☆ 实时分享到新浪微博、Facebook、Twitter、Flickr、Tumblr和Foursquare<br>☆ 平行和放射状移轴模糊特效可提供额外的景深效果[9]<br>☆ 上传不受限，即拍即传即分享<br>☆ 通过接收和发送赞和评论与朋友互动<br>☆ iPhone前置和后置摄像头的全面支持</p></blockquote><p>可能大家用的时候会感到很奇怪，<strong>怎么网页版的instagrame不支持上传照片么</strong>？可能是instagrame更注重生活中的抓拍吧，生活中还是使用移动设备多一点，所以它这个设计也是符合它的理念的（快速记录生活）。</p><p>instagrame分享图片的时候可以选择地理位置（最后还可以生成图片地图哦^_^），也可以选择分享的对象，非常的个性化，可以看下效果哦！<br><img src="/assets/img/instagrame.png" alt="图片地图" title="图片地图"></p><h2 id="最后说两句"><a href="#最后说两句" class="headerlink" title="最后说两句"></a>最后说两句</h2><p>instagrame还可以上传小视频，有点像现在的微信小视频之类的，不过只能最多15秒。<br>总之，我还是比较喜欢instagrame来收录生活中的场景的。</p><p>参考资料：</p><ol><li><a href="http://baike.baidu.com/link?url=QoodiA5Hzcnxlq268Lk3jkOPedAy3ICAVI-T6LKpay6A08o6UaTSU4tUrpqQuXJhFix9R3IAYzWN0KFY01iPRa" target="_blank" rel="noopener">http://baike.baidu.com/link?url=QoodiA5Hzcnxlq268Lk3jkOPedAy3ICAVI-T6LKpay6A08o6UaTSU4tUrpqQuXJhFix9R3IAYzWN0KFY01iPRa</a></li><li><a href="http://1016990109.github.io/2016/05/20/instagrame/">http://1016990109.github.io/2016/05/20/instagrame/</a></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一次偶然的机会，我认识了instagrame&quot;&gt;&lt;a href=&quot;#一次偶然的机会，我认识了instagrame&quot; class=&quot;headerlink&quot; title=&quot;一次偶然的机会，我认识了instagrame&quot;&gt;&lt;/a&gt;一次偶然的机会，我认识了instagrame&lt;/h2&gt;&lt;p&gt;一天，一个偶然，我逛了下&lt;a href=&quot;http://litten.github.io/&quot; title=&quot;litten的博客&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;litten&lt;/a&gt;的博客，发现了他把自己的照片分享在了博客上，于是我便很好奇博主是用了什么方法分享的。于是我查看了博主搭建博客的过程，了解到他是分享了在instagrame上的照片，这就是我第一次认识instagrame。&lt;/p&gt;
+&lt;h2 id=&quot;开始了解instagrame&quot;&gt;&lt;a href=&quot;#开始了解instagrame&quot; class=&quot;headerlink&quot; title=&quot;开始了解instagrame&quot;&gt;&lt;/a&gt;开始了解instagrame&lt;/h2&gt;&lt;p&gt;秉着好学的心态，我也想在自己的博客上搭建一个这样分享照片的平台，就这样我开始了我的instagrame之旅。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="生活" scheme="http://1016990109.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+      <category term="随笔" scheme="http://1016990109.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+</feed>
