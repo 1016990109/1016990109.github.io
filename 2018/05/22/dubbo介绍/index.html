@@ -6,19 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://1016990109.github.io">
-  <title>分类 | 七秒悲伤的博客</title>
+  <title>dubbo 探索 | 七秒悲伤的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个深藏功与名的软件开发爱好者">
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://1016990109.github.io/categories/index.html">
+  <meta name="description" content="Dubbo 框架的介绍以及源码阅读Apache Dubbo|ˈdʌbəʊ| 是阿里开源的一个RPC框架。 和大多数RPC系统一样，dubbo基于一个理念：定义一个服务，确定远程调用的方法，并且包含他们的参数和返回类型。在服务端，服务器实现接口并且运行一个dubbo的服务来处理来自客户端的请求；在客户端，客户端持有提供与服务端方法一模一样的桩。">
+<meta name="keywords" content="java,框架,开源,微服务,RPC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="dubbo 探索">
+<meta property="og:url" content="http://1016990109.github.io/2018/05/22/dubbo介绍/index.html">
 <meta property="og:site_name" content="七秒悲伤的博客">
-<meta property="og:description" content="一个深藏功与名的软件开发爱好者">
+<meta property="og:description" content="Dubbo 框架的介绍以及源码阅读Apache Dubbo|ˈdʌbəʊ| 是阿里开源的一个RPC框架。 和大多数RPC系统一样，dubbo基于一个理念：定义一个服务，确定远程调用的方法，并且包含他们的参数和返回类型。在服务端，服务器实现接口并且运行一个dubbo的服务来处理来自客户端的请求；在客户端，客户端持有提供与服务端方法一模一样的桩。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-22T08:53:13.480Z">
+<meta property="og:image" content="http://1016990109.github.io/assets/img/dubbo_architecture.png">
+<meta property="og:updated_time" content="2018-05-22T09:22:07.621Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
-<meta name="twitter:description" content="一个深藏功与名的软件开发爱好者">
+<meta name="twitter:title" content="dubbo 探索">
+<meta name="twitter:description" content="Dubbo 框架的介绍以及源码阅读Apache Dubbo|ˈdʌbəʊ| 是阿里开源的一个RPC框架。 和大多数RPC系统一样，dubbo基于一个理念：定义一个服务，确定远程调用的方法，并且包含他们的参数和返回类型。在服务端，服务器实现接口并且运行一个dubbo的服务来处理来自客户端的请求；在客户端，客户端持有提供与服务端方法一模一样的桩。">
+<meta name="twitter:image" content="http://1016990109.github.io/assets/img/dubbo_architecture.png">
   
     <link rel="alternative" href="/atom.xml" title="七秒悲伤的博客" type="application/atom+xml">
   
@@ -168,27 +171,38 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="categories-undefined" class="article article-type-categories " itemscope itemprop="blogPost">
+            <article id="post-dubbo介绍" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      分类
+      dubbo 探索
     </h1>
   
 
         
-        <a href="/categories/index.html" class="archive-article-date">
-  	<time datetime="2018-05-22T08:35:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-22</time>
+        <a href="/2018/05/22/dubbo介绍/" class="archive-article-date">
+  	<time datetime="2018-05-22T03:09:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="Dubbo-框架的介绍以及源码阅读"><a href="#Dubbo-框架的介绍以及源码阅读" class="headerlink" title="Dubbo 框架的介绍以及源码阅读"></a>Dubbo 框架的介绍以及源码阅读</h1><p><code>Apache Dubbo|ˈdʌbəʊ|</code> 是阿里开源的一个RPC框架。</p>
+<p>和大多数RPC系统一样，<code>dubbo</code>基于一个理念：定义一个服务，确定远程调用的方法，并且包含他们的参数和返回类型。在服务端，服务器实现接口并且运行一个<code>dubbo</code>的服务来处理来自客户端的请求；在客户端，客户端持有提供与服务端方法一模一样的桩。</p>
+<a id="more"></a>
+<p><img src="/assets/img/dubbo_architecture.png" alt="dubbo 架构"></p>
+<p><code>Apache Dubbo(incubating)</code>提供三个关键的功能:</p>
+<ul>
+<li>基于接口的远程调用</li>
+<li>错误容忍和负载均衡</li>
+<li>自动化服务注册和发现</li>
+</ul>
+<p>详细的架构描述请查看<a href="http://dubbo.apache.org/books/dubbo-user-book/preface/architecture.html" target="_blank" rel="noopener">官方文档</a>。</p>
+
       
 
       
@@ -196,6 +210,33 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">框架</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">开源</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">微服务</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RPC</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -246,7 +287,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://1016990109.github.io/categories/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://1016990109.github.io/2018/05/22/dubbo介绍/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -258,6 +299,16 @@
 </article>
 
   
+<nav id="article-nav">
+  
+  
+    <a href="/2018/05/18/Node-js-设计模式读书笔记-第二章/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">《Node.js 设计模式》读书笔记 第二章</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -279,7 +330,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dubbo-框架的介绍以及源码阅读"><span class="toc-number">1.</span> <span class="toc-text">Dubbo 框架的介绍以及源码阅读</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -289,6 +340,36 @@
 </aside>
 
 
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="dubbo介绍" data-title="dubbo 探索" data-url="http://1016990109.github.io/2018/05/22/dubbo介绍/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"hcw13"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+  
+  
+
+  
+
+  
+
+  
 
 
           </div>
@@ -311,7 +392,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

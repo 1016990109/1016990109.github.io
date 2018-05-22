@@ -6,19 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://1016990109.github.io">
-  <title>分类 | 七秒悲伤的博客</title>
+  <title>《Node.js 设计模式》读书笔记 第二章 | 七秒悲伤的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个深藏功与名的软件开发爱好者">
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://1016990109.github.io/categories/index.html">
+  <meta name="description" content="Node.js Essential Patterns(Node.js 基本模式)The callback pattern(回调模式)回调是reactor模式中handler的实例。 The continuation-passing pattern(连续传递模式)在 JavaScript 中回调就是传入作为参数传入另外一个函数中的函数，并且在操作完成后调用。在函数式编程中，这种传递结果的方式被称为c">
+<meta name="keywords" content="读书笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《Node.js 设计模式》读书笔记 第二章">
+<meta property="og:url" content="http://1016990109.github.io/2018/05/18/Node-js-设计模式读书笔记-第二章/index.html">
 <meta property="og:site_name" content="七秒悲伤的博客">
-<meta property="og:description" content="一个深藏功与名的软件开发爱好者">
+<meta property="og:description" content="Node.js Essential Patterns(Node.js 基本模式)The callback pattern(回调模式)回调是reactor模式中handler的实例。 The continuation-passing pattern(连续传递模式)在 JavaScript 中回调就是传入作为参数传入另外一个函数中的函数，并且在操作完成后调用。在函数式编程中，这种传递结果的方式被称为c">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-22T08:53:13.480Z">
+<meta property="og:image" content="http://1016990109.github.io/2018/05/18/Node-js-设计模式读书笔记-第二章/assets/img/event_loop2.png">
+<meta property="og:updated_time" content="2018-05-22T03:00:24.027Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
-<meta name="twitter:description" content="一个深藏功与名的软件开发爱好者">
+<meta name="twitter:title" content="《Node.js 设计模式》读书笔记 第二章">
+<meta name="twitter:description" content="Node.js Essential Patterns(Node.js 基本模式)The callback pattern(回调模式)回调是reactor模式中handler的实例。 The continuation-passing pattern(连续传递模式)在 JavaScript 中回调就是传入作为参数传入另外一个函数中的函数，并且在操作完成后调用。在函数式编程中，这种传递结果的方式被称为c">
+<meta name="twitter:image" content="http://1016990109.github.io/2018/05/18/Node-js-设计模式读书笔记-第二章/assets/img/event_loop2.png">
   
     <link rel="alternative" href="/atom.xml" title="七秒悲伤的博客" type="application/atom+xml">
   
@@ -168,27 +171,90 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="categories-undefined" class="article article-type-categories " itemscope itemprop="blogPost">
+            <article id="post-Node-js-设计模式读书笔记-第二章" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      分类
+      《Node.js 设计模式》读书笔记 第二章
     </h1>
   
 
         
-        <a href="/categories/index.html" class="archive-article-date">
-  	<time datetime="2018-05-22T08:35:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-22</time>
+        <a href="/2018/05/18/Node-js-设计模式读书笔记-第二章/" class="archive-article-date">
+  	<time datetime="2018-05-18T08:51:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="Node-js-Essential-Patterns-Node-js-基本模式"><a href="#Node-js-Essential-Patterns-Node-js-基本模式" class="headerlink" title="Node.js Essential Patterns(Node.js 基本模式)"></a>Node.js Essential Patterns(Node.js 基本模式)</h1><h2 id="The-callback-pattern-回调模式"><a href="#The-callback-pattern-回调模式" class="headerlink" title="The callback pattern(回调模式)"></a>The callback pattern(回调模式)</h2><p>回调是<code>reactor</code>模式中<code>handler</code>的实例。</p>
+<h3 id="The-continuation-passing-pattern-连续传递模式"><a href="#The-continuation-passing-pattern-连续传递模式" class="headerlink" title="The continuation-passing pattern(连续传递模式)"></a>The continuation-passing pattern(连续传递模式)</h3><p>在 JavaScript 中回调就是传入作为参数传入另外一个函数中的函数，并且在操作完成后调用。在函数式编程中，这种传递结果的方式被称为<code>continuation-passing style(CPS)</code>。这是个一般概念，并不是针对异步操作。实际上，它只是通过将结果作为参数传递给另一个函数（回调函数）来传递结果，然后在主体逻辑中调用回调函数拿到操作结果，而不是直接将其返回给调用者。</p>
+<a id="more"></a>
+<h4 id="Synchronous-continuation-passing-style-同步连续传递风格"><a href="#Synchronous-continuation-passing-style-同步连续传递风格" class="headerlink" title="Synchronous continuation-passing style(同步连续传递风格)"></a>Synchronous continuation-passing style(同步连续传递风格)</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a, b, callback</span>) </span>&#123;</span><br><span class="line">  callback(a + b)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个<code>add()</code>函数就是一个同步的 CPS 函数，意味着只有回调函数执行完成它才会返回值。</p>
+<h4 id="Asynchronous-continuation-passing-style-异步连续传递风格"><a href="#Asynchronous-continuation-passing-style-异步连续传递风格" class="headerlink" title="Asynchronous continuation-passing style(异步连续传递风格)"></a>Asynchronous continuation-passing style(异步连续传递风格)</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">additionAsync</span>(<span class="params">a, b, callback</span>) </span>&#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> callback(a + b), <span class="number">100</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>setTimeout()</code>触发了一个异步操作，不需要等待回调函数执行完就会返回到<code>additionAsync()</code>的控制权，然后再回到<code>additionAsync</code>的调用者。这个属性对于<code>Node.js</code>是至关重要的，当一个异步的请求发出后会立即回到事件循环中， 因而允许队列中  新的事件被处理。下图描述了事件循环是怎么运作的：</p>
+<p><img src="assets/img/event_loop2.png" alt="事件循环"></p>
+<h4 id="Non-continuation-passing-style-callbacks-非连续传递风格的回调"><a href="#Non-continuation-passing-style-callbacks-非连续传递风格的回调" class="headerlink" title="Non-continuation-passing style callbacks(非连续传递风格的回调)"></a>Non-continuation-passing style callbacks(非连续传递风格的回调)</h4><p>某些情况下，比如一个回调函数作为参数传入，我们可能会以为这是一个异步操作或者是使用 CPS，但是有例外：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> result = [<span class="number">1</span>, <span class="number">5</span>, <span class="number">7</span>].map(<span class="function"><span class="params">element</span> =&gt;</span> element - <span class="number">1</span>)</span><br><span class="line"><span class="built_in">console</span>.log(result) <span class="comment">// [0, 4, 6]</span></span><br></pre></td></tr></table></figure>
+<p>这就是一个同步的调用。</p>
+<h3 id="Synchronous-or-asynchronous-同步还是异步"><a href="#Synchronous-or-asynchronous-同步还是异步" class="headerlink" title="Synchronous or asynchronous?(同步还是异步?)"></a>Synchronous or asynchronous?(同步还是异步?)</h3><p>代码的执行顺序会因同步或异步的执行方式产生根本性的改变。这对整个应用程序的流程，正确性和效率都产生了重大影响。以下是对这两种模式的范例和缺陷的分析：</p>
+<h4 id="An-unpredictable-function-一个不可预测的函数"><a href="#An-unpredictable-function-一个不可预测的函数" class="headerlink" title="An unpredictable function(一个不可预测的函数)"></a>An unpredictable function(一个不可预测的函数)</h4><p>最危险的情况之一就是使一个 API 在某种特定情况下是同步执行的但是在另一种情况却是异步执行的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"><span class="keyword">const</span> cache = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inconsistentRead</span>(<span class="params">filename, callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (cache[filename]) &#123;</span><br><span class="line">    <span class="comment">// 同步执行回调</span></span><br><span class="line">    callback(cache[filename])</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 异步</span></span><br><span class="line">    fs.readFile(filename, <span class="string">'utf8'</span>, (err, data) =&gt; &#123;</span><br><span class="line">      cache[filename] = data</span><br><span class="line">      callback(data)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的函数使用 cache 缓存文件读取结果，这个函数是危险的，因为当缓存命中时表现为同步的，当缓存未命中表现为异步的。</p>
+<h4 id="Unleashing-Zalgo-解放-Zalgo"><a href="#Unleashing-Zalgo-解放-Zalgo" class="headerlink" title="Unleashing Zalgo(解放 Zalgo)"></a>Unleashing Zalgo(解放 Zalgo)</h4><p>围绕着同步或异步行为的不确定性，几乎总是导致非常难追踪的 Bug，这被称为<code>Zalgo</code>。</p>
+<blockquote>
+<p>注意：更多关于 Zalgo 的信息，参见 Oren Golan 的<a href="https://github.com/oren/oren.github.io/blob/master/posts/zalgo.md" target="_blank" rel="noopener">Don’t Release Zalgo!(不要释放 Zalgo!)</a>和 Isaac Z. Schlueter 的<a href="http://blog.izs.me/post/59142742143/designing-apis-for-asynchrony" target="_blank" rel="noopener">Designing APIs for Asynchrony(异步 API 设计)</a>。</p>
+</blockquote>
+<p>看个例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createFileReader</span>(<span class="params">filename</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> listeners = []</span><br><span class="line">  inconsistentRead(filename, value =&gt; &#123;</span><br><span class="line">    listeners.forEach(<span class="function"><span class="params">listener</span> =&gt;</span> listener(value))</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    onDataReady: <span class="function"><span class="params">listener</span> =&gt;</span> listeners.push(listener)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>函数被调用的时候创建了一个作为通知器的对象，允许为一个  读文件操作设置多个监听。当文件读取完后或者数据可用后所有的监听都会被调用，现在使用上面的<code>inconsistentRead</code>函数来完成这个功能：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> reader1 = createFileReader(<span class="string">'data.txt'</span>)</span><br><span class="line">reader1.onDataReady(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'First call data: '</span> + data)</span><br><span class="line">  <span class="comment">// 之后再次通过fs读取同一个文件</span></span><br><span class="line">  <span class="keyword">const</span> reader2 = createFileReader(<span class="string">'data.txt'</span>)</span><br><span class="line">  reader2.onDataReady(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Second call data: '</span> + data)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>输出是这样的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">First call data: some data</span><br></pre></td></tr></table></figure>
+<p>会发现，第二个操作的回调未被调用，这是因为第一次调用时没有缓存，<code>inconsistentRead</code>是异步调用的，这个时候第一个回调函数已经加入到监听列表中了，然而第二次调用时，缓存中已经存在了，所以<code>inconsistentRead</code>是同步调用的，这个时候监听列表中还没有第二个回调函数，故而之后也没有再调用了。</p>
+<h4 id="Using-asynchronous-API-使用同步-API"><a href="#Using-asynchronous-API-使用同步-API" class="headerlink" title="Using asynchronous API(使用同步 API)"></a>Using asynchronous API(使用同步 API)</h4><p>从上面<code>unleashing Zalgo</code>中我们知道，清楚地定义<code>API</code>性质是非常重要的：同步还是异步？</p>
+<p>可以使整个函数同步来解决上面的问题，<code>readFileSync</code>代替<code>readFile</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"><span class="keyword">const</span> cache = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">consistentReadSync</span>(<span class="params">filename</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (cache[filename]) &#123;</span><br><span class="line">    <span class="keyword">return</span> cache[filename]</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    cache[filename] = fs.readFileSync(filename, <span class="string">'utf8'</span>)</span><br><span class="line">    <span class="keyword">return</span> cache[filename]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>没有理由为一个同步函数使用<code>CPS</code>风格。</p>
+<blockquote>
+<p>注意：最好为纯同步函数使用<code>direct style</code>。</p>
+</blockquote>
+<p>使用同步 API 替代异步 API 需要注意：</p>
+<ul>
+<li>同步 API 并不适用所有场景。</li>
+<li>同步 API 会阻塞事件循环，降低了应用性能，破坏了<code>JavaScript</code>并发模型。</li>
+</ul>
+<p>如果只是读取有限的文件，那么<code>consistentReadSync</code>并不会对事件循环的性能造成多大影响，但是当文件很多时就不同了。</p>
+<p>很多时候<code>Node.js</code>是不鼓励使用同步函数的，但是有时候同步函数也是最简单、最有效的解决方案。所以要根据情况来选择使用同步的方法还是异步的。</p>
+<p>当对程序处理并发请求影响不大的时候使用同步(例如读取程序配置文件)。</p>
+<h3 id="Deffered-execution-延时处理"><a href="#Deffered-execution-延时处理" class="headerlink" title="Deffered execution(延时处理)"></a>Deffered execution(延时处理)</h3><p>另外一种处理<code>consistentRead</code>的方法就是使整个函数都是异步的，使用<code>process.nextTick()</code>使得回调函数在下一个事件循环周期调用而不是立即调用：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"><span class="keyword">const</span> cache = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">consistentReadAsync</span>(<span class="params">filename, callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (cache[filename]) &#123;</span><br><span class="line">    process.nextTick(<span class="function"><span class="params">()</span> =&gt;</span> callback(cache[filename]))</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 异步函数</span></span><br><span class="line">    fs.readFile(filename, <span class="string">'utf8'</span>, (err, data) =&gt; &#123;</span><br><span class="line">      cache[filename] = data</span><br><span class="line">      callback(data)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>另外一个延迟执行的 API 是<code>setImmediate()</code>，尽管他们看起来相似，但是在语义上完全不同，<code>process.nextTick()</code>在任何 I/O 事件触发前执行，而<code>setImmediate()</code>在队列中所有的 I/O 事件执行之后执行。</p>
+<h3 id="Node-js-callback-conventions-Node-js-回调风格"><a href="#Node-js-callback-conventions-Node-js-回调风格" class="headerlink" title="Node.js callback conventions(Node.js 回调风格)"></a>Node.js callback conventions(Node.js 回调风格)</h3><p>对于<code>Node.js</code>而言，<code>CPS</code>风格的 API 和回调函数遵循一组特殊的约定。这些约定不只是适用于<code>Node.js</code>核心 API，对于它们之后也是绝大多数用户级模块和应用程序也很有意义。因此，我们了解这些风格，并确保我们在需要设计异步 API 时遵守规定显得至关重要。</p>
+<h4 id="Callbacks-come-last-回调函数在最后"><a href="#Callbacks-come-last-回调函数在最后" class="headerlink" title="Callbacks come last(回调函数在最后)"></a>Callbacks come last(回调函数在最后)</h4><p>在所有核心 Node.js 方法中，标准约定是当函数在输入中接受回调时，必须作为最后一个参数传递。我们以下面的 Node.js 核心 API 为例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fs.readFile(filename, [options], callback)</span><br></pre></td></tr></table></figure>
+<p>从前面的例子可以看出，即使是在可选参数存在的情况下，回调也始终置于最后的位置。其原因是在回调定义的情况下，函数调用更可读。</p>
+<h4 id="Error-comes-first-错误处理在最前"><a href="#Error-comes-first-错误处理在最前" class="headerlink" title="Error comes first(错误处理在最前)"></a>Error comes first(错误处理在最前)</h4><p>在<code>Node.js</code>中，在<code>CPS</code>中产生的错误总是作为第一个参数，这样便于调试，没有错误则第一个参数为 null 或者 undefined，在正式处理结果之前先判断 error 这样有利于 debug，错误类型为<code>Error</code>型，普通的字符串或者数字是不应该作为错误被传递的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fs.readFile(<span class="string">'foo.txt'</span>, <span class="string">'utf8'</span>, (err, data) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (err) handleError(err)</span><br><span class="line">  <span class="keyword">else</span> processData(data)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="Propagating-errors-传递错误"><a href="#Propagating-errors-传递错误" class="headerlink" title="Propagating errors(传递错误)"></a>Propagating errors(传递错误)</h4><p>在同步函数或者直接风格中，使用<code>throw</code>是最直接的，使得错误从调用栈中弹出直到被捕获。</p>
+<p>但是在异步调用中，比较好的错误处理方式是将错误传递到回调链中的下一个回调函数中：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">readJSON</span>(<span class="params">filename, callback</span>) </span>&#123;</span><br><span class="line">  fs.readFile(filename, <span class="string">'utf8'</span>, (err, data) =&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> parsed</span><br><span class="line">    <span class="keyword">if</span> (err)</span><br><span class="line">      <span class="comment">//传递错误并退出当前函数</span></span><br><span class="line">      <span class="keyword">return</span> callback(err)</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="comment">//解析文件内容</span></span><br><span class="line">      parsed = <span class="built_in">JSON</span>.parse(data)</span><br><span class="line">    &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">      <span class="comment">//捕获解析中的错误</span></span><br><span class="line">      <span class="keyword">return</span> callback(err)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//没有错误，只传递数据</span></span><br><span class="line">    callback(<span class="literal">null</span>, parsed)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>有错误直接<code>return</code>避免继续执行。</p>
+<h4 id="Uncaught-exceptions"><a href="#Uncaught-exceptions" class="headerlink" title="Uncaught exceptions"></a>Uncaught exceptions</h4><p>在异步回调过程中，错误是难以被捕获的，例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">readJSONThrows</span>(<span class="params">filename, callback</span>) </span>&#123;</span><br><span class="line">  fs.readFile(filename, <span class="string">'utf8'</span>, (err, data) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">      <span class="keyword">return</span> callback(err);</span><br><span class="line">    &#125;</span><br><span class="line">    callback(<span class="literal">null</span>, <span class="built_in">JSON</span>.parse(data));</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>在上面的函数中，如果<code>JSON.parse(data)</code>异常的话是没有办法捕获的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  readJSONThrows(<span class="string">'nonJSON.txt'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err, result</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// ... </span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'This will not catch the JSON parsing exception'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面<code>catch</code>语句将捕获不到错误，因为错误是在回调函数中产生的。然而，我们仍然有机会在应用程序终止之前执行一些清理或日志记录。事实上，当这种情况发生时，Node.js会在退出进程之前发出一个名为<code>uncaughtException</code>的特殊事件：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">process.on(<span class="string">'uncaughtException'</span>, (err) =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.error(<span class="string">'This will catch at last the '</span> +</span><br><span class="line">    <span class="string">'JSON parsing exception: '</span> + err.message);</span><br><span class="line">  <span class="comment">// Terminates the application with 1 (error) as exit code:</span></span><br><span class="line">  <span class="comment">// without the following line, the application would continue</span></span><br><span class="line">  process.exit(<span class="number">1</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>需要注意的是，<code>uncaughtException</code>会使得应用处于一个不能保证一致的状态，而这可能导致不可预见的错误。比如还有未完成的I/O请求正在运行或关闭，这可能导致不一致。所以建议，尤其是在生产环境，在收到任何<code>uncaught exception</code>之后停止应用的运行。</p>
+<h3 id="The-module-system-and-its-patterns-模块系统和其中的模式"><a href="#The-module-system-and-its-patterns-模块系统和其中的模式" class="headerlink" title="The module system and its patterns(模块系统和其中的模式)"></a>The module system and its patterns(模块系统和其中的模式)</h3><p>模块可以隐藏不想暴露的函数、变量，是构成大型应用的基础。</p>
+<h4 id="The-revealing-module-pattern"><a href="#The-revealing-module-pattern" class="headerlink" title="The revealing module pattern"></a>The revealing module pattern</h4><p>未完待续…</p>
+
       
 
       
@@ -196,6 +262,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -246,7 +323,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://1016990109.github.io/categories/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://1016990109.github.io/2018/05/18/Node-js-设计模式读书笔记-第二章/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -258,6 +335,25 @@
 </article>
 
   
+<nav id="article-nav">
+  
+    <a href="/2018/05/22/dubbo介绍/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          dubbo 探索
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/05/11/Node-js-设计模式读书笔记-第一章/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">《Node.js 设计模式》读书笔记 第一章</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -279,7 +375,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Node-js-Essential-Patterns-Node-js-基本模式"><span class="toc-number">1.</span> <span class="toc-text">Node.js Essential Patterns(Node.js 基本模式)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#The-callback-pattern-回调模式"><span class="toc-number">1.1.</span> <span class="toc-text">The callback pattern(回调模式)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#The-continuation-passing-pattern-连续传递模式"><span class="toc-number">1.1.1.</span> <span class="toc-text">The continuation-passing pattern(连续传递模式)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Synchronous-continuation-passing-style-同步连续传递风格"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">Synchronous continuation-passing style(同步连续传递风格)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Asynchronous-continuation-passing-style-异步连续传递风格"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">Asynchronous continuation-passing style(异步连续传递风格)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Non-continuation-passing-style-callbacks-非连续传递风格的回调"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">Non-continuation-passing style callbacks(非连续传递风格的回调)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Synchronous-or-asynchronous-同步还是异步"><span class="toc-number">1.1.2.</span> <span class="toc-text">Synchronous or asynchronous?(同步还是异步?)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#An-unpredictable-function-一个不可预测的函数"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">An unpredictable function(一个不可预测的函数)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Unleashing-Zalgo-解放-Zalgo"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">Unleashing Zalgo(解放 Zalgo)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Using-asynchronous-API-使用同步-API"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">Using asynchronous API(使用同步 API)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deffered-execution-延时处理"><span class="toc-number">1.1.3.</span> <span class="toc-text">Deffered execution(延时处理)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Node-js-callback-conventions-Node-js-回调风格"><span class="toc-number">1.1.4.</span> <span class="toc-text">Node.js callback conventions(Node.js 回调风格)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Callbacks-come-last-回调函数在最后"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">Callbacks come last(回调函数在最后)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Error-comes-first-错误处理在最前"><span class="toc-number">1.1.4.2.</span> <span class="toc-text">Error comes first(错误处理在最前)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Propagating-errors-传递错误"><span class="toc-number">1.1.4.3.</span> <span class="toc-text">Propagating errors(传递错误)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Uncaught-exceptions"><span class="toc-number">1.1.4.4.</span> <span class="toc-text">Uncaught exceptions</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-module-system-and-its-patterns-模块系统和其中的模式"><span class="toc-number">1.1.5.</span> <span class="toc-text">The module system and its patterns(模块系统和其中的模式)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#The-revealing-module-pattern"><span class="toc-number">1.1.5.1.</span> <span class="toc-text">The revealing module pattern</span></a></li></ol></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -289,6 +385,36 @@
 </aside>
 
 
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Node-js-设计模式读书笔记-第二章" data-title="《Node.js 设计模式》读书笔记 第二章" data-url="http://1016990109.github.io/2018/05/18/Node-js-设计模式读书笔记-第二章/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"hcw13"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+  
+  
+
+  
+
+  
+
+  
 
 
           </div>
@@ -311,7 +437,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
