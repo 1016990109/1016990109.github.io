@@ -6,18 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://1016990109.github.io">
-  <title>Archives | 七秒悲伤的博客</title>
+  <title>关系型数据库存储树形结构 | 七秒悲伤的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个深藏功与名的软件开发爱好者">
-<meta property="og:type" content="website">
-<meta property="og:title" content="七秒悲伤的博客">
-<meta property="og:url" content="http://1016990109.github.io/archives/index.html">
+  <meta name="description" content="在日常开发中不免遇到需要在关系型数据库中存储树形结构数据的情况，这里介绍 3 种存储方法。 三种方法都以下面这个嵌套评论场景为背景。">
+<meta name="keywords" content="数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关系型数据库存储树形结构">
+<meta property="og:url" content="http://1016990109.github.io/2018/06/05/关系型数据库存储树形结构/index.html">
 <meta property="og:site_name" content="七秒悲伤的博客">
-<meta property="og:description" content="一个深藏功与名的软件开发爱好者">
+<meta property="og:description" content="在日常开发中不免遇到需要在关系型数据库中存储树形结构数据的情况，这里介绍 3 种存储方法。 三种方法都以下面这个嵌套评论场景为背景。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://1016990109.github.io/assets/img/comment-hierarchy.png">
+<meta property="og:image" content="http://1016990109.github.io/assets/img/adjacency-model.jpg">
+<meta property="og:image" content="http://1016990109.github.io/assets/img/materialized-path.png">
+<meta property="og:image" content="http://1016990109.github.io/assets/img/nested-sets.png">
+<meta property="og:image" content="http://1016990109.github.io/assets/img/nested-sets-add.png">
+<meta property="og:updated_time" content="2018-06-06T11:40:05.005Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="七秒悲伤的博客">
-<meta name="twitter:description" content="一个深藏功与名的软件开发爱好者">
+<meta name="twitter:title" content="关系型数据库存储树形结构">
+<meta name="twitter:description" content="在日常开发中不免遇到需要在关系型数据库中存储树形结构数据的情况，这里介绍 3 种存储方法。 三种方法都以下面这个嵌套评论场景为背景。">
+<meta name="twitter:image" content="http://1016990109.github.io/assets/img/comment-hierarchy.png">
   
     <link rel="alternative" href="/atom.xml" title="七秒悲伤的博客" type="application/atom+xml">
   
@@ -167,36 +175,119 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-关系型数据库存储树形结构" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/06/05/关系型数据库存储树形结构/" class="archive-article-date">
-  	<time datetime="2018-06-05T08:05:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-05</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/06/05/关系型数据库存储树形结构/">关系型数据库存储树形结构</a>
+    <h1 class="article-title" itemprop="name">
+      关系型数据库存储树形结构
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/06/05/关系型数据库存储树形结构/" class="archive-article-date">
+  	<time datetime="2018-06-05T08:05:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在日常开发中不免遇到需要在关系型数据库中存储树形结构数据的情况，这里介绍 3 种存储方法。</p>
+<p>三种方法都以下面这个嵌套评论场景为背景。</p>
+<a id="more"></a>
+<p><img src="/assets/img/comment-hierarchy.png" alt="comment-hierarchy"></p>
+<h2 id="Adjacency-model-邻接模型"><a href="#Adjacency-model-邻接模型" class="headerlink" title="Adjacency model(邻接模型)"></a>Adjacency model(邻接模型)</h2><p>这是最常见最简单的存储树形结构的方法了。每个元素都持有对父节点的引用作为外键(图中<code>PK</code>为主键，<code>FK</code>为外键)，是一个一对多的关系:</p>
+<p><img src="/assets/img/adjacency-model.jpg" alt="Adjacency model"></p>
+<h3 id="添加-修改"><a href="#添加-修改" class="headerlink" title="添加/修改"></a>添加/修改</h3><p>添加和删除只要操作 <code>parent_id</code> 就可以了，添加到某节点就把 <code>parent_id</code> 设为该节点 <code>id</code>，从某节点下移动到另一个节点只要把 <code>parent_id</code> 更换为其他节点的 <code>id</code> 就可以了。</p>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><p>使用 <code>parent-child</code> 方法需要删除节点就是比较复杂的了，因为不能简单地删除一个节点，这样属于该节点的子节点会找不到父节点，故而会出现一些问题，所以为了保持正确性得同时删除该节点的子节点。一种常见的做法是不直接删除该节点，而是标记该节点为删除状态，然后递归向下直到所有的后代都已经标记为删除了。</p>
+<h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><p>查询直接的父节点或者子节点是非常容易的:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- query a node's children</span></span><br><span class="line"><span class="keyword">select</span> *</span><br><span class="line"><span class="keyword">from</span> comments c1</span><br><span class="line">  <span class="keyword">left</span> <span class="keyword">join</span> comments c2</span><br><span class="line">    <span class="keyword">on</span> (c2.parent_id = c1.id)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- query a node's parent</span></span><br><span class="line"><span class="keyword">select</span> *</span><br><span class="line"><span class="keyword">from</span> comments c1</span><br><span class="line">  <span class="keyword">join</span> comments c2</span><br><span class="line">    <span class="keyword">on</span> (c1.parent_id = c2.id)</span><br></pre></td></tr></table></figure>
+<p>但是查询一颗子树的时候就比较麻烦了，这就需要递归查询，在性能上是很大的挑战。实现的方式有两种：</p>
+<ul>
+<li>自顶向下查询，<code>connect by</code> 语法，这种方式较为简洁</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- query a node's subtree</span></span><br><span class="line"><span class="keyword">select</span> *</span><br><span class="line"><span class="keyword">from</span> comments</span><br><span class="line"><span class="keyword">start</span> <span class="keyword">with</span> <span class="keyword">id</span>=<span class="number">1</span></span><br><span class="line"><span class="keyword">connect</span> <span class="keyword">by</span> parent_id = <span class="keyword">prior</span> <span class="keyword">id</span></span><br><span class="line"><span class="comment">-- query a node's parent is the same</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>递归实现</p>
+<p>1.第一步定义起始的点</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span></span><br><span class="line">  <span class="number">0</span> <span class="keyword">as</span> <span class="keyword">depth</span>,</span><br><span class="line">  <span class="keyword">id</span>,</span><br><span class="line">  <span class="keyword">comment</span>,</span><br><span class="line">  parent_id</span><br><span class="line"><span class="keyword">from</span> comments</span><br><span class="line"><span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>2.第二步定义每个子行与父节点之间关系</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span></span><br><span class="line">  parent.depth + <span class="number">1</span>,</span><br><span class="line">  child.id,</span><br><span class="line">  child.comment,</span><br><span class="line">  child.parent_id</span><br><span class="line"><span class="keyword">from</span> recursive_query <span class="keyword">parent</span>, comments <span class="keyword">child</span></span><br><span class="line"><span class="keyword">where</span> parent.id = child.parent_id</span><br></pre></td></tr></table></figure>
+<p>3.结合 1 2 步</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">with recursive_query(depth, id, <span class="keyword">comment</span>, parent_id)</span><br><span class="line"><span class="keyword">as</span> (</span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">  <span class="number">0</span> <span class="keyword">as</span> <span class="keyword">depth</span>,</span><br><span class="line">  <span class="keyword">id</span>,</span><br><span class="line">  <span class="keyword">comment</span>,</span><br><span class="line">  parent_id</span><br><span class="line"><span class="keyword">from</span> comments</span><br><span class="line"><span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">0</span></span><br><span class="line"><span class="keyword">union</span> all</span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">  parent.depth + <span class="number">1</span>,</span><br><span class="line">  child.id,</span><br><span class="line">  child.comment,</span><br><span class="line">  child.parent_id</span><br><span class="line"><span class="keyword">from</span> recursive_query <span class="keyword">parent</span>, comments <span class="keyword">child</span></span><br><span class="line"><span class="keyword">where</span> parent.id = child.parent_id</span><br><span class="line">)</span><br><span class="line"><span class="keyword">select</span> *</span><br><span class="line"><span class="keyword">from</span> recursive_query</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="元素数量和嵌套的层级"><a href="#元素数量和嵌套的层级" class="headerlink" title="元素数量和嵌套的层级"></a>元素数量和嵌套的层级</h3><p>理论上元素数量和层级没有限制，可以有无数层。</p>
+<h2 id="Materialized-Path-物化路径"><a href="#Materialized-Path-物化路径" class="headerlink" title="Materialized Path(物化路径)"></a>Materialized Path(物化路径)</h2><p>使用每个节点都存储祖先链的方式实现树的存储，这种方式很容易实现面包屑导航。</p>
+<p><img src="/assets/img/materialized-path.png" alt="materialized path"></p>
+<h3 id="添加-修改-1"><a href="#添加-修改-1" class="headerlink" title="添加/修改"></a>添加/修改</h3><p>添加一个节点，需要先获得父节点的 <code>path</code>，再在此基础上加上新节点的 <code>id</code> 组成新的 <code>path</code>来完成添加操作。</p>
+<p>修改的话会更麻烦一点，需要更新该节点的 <code>path</code> 以及它的所有后代的 <code>path</code>。</p>
+<h3 id="删除-1"><a href="#删除-1" class="headerlink" title="删除"></a>删除</h3><p>简单删除一个节点并不破坏整棵树的完整性，该节点的子节点虽然没有父级节点，但是有爷爷辈节点。</p>
+<h3 id="查询-1"><a href="#查询-1" class="headerlink" title="查询"></a>查询</h3><p>查询一个节点下面的子树是非常容易的，直接 <code>path like &#39;{node&#39;s path}%&#39;</code> 就能选出来了，而不需要递归。</p>
+<h3 id="元素数量和嵌套的层级-1"><a href="#元素数量和嵌套的层级-1" class="headerlink" title="元素数量和嵌套的层级"></a>元素数量和嵌套的层级</h3><p>元素的数量和嵌套的层级大小是取决于开发者的，事实上很少是需要无限的层级的：如果网站嵌套层级超过 20 层，那需要考虑重新设计了而不是盲目地增加层级了。</p>
+<p>该模式的实现方式可以有很多种，比如点分割(<code>1.1.2.5</code>)或者斜杠分割(<code>boss/chapter1/section2</code>)，有时候规定一层的字符数量，空出来的空间用特殊字符填充(比如说<code>0</code>)，就像 <code>000100020005</code> 就表示 <code>1/2/5</code> 中间用 <code>0</code> 填充，这样每一层元素数量最多就 <code>10^4</code> 个了(规定只能是数字)，而如果整个 <code>path</code> 的长度再有限制(比如说 20)，那么自然嵌套的层级也有限制了(这里是 5 层)。</p>
+<p>所以说这些都是取决于是如何设计的。</p>
+<h2 id="Nested-Sets-嵌套集合"><a href="#Nested-Sets-嵌套集合" class="headerlink" title="Nested Sets(嵌套集合)"></a>Nested Sets(嵌套集合)</h2><p>先上一张图来理解这个模型：</p>
+<p><img src="/assets/img/nested-sets.png" alt="Nested Sets"></p>
+<p>可以看到每个节点都有一个 <code>left</code> 和一个 <code>right</code>，这是代表这个节点所能容纳的范围的，一个节点的 <code>left</code> 比它所有后代的 <code>left</code> 要小，一个节点的 <code>right</code> 比它所有后代的 <code>right</code> 要大。</p>
+<h3 id="添加-修改-2"><a href="#添加-修改-2" class="headerlink" title="添加/修改"></a>添加/修改</h3><p>添加和修改是十分复杂的，都需要重新计算节点的 <code>left</code> 与 <code>right</code>。</p>
+<p>拿添加来说，比如给上图中第 5 个节点(它的<code>left</code>为<code>left-5</code>，<code>right</code>为<code>right-5</code>)添加子节点，那么需要做的就是把 <code>right</code> 大或等于 <code>right-5</code> 的节点都取出来，如果 <code>left</code> 大于或等于 <code>right-5</code> 那么就加 2，否则不变；<code>right</code> 全部都加 2；然后把新的节点 <code>left</code> 设为 <code>right-5</code>，<code>right</code> 设为 <code>right-5 + 1</code>，如下图：</p>
+<p><img src="/assets/img/nested-sets-add.png" alt="Nested Sets add new node"></p>
+<h3 id="删除-2"><a href="#删除-2" class="headerlink" title="删除"></a>删除</h3><p>同样的删除也是非常复杂的，这也需要重新计算 <code>left</code> 和 <code>right</code>。</p>
+<h3 id="查询-2"><a href="#查询-2" class="headerlink" title="查询"></a>查询</h3><p>查询一颗子树是非常方便的，只需要找出所有的 <code>left</code> 比该节点大，<code>right</code> 比该节点小的所有节点就可以了。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span><br><span class="line"><span class="keyword">from</span> comments</span><br><span class="line"><span class="keyword">where</span> <span class="keyword">left</span> &gt; <span class="number">1</span> <span class="keyword">and</span> <span class="keyword">right</span> &lt; <span class="number">14</span></span><br></pre></td></tr></table></figure>
+<h3 id="元素数量和嵌套的层级-2"><a href="#元素数量和嵌套的层级-2" class="headerlink" title="元素数量和嵌套的层级"></a>元素数量和嵌套的层级</h3><p>和邻接链表一样的。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><table>
+<thead>
+<tr>
+<th>模型</th>
+<th>查询子节点</th>
+<th>查询子树</th>
+<th>删除节点</th>
+<th>插入节点</th>
+<th>移动子树</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Adjacency List</td>
+<td>易</td>
+<td>难(递归还好，相对耗时)</td>
+<td>易</td>
+<td>易</td>
+<td>易</td>
+</tr>
+<tr>
+<td>Materialized Path</td>
+<td>难</td>
+<td>易</td>
+<td>易</td>
+<td>易</td>
+<td>易(但耗时)</td>
+</tr>
+<tr>
+<td>Nested Sets</td>
+<td>难</td>
+<td>易</td>
+<td>难</td>
+<td>难</td>
+<td>难</td>
+</tr>
+</tbody>
+</table>
+<p>邻接链表是较为简单的一种实现，但是想要查询一颗树的时候会有很多阻力，如 <code>Mysql 8.0</code> 以下原生是不支持递归查询的(可以自定义函数来完成这个递归操作，详情看<a href="https://explainextended.com/2009/03/17/hierarchical-queries-in-mysql" target="_blank" rel="noopener">这里</a>)，但是 <code>Oracle</code>、<code>PostgreSQL</code>、<code>SQL Server</code> 是支持的，除此之外，查询子树时存在查询效率问题(因为需要递归)。所以当你使用的场景插入或更新或删除较多的话是最好选择邻接链表模型的。如果查询树特别多，则可以使用嵌套集合模型或者物化路径模型(物化路径模型当层次较深的时候额外存储空间较大需谨慎)较为合适，当然如果使用的数据库原生支持递归语法，那么使用邻接链表模型也未尝不可，只是性能上会差一点。</p>
+<p>总之还是根据具体情况具体分析，选择合适的才是最好的。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -208,7 +299,7 @@
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -221,388 +312,136 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://1016990109.github.io/2018/06/05/关系型数据库存储树形结构/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/06/05/Git-Flow-学习/" class="archive-article-date">
-  	<time datetime="2018-06-05T01:35:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-05</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/06/05/Git-Flow-学习/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">git-flow 学习</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/06/05/Git-Flow-学习/">git-flow 学习</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/学习//" class="article-tag-list-link color3">学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Adjacency-model-邻接模型"><span class="toc-number">1.</span> <span class="toc-text">Adjacency model(邻接模型)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#添加-修改"><span class="toc-number">1.1.</span> <span class="toc-text">添加/修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除"><span class="toc-number">1.2.</span> <span class="toc-text">删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查询"><span class="toc-number">1.3.</span> <span class="toc-text">查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#元素数量和嵌套的层级"><span class="toc-number">1.4.</span> <span class="toc-text">元素数量和嵌套的层级</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Materialized-Path-物化路径"><span class="toc-number">2.</span> <span class="toc-text">Materialized Path(物化路径)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#添加-修改-1"><span class="toc-number">2.1.</span> <span class="toc-text">添加/修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除-1"><span class="toc-number">2.2.</span> <span class="toc-text">删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查询-1"><span class="toc-number">2.3.</span> <span class="toc-text">查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#元素数量和嵌套的层级-1"><span class="toc-number">2.4.</span> <span class="toc-text">元素数量和嵌套的层级</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nested-Sets-嵌套集合"><span class="toc-number">3.</span> <span class="toc-text">Nested Sets(嵌套集合)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#添加-修改-2"><span class="toc-number">3.1.</span> <span class="toc-text">添加/修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除-2"><span class="toc-number">3.2.</span> <span class="toc-text">删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查询-2"><span class="toc-number">3.3.</span> <span class="toc-text">查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#元素数量和嵌套的层级-2"><span class="toc-number">3.4.</span> <span class="toc-text">元素数量和嵌套的层级</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/28/5月28日学习笔记/" class="archive-article-date">
-  	<time datetime="2018-05-28T14:17:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/28/5月28日学习笔记/">5月28日学习笔记</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/学习//" class="article-tag-list-link color3">学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/22/dubbo探索/" class="archive-article-date">
-  	<time datetime="2018-05-22T03:09:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-22</time>
-</a>
-        </div>
-    	 
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="关系型数据库存储树形结构" data-title="关系型数据库存储树形结构" data-url="http://1016990109.github.io/2018/06/05/关系型数据库存储树形结构/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"hcw13"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/22/dubbo探索/">Dubbo 探索</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RPC</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/18/Node-js-设计模式读书笔记-第二章/" class="archive-article-date">
-  	<time datetime="2018-05-18T08:51:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/18/Node-js-设计模式读书笔记-第二章/">《Node.js 设计模式》读书笔记 第二章</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/11/Node-js-设计模式读书笔记-第一章/" class="archive-article-date">
-  	<time datetime="2018-05-11T12:00:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/11/Node-js-设计模式读书笔记-第一章/">《Node.js 设计模式》读书笔记 第一章</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/09/Python-处理excel文件/" class="archive-article-date">
-  	<time datetime="2018-05-09T14:42:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/09/Python-处理excel文件/">Python 处理excel文件</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/06/Vue-过渡-动画/" class="archive-article-date">
-  	<time datetime="2018-05-06T12:56:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/06/Vue-过渡-动画/">Vue 过渡&amp;动画</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/05/VSCode配置/" class="archive-article-date">
-  	<time datetime="2018-05-05T11:30:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/05/VSCode配置/">VSCode配置</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/17/Vue基础的一些注意事项/" class="archive-article-date">
-  	<time datetime="2018-04-17T07:47:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/17/Vue基础的一些注意事项/">Vue 基础的一些注意事项</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -626,8 +465,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
