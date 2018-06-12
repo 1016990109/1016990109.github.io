@@ -23,7 +23,7 @@
 <meta property="og:image" content="http://1016990109.github.io/assets/img/reactor3.png">
 <meta property="og:image" content="http://1016990109.github.io/assets/img/reactor.jpg">
 <meta property="og:image" content="http://1016990109.github.io/assets/img/netty_pipeline.png">
-<meta property="og:updated_time" content="2018-06-01T06:15:38.870Z">
+<meta property="og:updated_time" content="2018-06-06T14:18:50.583Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dubbo 探索">
 <meta name="twitter:description" content="Dubbo 框架的介绍以及源码阅读Dubbo 简介Apache Dubbo|ˈdʌbəʊ| 是阿里开源的一个 RPC 框架。 和大多数 RPC 系统一样， dubbo 基于一个理念：定义一个服务，确定远程调用的方法，并且包含他们的参数和返回类型。在服务端，服务器实现接口并且运行一个 dubbo 的服务来处理来自客户端的请求；在客户端，客户端持有提供与服务端方法一模一样的桩。">
@@ -307,7 +307,7 @@
 <li><code>Worker</code> 知道了，<code>unsafe.forceflush</code> 写回结果给客户端</li>
 </ol>
 <p><code>ChannelPipeline</code> 处理过程类似下面这样，一般会有 <code>decode</code>，用户自定义的 <code>handler</code>，和 <code>encode</code>：</p>
-<p><img src="/assets/img/netty_pipeline.png" alt="netty pipelin"></p>
+<p><img src="/assets/img/netty_pipeline.png" alt="netty pipeline"></p>
 <p><code>ChannelInBoundHandler</code> 对从客户端发往服务器的报文进行处理，一般用来执行拆包/粘包，解码，读取数据，业务处理等；<code>ChannelOutBoundHandler</code> 对从服务器发往客户端的报文进行处理，一般用来进行编码，发送报文到客户端。</p>
 <h4 id="编码与解码-序列化与反序列化"><a href="#编码与解码-序列化与反序列化" class="headerlink" title="编码与解码(序列化与反序列化)"></a>编码与解码(序列化与反序列化)</h4><p>想要远程传输对象就得将对象变为二进制码，这就需要序列化工具来完成这些操作。</p>
 <p>在 <code>Dubbo</code>中，同时支持多种序列化方式，例如：</p>
@@ -581,7 +581,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -589,19 +589,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Node</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RPC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -614,6 +610,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">php</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RPC</a>
               </li>
              
               <li class="article-tag-list-item">

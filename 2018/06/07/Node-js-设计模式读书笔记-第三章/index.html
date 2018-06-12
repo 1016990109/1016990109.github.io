@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://1016990109.github.io">
-  <title>Category: 生活 | 七秒悲伤的博客</title>
+  <title>《Node.js 设计模式》读书笔记 第三章 | 七秒悲伤的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个深藏功与名的软件开发爱好者">
-<meta property="og:type" content="website">
-<meta property="og:title" content="七秒悲伤的博客">
-<meta property="og:url" content="http://1016990109.github.io/categories/生活/index.html">
+  <meta name="description" content="Asynchorous Control Flow Patterns with Callbacks(使用回调的异步控制流模式)异步的代码使得难以预测语句的执行顺序，所以在一些场景(比如遍历一些文件，执行一系列任务等等)下，这就要求开发者去使用一些方法或技术来防止编写出低效和难以阅读的代码。 The difficulties of asynchonous programming(异步编程的困难) KI">
+<meta name="keywords" content="读书笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《Node.js 设计模式》读书笔记 第三章">
+<meta property="og:url" content="http://1016990109.github.io/2018/06/07/Node-js-设计模式读书笔记-第三章/index.html">
 <meta property="og:site_name" content="七秒悲伤的博客">
-<meta property="og:description" content="一个深藏功与名的软件开发爱好者">
+<meta property="og:description" content="Asynchorous Control Flow Patterns with Callbacks(使用回调的异步控制流模式)异步的代码使得难以预测语句的执行顺序，所以在一些场景(比如遍历一些文件，执行一系列任务等等)下，这就要求开发者去使用一些方法或技术来防止编写出低效和难以阅读的代码。 The difficulties of asynchonous programming(异步编程的困难) KI">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-06-11T12:04:13.032Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="七秒悲伤的博客">
-<meta name="twitter:description" content="一个深藏功与名的软件开发爱好者">
+<meta name="twitter:title" content="《Node.js 设计模式》读书笔记 第三章">
+<meta name="twitter:description" content="Asynchorous Control Flow Patterns with Callbacks(使用回调的异步控制流模式)异步的代码使得难以预测语句的执行顺序，所以在一些场景(比如遍历一些文件，执行一系列任务等等)下，这就要求开发者去使用一些方法或技术来防止编写出低效和难以阅读的代码。 The difficulties of asynchonous programming(异步编程的困难) KI">
   
     <link rel="alternative" href="/atom.xml" title="七秒悲伤的博客" type="application/atom+xml">
   
@@ -167,71 +169,301 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Node-js-设计模式读书笔记-第三章" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/20/instagrame/" class="archive-article-date">
-  	<time datetime="2016-05-20T07:09:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-20</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/20/instagrame/">开始我的instagrame</a>
+    <h1 class="article-title" itemprop="name">
+      《Node.js 设计模式》读书笔记 第三章
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/06/07/Node-js-设计模式读书笔记-第三章/" class="archive-article-date">
+  	<time datetime="2018-06-07T02:39:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Asynchorous-Control-Flow-Patterns-with-Callbacks-使用回调的异步控制流模式"><a href="#Asynchorous-Control-Flow-Patterns-with-Callbacks-使用回调的异步控制流模式" class="headerlink" title="Asynchorous Control Flow Patterns with Callbacks(使用回调的异步控制流模式)"></a>Asynchorous Control Flow Patterns with Callbacks(使用回调的异步控制流模式)</h1><p>异步的代码使得难以预测语句的执行顺序，所以在一些场景(比如遍历一些文件，执行一系列任务等等)下，这就要求开发者去使用一些方法或技术来防止编写出低效和难以阅读的代码。</p>
+<h2 id="The-difficulties-of-asynchonous-programming-异步编程的困难"><a href="#The-difficulties-of-asynchonous-programming-异步编程的困难" class="headerlink" title="The difficulties of asynchonous programming(异步编程的困难)"></a>The difficulties of asynchonous programming(异步编程的困难)</h2><blockquote>
+<p><code>KISS</code> 原则：Keep It Simple, Stupid，注重简约。</p>
+</blockquote>
+<a id="more"></a>
+<p>匿名函数的闭包和原地定义使得开发者不用跳去另外一个地方写代码，这样编程就变得非常顺利。(比先去定义一个函数再回来引入要简单多了)这很好地体现了 <code>KISS</code> 原则，因为它是简单的，保持了代码编写的流(或理解为顺序吧)，开发时间少。但是当嵌套的层次变得多了起来之后，可维护性、复用性、模块性就被破坏了</p>
+<h3 id="Creating-a-simple-web-spider-创建一个简单的-web-爬虫"><a href="#Creating-a-simple-web-spider-创建一个简单的-web-爬虫" class="headerlink" title="Creating a simple web spider(创建一个简单的 web 爬虫)"></a>Creating a simple web spider(创建一个简单的 web 爬虫)</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// file spider.js</span></span><br><span class="line"><span class="keyword">const</span> request = <span class="built_in">require</span>(<span class="string">'request'</span>)</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"><span class="keyword">const</span> mkdirp = <span class="built_in">require</span>(<span class="string">'mkdirp'</span>)</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"><span class="keyword">const</span> utilities = <span class="built_in">require</span>(<span class="string">'./utilities'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">spider</span>(<span class="params">url, callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> filename = utilities.urlToFilename(url)</span><br><span class="line">  fs.exists(filename, exists =&gt; &#123;</span><br><span class="line">    <span class="comment">//[1]</span></span><br><span class="line">    <span class="keyword">if</span> (!exists) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">`Downloading <span class="subst">$&#123;url&#125;</span>`</span>)</span><br><span class="line">      request(url, (err, response, body) =&gt; &#123;</span><br><span class="line">        <span class="comment">//[2]</span></span><br><span class="line">        <span class="keyword">if</span> (err) &#123;</span><br><span class="line">          callback(err)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          mkdirp(path.dirname(filename), err =&gt; &#123;</span><br><span class="line">            <span class="comment">//[3]</span></span><br><span class="line">            <span class="keyword">if</span> (err) &#123;</span><br><span class="line">              callback(err)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">              fs.writeFile(filename, body, err =&gt; &#123;</span><br><span class="line">                <span class="comment">//[4]</span></span><br><span class="line">                <span class="keyword">if</span> (err) &#123;</span><br><span class="line">                  callback(err)</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                  callback(<span class="literal">null</span>, filename, <span class="literal">true</span>)</span><br><span class="line">                &#125;</span><br><span class="line">              &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      callback(<span class="literal">null</span>, filename, <span class="literal">false</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述函数执行下面的任务：</p>
+<ol>
+<li>通过查看相关的文件已经是否被创建来检查 <code>URL</code> 是不是已经被下载过了:</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fs.exists(filename, exists =&gt; ...</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>文件没有找到，则下载 <code>URL</code>:</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request(url, (err, response, body) =&gt; ...</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>保证包含该文件的文件夹存在:</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdirp(path.dirname(filename), err =&gt; ...</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>最后将 <code>HTTP</code> 响应内容写入文件系统的文件中:</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fs.writeFile(filename, body, err =&gt; ...</span><br></pre></td></tr></table></figure>
+<p>使用:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">spider(process.argv[<span class="number">2</span>], (err, filename, downloaded) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (err) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err)</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (downloaded) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`Completed the download of "<span class="subst">$&#123;filename&#125;</span>"`</span>)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`"<span class="subst">$&#123;filename&#125;</span>" was already downloaded`</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="The-callback-hell-回调地狱"><a href="#The-callback-hell-回调地狱" class="headerlink" title="The callback hell(回调地狱)"></a>The callback hell(回调地狱)</h3><p>从上面的 <code>spider()</code> 函数中可以看到，尽管我们非常直接清晰地实现这个算法，但是代码还是有很多层的缩进导致难以阅读。</p>
+<p>当然将上面的逻辑使用同步代码的方式实现会更加直接，而且出错的概率也会变得更小，但是阻塞就会使得效率更低，而且使用异步 <code>CPS</code> 风格也是另外一种尝试了。</p>
+<p>这种大量的闭包和内联回调函数定义导致代码变得不可读和不可控的场景称为回调地狱:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">asyncFoo(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">  asyncBar(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    asyncFooBar(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">//...</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>上面这种代码一个显而易见的问题就是降低了可读性，当层次变得很多的时候会看不清一个函数是什么时候结束的或者另一个函数是什么时候开始的。</p>
+<p>另一个问题就是变量名的重叠，有时候我们不得不使用相似的甚至相同的名字来描述一个内容，例如错误处理中使用 <code>err1</code> 、<code>err2</code>、<code>err3</code> 表示错误，甚至是直接使用相同的名字如 <code>err</code>，这些都不是好的实现，并且会导致混淆，提高缺陷发生的概率。</p>
+<p>还有一点需要注意，虽然闭包在性能和内存上代价较小，但是这可能导致不易识别的内存泄漏，因为被一个活动的闭包持有的上下文引用是不会被垃圾回收的。</p>
+<blockquote>
+<p>想知道闭包怎么在 <code>V8</code> 中工作的可以看<a href="https://mrale.ph/blog/2012/09/23/grokking-v8-closures-for-fun.html" target="_blank" rel="noopener">这里</a></p>
+</blockquote>
+<h2 id="Using-plain-JavaScript-使用纯-JavaScript"><a href="#Using-plain-JavaScript-使用纯-JavaScript" class="headerlink" title="Using plain JavaScript(使用纯 JavaScript)"></a>Using plain JavaScript(使用纯 JavaScript)</h2><h3 id="Callback-decipline-回调准则"><a href="#Callback-decipline-回调准则" class="headerlink" title="Callback decipline(回调准则)"></a>Callback decipline(回调准则)</h3><p>写异步函数的第一准则就是不要滥用闭包。</p>
+<p>下面是一些减少嵌套层次的原则：</p>
+<ul>
+<li>尽快返回。根据上下文，使用 <code>return</code>、<code>continue</code> 或 <code>break</code>，以便立即退出当前代码块，而不是写完整的 <code>if...else</code> 的语句。</li>
+<li>给函数命名，将中间结果作为参数传递。</li>
+<li>模块化代码。尽可能地将代码分成更小、更可复用的函数。</li>
+</ul>
+<h3 id="Applying-the-callback-decipline-应用回调准则"><a href="#Applying-the-callback-decipline-应用回调准则" class="headerlink" title="Applying the callback decipline(应用回调准则)"></a>Applying the callback decipline(应用回调准则)</h3><p>我们来应用这些准则来修复上面的 <code>spider</code> 应用。</p>
+<p>第一步：移除 <code>else</code> 语句，发现错误后立即返回，可以发现很容易就较少了嵌套的层级了(少了 <code>else</code> 那一层级)。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (err) &#123;</span><br><span class="line">  <span class="keyword">return</span> callback(err)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//code to execute when there are no errors</span></span><br></pre></td></tr></table></figure>
+<p>第二步：识别可复用的代码，独立出来为一个函数，这里为写入字符串到一个文件中：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">saveFile</span>(<span class="params">filename, contents, callback</span>) </span>&#123;</span><br><span class="line">  mkdirp(path.dirname(filename), err =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">      <span class="keyword">return</span> callback(err)</span><br><span class="line">    &#125;</span><br><span class="line">    fs.writeFile(filename, contents, callback)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>同样的也可以独立出一个 <code>download(url, filename, callback)</code> 函数来下载 <code>URL</code> 内容。</p>
+<p>最后一步：整合上面的两步，修改 <code>spider()</code> 函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">spider</span>(<span class="params">url, callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> filename = utilities.urlToFilename(url)</span><br><span class="line">  fs.exists(filename, exists =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (exists) &#123;</span><br><span class="line">      <span class="keyword">return</span> callback(<span class="literal">null</span>, filename, <span class="literal">false</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    download(url, filename, err =&gt; &#123;</span><br><span class="line">      <span class="keyword">if</span> (err) &#123;</span><br><span class="line">        <span class="keyword">return</span> callback(err)</span><br><span class="line">      &#125;</span><br><span class="line">      callback(<span class="literal">null</span>, filename, <span class="literal">true</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以发现只是简单地重新组织了代码，嵌套的层级就降低了很多，代码也变得更易读了。</p>
+<blockquote>
+<p>其中的 <code>saveFile()</code> 和 <code>download</code> 还可以考虑导出给其他模块使用，增加了复用性。</p>
+</blockquote>
+<h3 id="Sequential-execution-顺序执行"><a href="#Sequential-execution-顺序执行" class="headerlink" title="Sequential execution(顺序执行)"></a>Sequential execution(顺序执行)</h3><p>当需要顺序执行一组任务时(比如先对数据预处理，接着在按照步骤一步步处理数据等等)，尽管使用同步代码容易实现，但是在使用异步 <code>CPS</code> 风格来做时就可能导致回调地狱了。</p>
+<h4 id="Executing-a-known-set-of-tasks-in-sequence-顺序执行一个已知的任务集合"><a href="#Executing-a-known-set-of-tasks-in-sequence-顺序执行一个已知的任务集合" class="headerlink" title="Executing a known set of tasks in sequence(顺序执行一个已知的任务集合)"></a>Executing a known set of tasks in sequence(顺序执行一个已知的任务集合)</h4><p>直接上代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">task1</span>(<span class="params">callback</span>) </span>&#123;</span><br><span class="line">  asyncOperation(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    task2(callback);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">task2</span>(<span class="params">callback</span>) </span>&#123;</span><br><span class="line">  asyncOperation(result() =&gt; &#123;</span><br><span class="line">    task3(callback);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">task3</span>(<span class="params">callback</span>) </span>&#123;</span><br><span class="line">  asyncOperation(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    callback(); <span class="comment">//finally executes the callback</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">task1(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">//executed when task1, task2 and task3 are completed</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'tasks 1, 2 and 3 executed'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>上面演示了在一个任务中，当异步操作完成时如何调用下一个任务，这告诉我们处理异步代码不一定需要闭包。</p>
+<h4 id="Sequential-iteration-顺序迭代"><a href="#Sequential-iteration-顺序迭代" class="headerlink" title="Sequential iteration(顺序迭代)"></a>Sequential iteration(顺序迭代)</h4><p>上面示例中，我们是知道有多少任务要执行的，那么当任务数量和具体任务不清楚的时候该怎么办呢，我们就不能硬编码任务执行顺序了，得动态地生成。</p>
+<h5 id="Web-spider-version-2-Web-爬虫第-2-版"><a href="#Web-spider-version-2-Web-爬虫第-2-版" class="headerlink" title="Web spider version 2(Web 爬虫第 2 版)"></a>Web spider version 2(Web 爬虫第 2 版)</h5><p>为了显示顺序迭代的例子，让我们为 <code>Web</code> 爬虫应用程序引入一个新功能：我们现在想要递归地下载网页中的所有链接。</p>
+<p>第一步是修改我们的 <code>spider()</code> 函数，以便通过调用一个名为 <code>spiderLinks()</code> 的函数触发页面所有链接的递归下载。</p>
+<p>此外，我们现在尝试读取文件，而不是检查文件是否已经存在，并开始爬取其链接。这样，我们就可以在中断爬虫后恢复爬虫而不需要继续下载。最后还有一个变化是传递一个新的参数 <code>nesting</code>，用来限制递归深度。结果代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">spider</span>(<span class="params">url, nesting, callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> filename = utilities.urlToFilename(url);</span><br><span class="line">  fs.readFile(filename, <span class="string">'utf8'</span>, (err, body) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">      <span class="keyword">if</span> (err.code! == <span class="string">'ENOENT'</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> callback(err);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> download(url, filename, (err, body) =&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span> (err) &#123;</span><br><span class="line">          <span class="keyword">return</span> callback(err);</span><br><span class="line">        &#125;</span><br><span class="line">        spiderLinks(url, body, nesting, callback);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    spiderLinks(url, body, nesting, callback);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="Sequential-crawling-of-links-顺序爬取连接"><a href="#Sequential-crawling-of-links-顺序爬取连接" class="headerlink" title="Sequential crawling of links(顺序爬取连接)"></a>Sequential crawling of links(顺序爬取连接)</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">spiderLinks</span>(<span class="params">currentUrl, body, nesting, callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (nesting === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> process.nextTick(callback)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> links = utilities.getPageLinks(currentUrl, body) <span class="comment">//[1]</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">iterate</span>(<span class="params">index</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//[2]</span></span><br><span class="line">    <span class="keyword">if</span> (index === links.length) &#123;</span><br><span class="line">      <span class="keyword">return</span> callback()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    spider(links[index], nesting - <span class="number">1</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">      <span class="comment">//[3]</span></span><br><span class="line">      <span class="keyword">if</span> (err) &#123;</span><br><span class="line">        <span class="keyword">return</span> callback(err)</span><br><span class="line">      &#125;</span><br><span class="line">      iterate(index + <span class="number">1</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  iterate(<span class="number">0</span>) <span class="comment">//[4]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>我们使用 <code>utilities.getPageLinks()</code> 函数获取页面中包含的所有链接的列表。此函数仅返回指向相同主机名的链接。</li>
+<li>我们使用 <code>iterate()</code> 本地函数来遍历链接，该函数需要下一个链接的索引进行分析。在这个函数中，我们首先要检查索引是否等于链接数组的长度，如果等于则是迭代完成，在这种情况下我们立即调用 <code>callback()</code> 函数，因为这意味着我们处理了所有的项目。</li>
+<li>这时，已准备好处理链接。我们减少嵌套层级(<code>nesting - 1</code>)后调用 <code>spider()</code>，然后当操作完成后继续下一个迭代(<code>index + 1</code>)。</li>
+<li>调用 <code>iterate(0)</code> 来开始迭代。</li>
+</ol>
+<p>现在这个 <code>spider</code> 已经可以递归的爬取网页的链接了。中断(<code>ctrl + c</code>)后再次启动也可以继续上次的任务。</p>
+<h5 id="The-pattern-迭代模式"><a href="#The-pattern-迭代模式" class="headerlink" title="The pattern(迭代模式)"></a>The pattern(迭代模式)</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">iterate</span>(<span class="params">index</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (index === tasks.length) &#123;</span><br><span class="line">    <span class="keyword">return</span> finish()</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> task = tasks[index]</span><br><span class="line">  task(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    iterate(index + <span class="number">1</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">finish</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 迭代完成的操作</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">iterate(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<p>上面表示了异步任务需要按顺序执行时的一个通用模式，可以在集合的元素或通常的任务列表上按顺序异步迭代。</p>
+<blockquote>
+<p>注意，当 <code>task</code> 是同步任务的时候，那就是一个同步递归操作了，这可能会造成栈溢出。</p>
+</blockquote>
+<h3 id="Parallel-execution-并行执行"><a href="#Parallel-execution-并行执行" class="headerlink" title="Parallel execution(并行执行)"></a>Parallel execution(并行执行)</h3><p>在 <code>Node.js</code> 中，我们只能并行执行异步操作，因为它们的并发性由非阻塞 <code>API</code> 在内部处理。在 <code>Node.js</code> 中，同步阻塞操作不能并行运行，除非它们被插入异步操作中或使用 <code>setTimeout</code> 之类的做延迟。</p>
+<h4 id="Web-spider-version-3-Web-爬虫第-3-版"><a href="#Web-spider-version-3-Web-爬虫第-3-版" class="headerlink" title="Web spider version 3(Web 爬虫第 3 版)"></a>Web spider version 3(Web 爬虫第 3 版)</h4><p>现在需要并行地下载网页的内容，只需要略做修改：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">spiderLinks</span>(<span class="params">currentUrl, body, nesting, callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (nesting === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> process.nextTick(callback)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> links = utilities.getPageLinks(currentUrl, body)</span><br><span class="line">  <span class="keyword">if</span> (links.length === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> process.nextTick(callback)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> completed = <span class="number">0</span>,</span><br><span class="line">    hasErrors = <span class="literal">false</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">done</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">      hasErrors = <span class="literal">true</span></span><br><span class="line">      <span class="keyword">return</span> callback(err)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (++completed === links.length &amp;&amp; !hasErrors) &#123;</span><br><span class="line">      <span class="keyword">return</span> callback()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  links.forEach(<span class="function"><span class="params">link</span> =&gt;</span> &#123;</span><br><span class="line">    spider(link, nesting - <span class="number">1</span>, done)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>forEach</code> 同时爬取链接列表中的链接，而不用等待前一个爬取完了才开始爬取下一个，增加一个 <code>completed</code> 变量记录已经爬取完的链接数，当 <code>completed</code> 等于链接个数时就说明所有的链接都已爬取完了，就可以调用最后的回调函数了。或者说当中间出错了也会立即执行回调函数返回。</p>
+<h4 id="The-pattern-并行模式"><a href="#The-pattern-并行模式" class="headerlink" title="The pattern(并行模式)"></a>The pattern(并行模式)</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> tasks = [</span><br><span class="line">  <span class="comment">/* ... */</span></span><br><span class="line">]</span><br><span class="line"><span class="keyword">let</span> completed = <span class="number">0</span></span><br><span class="line">tasks.forEach(<span class="function"><span class="params">task</span> =&gt;</span> &#123;</span><br><span class="line">  task(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (++completed === tasks.length) &#123;</span><br><span class="line">      finish()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">finish</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 所有任务执行完成后调用</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>同时启动一系列任务，通过记录任务回调函数完成的个数来判断所有任务是否都完成了。</p>
+<h4 id="Fixing-race-conditions-with-concurrent-tasks-修复并发任务中竞争条件"><a href="#Fixing-race-conditions-with-concurrent-tasks-修复并发任务中竞争条件" class="headerlink" title="Fixing race conditions with concurrent tasks(修复并发任务中竞争条件)"></a>Fixing race conditions with concurrent tasks(修复并发任务中竞争条件)</h4><p>在传统的多线程中处理竞争条件通常是锁、互斥条件、信号量和监视器，这些是多线程语言并行化的最复杂的方面之一，对性能也有很大的影响。但是 <code>Node.js</code> 就不同了，它本身就是运行在一个单线程上，这就变得简单多了。但是这不意味着就没有竞争条件了，相反还很普遍。就拿上面的爬虫例子来说，如果有两个爬虫同时运行，都在操作同一个 <code>URL</code> 时，<code>fs.readFile</code> 都读取不到文件，那么两个爬虫就同时去下载这个链接，这就导致了会同时写入内容到同一个文件中。修复办法很简单，在两个 <code>spider</code> 外面定义一个共享的变量记录爬取的链接，如果爬取过则另外一个 <code>spider</code> 就不再爬取：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> spidering = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">   <span class="function"><span class="keyword">function</span> <span class="title">spider</span>(<span class="params">url, nesting, callback</span>) </span>&#123;</span><br><span class="line">     <span class="keyword">if</span>(spidering.has(url)) &#123;</span><br><span class="line">       <span class="keyword">return</span> process.nextTick(callback);</span><br><span class="line">     &#125;</span><br><span class="line">     spidering.set(url, <span class="literal">true</span>);</span><br><span class="line"><span class="comment">//...</span></span><br></pre></td></tr></table></figure>
+<h3 id="Limited-parallel-execution-有限制的并行执行"><a href="#Limited-parallel-execution-有限制的并行执行" class="headerlink" title="Limited parallel execution(有限制的并行执行)"></a>Limited parallel execution(有限制的并行执行)</h3><p>不对并行任务做控制的话很容易导致昂贵的开销，例如同时读取很多文件会导致系统资源不足，在 web 应用中还可能导致 <code>DoS</code> 攻击，所以限制同一时间任务的执行数是非常重要的。</p>
+<h4 id="Limiting-the-concurrency-限制并行数"><a href="#Limiting-the-concurrency-限制并行数" class="headerlink" title="Limiting the concurrency(限制并行数)"></a>Limiting the concurrency(限制并行数)</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> tasks = ...</span><br><span class="line"><span class="keyword">let</span> concurrency = <span class="number">2</span>, running = <span class="number">0</span>, completed = <span class="number">0</span>, index = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">next</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">while</span>(running &lt; concurrency &amp;&amp; index &lt; tasks.length) &#123;</span><br><span class="line">    task = tasks[index++];</span><br><span class="line">    task(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span>(completed === tasks.length) &#123;</span><br><span class="line">        <span class="keyword">return</span> finish();</span><br><span class="line">      &#125;</span><br><span class="line">      completed++, running--;</span><br><span class="line">      next();</span><br><span class="line">&#125;);</span><br><span class="line">running++; &#125;</span><br><span class="line">&#125; next();</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">finish</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//all tasks finished</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面所展示的模式就可以限制同时最大任务数为 2，启动时同时开始最大任务数的任务，之后每当有一个任务结束时，就会从剩下的任务中挑出一个任务开始执行，保持在限制范围内的最多任务同时进行。</p>
+<h4 id="Globally-limiting-the-concurrency-全局地限制并发数"><a href="#Globally-limiting-the-concurrency-全局地限制并发数" class="headerlink" title="Globally limiting the concurrency(全局地限制并发数)"></a>Globally limiting the concurrency(全局地限制并发数)</h4><blockquote>
+<p><code>Node.js</code> 0.11 版本以前是默认限制同一个主机名下最大 <code>HTTP</code> 连接数为 5 的，这个可以满足我们的需要。但是在之后的版本就取消了这个默认限制了。</p>
+</blockquote>
+<h5 id="Queues-to-rescue-队列来拯救"><a href="#Queues-to-rescue-队列来拯救" class="headerlink" title="Queues to rescue(队列来拯救)"></a>Queues to rescue(队列来拯救)</h5><p>我们需要的是限制同时下载的任务数，可以使用队列来解决：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TaskQueue</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(concurrency) &#123;</span><br><span class="line">    <span class="keyword">this</span>.concurrency = concurrency</span><br><span class="line">    <span class="keyword">this</span>.running = <span class="number">0</span></span><br><span class="line">    <span class="keyword">this</span>.queue = []</span><br><span class="line">  &#125;</span><br><span class="line">  pushTask(task) &#123;</span><br><span class="line">    <span class="keyword">this</span>.queue.push(task)</span><br><span class="line">    <span class="keyword">this</span>.next()</span><br><span class="line">  &#125;</span><br><span class="line">  next() &#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="keyword">this</span>.running &lt; <span class="keyword">this</span>.concurrency &amp;&amp; <span class="keyword">this</span>.queue.length) &#123;</span><br><span class="line">      <span class="keyword">const</span> task = <span class="keyword">this</span>.queue.shift()</span><br><span class="line">      task(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.running--</span><br><span class="line">        <span class="keyword">this</span>.next()</span><br><span class="line">      &#125;)</span><br><span class="line">      <span class="keyword">this</span>.running++</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过 <code>pushTask</code> 添加任务，然后启动 <code>next</code> 来开始执行任务，<code>next</code> 会自动识别是否任务数达到上限。</p>
+<h5 id="Web-spider-version-Web-爬虫第-4-版"><a href="#Web-spider-version-Web-爬虫第-4-版" class="headerlink" title="Web spider version(Web 爬虫第 4 版)"></a>Web spider version(Web 爬虫第 4 版)</h5><p>使用上面的队列来更改我们的爬虫程序：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> TaskQueue = <span class="built_in">require</span>(<span class="string">'./taskQueue'</span>)</span><br><span class="line"><span class="keyword">const</span> downloadQueue = <span class="keyword">new</span> TaskQueue(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">spiderLinks</span>(<span class="params">currentUrl, body, nesting, callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (nesting === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> process.nextTick(callback)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> links = utilities.getPageLinks(currentUrl, body)</span><br><span class="line">  <span class="keyword">if</span> (links.length === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> process.nextTick(callback)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> completed = <span class="number">0</span>,</span><br><span class="line">    hasErrors = <span class="literal">false</span></span><br><span class="line">  links.forEach(<span class="function"><span class="params">link</span> =&gt;</span> &#123;</span><br><span class="line">    downloadQueue.pushTask(<span class="function"><span class="params">done</span> =&gt;</span> &#123;</span><br><span class="line">      spider(link, nesting - <span class="number">1</span>, err =&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span> (err) &#123;</span><br><span class="line">          hasErrors = <span class="literal">true</span></span><br><span class="line">          <span class="keyword">return</span> callback(err)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (++completed === links.length &amp;&amp; !hasErrors) &#123;</span><br><span class="line">          callback()</span><br><span class="line">        &#125;</span><br><span class="line">        done()</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="The-async-library-async-库"><a href="#The-async-library-async-库" class="headerlink" title="The async library(async 库)"></a>The async library(async 库)</h2><h3 id="Sequential-execution-顺序执行-1"><a href="#Sequential-execution-顺序执行-1" class="headerlink" title="Sequential execution(顺序执行)"></a>Sequential execution(顺序执行)</h3><p><code>async</code> 库可以在实现复杂的异步控制流程时很大程度上帮助我们，但是选择正确的方法来处理具体问题是一个问题。顺序执行就有大约有 20 种方法，<code>eachSeries()</code>, <code>mapSeries()</code>, <code>filterSeries()</code>等等。</p>
+<h4 id="Sequential-execution-of-a-known-set-of-tasks-已知任务的顺序执行"><a href="#Sequential-execution-of-a-known-set-of-tasks-已知任务的顺序执行" class="headerlink" title="Sequential execution of a known set of tasks(已知任务的顺序执行)"></a>Sequential execution of a known set of tasks(已知任务的顺序执行)</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span>.series(tasks, [callback])</span><br></pre></td></tr></table></figure>
+<p><code>series</code> 顺序执行一组任务，在所有任务调用回调函数 <code>callback</code>。而每一个 <code>task</code> 只是个接受回调函数的函数 <code>function task(callback) {}</code>，当某一个任务回调时发送了错误，那么 <code>async</code> 会停止后面的任务，直接到最后的回调函数。</p>
+<h4 id="Sequential-iteration-顺序迭代-1"><a href="#Sequential-iteration-顺序迭代-1" class="headerlink" title="Sequential iteration(顺序迭代)"></a>Sequential iteration(顺序迭代)</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span>.eachSeries(iterable, fn(item, callback), [callback])</span><br></pre></td></tr></table></figure>
+<p>遍历一个可遍历的对象，顺序执行每一个元素对应的函数，所有元素对应的函数执行完后调用最后的回调函数。</p>
+<h3 id="Parallel-execution-并行执行-1"><a href="#Parallel-execution-并行执行-1" class="headerlink" title="Parallel execution(并行执行)"></a>Parallel execution(并行执行)</h3><p><code>each()</code>，<code>map()</code>，<code>filter()</code>，<code>reject()</code>，<code>detect()</code>，<code>some()</code>，<code>every()</code>，<code>concat()</code>，<code>parallel()</code>，<code>applyEach()</code> 和 <code>times()</code> 都是并行执行的 <code>async</code> 的方法。</p>
+<h3 id="Limited-parallel-execution-限制并行执行"><a href="#Limited-parallel-execution-限制并行执行" class="headerlink" title="Limited parallel execution(限制并行执行)"></a>Limited parallel execution(限制并行执行)</h3><p>类似于 <code>async.queue(worker, concurrency)</code> 来限制同时执行的任务数。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/生活//" class="article-tag-list-link color3">生活</a>
+        			<a href="/categories/学习//" class="article-tag-list-link color3">学习</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://1016990109.github.io/2018/06/07/Node-js-设计模式读书笔记-第三章/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2018/06/09/Node-服务部署/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Node 服务部署
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2018/06/05/关系型数据库存储树形结构/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">关系型数据库存储树形结构</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Asynchorous-Control-Flow-Patterns-with-Callbacks-使用回调的异步控制流模式"><span class="toc-number">1.</span> <span class="toc-text">Asynchorous Control Flow Patterns with Callbacks(使用回调的异步控制流模式)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#The-difficulties-of-asynchonous-programming-异步编程的困难"><span class="toc-number">1.1.</span> <span class="toc-text">The difficulties of asynchonous programming(异步编程的困难)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Creating-a-simple-web-spider-创建一个简单的-web-爬虫"><span class="toc-number">1.1.1.</span> <span class="toc-text">Creating a simple web spider(创建一个简单的 web 爬虫)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-callback-hell-回调地狱"><span class="toc-number">1.1.2.</span> <span class="toc-text">The callback hell(回调地狱)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Using-plain-JavaScript-使用纯-JavaScript"><span class="toc-number">1.2.</span> <span class="toc-text">Using plain JavaScript(使用纯 JavaScript)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Callback-decipline-回调准则"><span class="toc-number">1.2.1.</span> <span class="toc-text">Callback decipline(回调准则)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Applying-the-callback-decipline-应用回调准则"><span class="toc-number">1.2.2.</span> <span class="toc-text">Applying the callback decipline(应用回调准则)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sequential-execution-顺序执行"><span class="toc-number">1.2.3.</span> <span class="toc-text">Sequential execution(顺序执行)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Executing-a-known-set-of-tasks-in-sequence-顺序执行一个已知的任务集合"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">Executing a known set of tasks in sequence(顺序执行一个已知的任务集合)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sequential-iteration-顺序迭代"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">Sequential iteration(顺序迭代)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Web-spider-version-2-Web-爬虫第-2-版"><span class="toc-number">1.2.3.2.1.</span> <span class="toc-text">Web spider version 2(Web 爬虫第 2 版)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Sequential-crawling-of-links-顺序爬取连接"><span class="toc-number">1.2.3.2.2.</span> <span class="toc-text">Sequential crawling of links(顺序爬取连接)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#The-pattern-迭代模式"><span class="toc-number">1.2.3.2.3.</span> <span class="toc-text">The pattern(迭代模式)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Parallel-execution-并行执行"><span class="toc-number">1.2.4.</span> <span class="toc-text">Parallel execution(并行执行)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Web-spider-version-3-Web-爬虫第-3-版"><span class="toc-number">1.2.4.1.</span> <span class="toc-text">Web spider version 3(Web 爬虫第 3 版)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#The-pattern-并行模式"><span class="toc-number">1.2.4.2.</span> <span class="toc-text">The pattern(并行模式)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Fixing-race-conditions-with-concurrent-tasks-修复并发任务中竞争条件"><span class="toc-number">1.2.4.3.</span> <span class="toc-text">Fixing race conditions with concurrent tasks(修复并发任务中竞争条件)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Limited-parallel-execution-有限制的并行执行"><span class="toc-number">1.2.5.</span> <span class="toc-text">Limited parallel execution(有限制的并行执行)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Limiting-the-concurrency-限制并行数"><span class="toc-number">1.2.5.1.</span> <span class="toc-text">Limiting the concurrency(限制并行数)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Globally-limiting-the-concurrency-全局地限制并发数"><span class="toc-number">1.2.5.2.</span> <span class="toc-text">Globally limiting the concurrency(全局地限制并发数)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Queues-to-rescue-队列来拯救"><span class="toc-number">1.2.5.2.1.</span> <span class="toc-text">Queues to rescue(队列来拯救)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Web-spider-version-Web-爬虫第-4-版"><span class="toc-number">1.2.5.2.2.</span> <span class="toc-text">Web spider version(Web 爬虫第 4 版)</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-async-library-async-库"><span class="toc-number">1.3.</span> <span class="toc-text">The async library(async 库)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sequential-execution-顺序执行-1"><span class="toc-number">1.3.1.</span> <span class="toc-text">Sequential execution(顺序执行)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sequential-execution-of-a-known-set-of-tasks-已知任务的顺序执行"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">Sequential execution of a known set of tasks(已知任务的顺序执行)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sequential-iteration-顺序迭代-1"><span class="toc-number">1.3.1.2.</span> <span class="toc-text">Sequential iteration(顺序迭代)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Parallel-execution-并行执行-1"><span class="toc-number">1.3.2.</span> <span class="toc-text">Parallel execution(并行执行)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Limited-parallel-execution-限制并行执行"><span class="toc-number">1.3.3.</span> <span class="toc-text">Limited parallel execution(限制并行执行)</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Node-js-设计模式读书笔记-第三章" data-title="《Node.js 设计模式》读书笔记 第三章" data-url="http://1016990109.github.io/2018/06/07/Node-js-设计模式读书笔记-第三章/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"hcw13"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -254,10 +486,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
