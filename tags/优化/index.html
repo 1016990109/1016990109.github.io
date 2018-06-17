@@ -6,20 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://1016990109.github.io">
-  <title>Node 服务部署 | 七秒悲伤的博客</title>
+  <title>Tag: 优化 | 七秒悲伤的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="forever 与 pm2在之前部署 Node.js 服务都是使用 forever 的，现在基本上都改为 pm2 了，pm2 比 forever 功能更加强大，可以配置集群、集成日志、控制台监视等等，下面是两者的比较：    Feature Forever PM2     Keep Alive ✔ ✔   Coffeescript ✔    Log aggregation  ✔   API  ✔">
-<meta name="keywords" content="Node">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Node 服务部署">
-<meta property="og:url" content="http://1016990109.github.io/2018/06/09/Node-服务部署/index.html">
+  <meta name="description" content="一个深藏功与名的软件开发爱好者">
+<meta property="og:type" content="website">
+<meta property="og:title" content="七秒悲伤的博客">
+<meta property="og:url" content="http://1016990109.github.io/tags/优化/index.html">
 <meta property="og:site_name" content="七秒悲伤的博客">
-<meta property="og:description" content="forever 与 pm2在之前部署 Node.js 服务都是使用 forever 的，现在基本上都改为 pm2 了，pm2 比 forever 功能更加强大，可以配置集群、集成日志、控制台监视等等，下面是两者的比较：    Feature Forever PM2     Keep Alive ✔ ✔   Coffeescript ✔    Log aggregation  ✔   API  ✔">
+<meta property="og:description" content="一个深藏功与名的软件开发爱好者">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-12T09:21:58.526Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Node 服务部署">
-<meta name="twitter:description" content="forever 与 pm2在之前部署 Node.js 服务都是使用 forever 的，现在基本上都改为 pm2 了，pm2 比 forever 功能更加强大，可以配置集群、集成日志、控制台监视等等，下面是两者的比较：    Feature Forever PM2     Keep Alive ✔ ✔   Coffeescript ✔    Log aggregation  ✔   API  ✔">
+<meta name="twitter:title" content="七秒悲伤的博客">
+<meta name="twitter:description" content="一个深藏功与名的软件开发爱好者">
   
     <link rel="alternative" href="/atom.xml" title="七秒悲伤的博客" type="application/atom+xml">
   
@@ -169,106 +167,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Node-服务部署" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      Node 服务部署
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/06/13/Node-应用性能优化/" class="archive-article-date">
+  	<time datetime="2018-06-13T07:22:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-13</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/06/13/Node-应用性能优化/">Node 应用性能优化</a>
     </h1>
   
 
-        
-        <a href="/2018/06/09/Node-服务部署/" class="archive-article-date">
-  	<time datetime="2018-06-09T01:36:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="forever-与-pm2"><a href="#forever-与-pm2" class="headerlink" title="forever 与 pm2"></a>forever 与 pm2</h2><p>在之前部署 <code>Node.js</code> 服务都是使用 <code>forever</code> 的，现在基本上都改为 <code>pm2</code> 了，<code>pm2</code> 比 <code>forever</code> 功能更加强大，可以配置集群、集成日志、控制台监视等等，下面是两者的比较：</p>
-<table>
-<thead>
-<tr>
-<th>Feature</th>
-<th>Forever</th>
-<th>PM2</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Keep Alive</td>
-<td>✔</td>
-<td>✔</td>
-</tr>
-<tr>
-<td>Coffeescript</td>
-<td>✔</td>
-<td></td>
-</tr>
-<tr>
-<td>Log aggregation</td>
-<td></td>
-<td>✔</td>
-</tr>
-<tr>
-<td>API</td>
-<td></td>
-<td>✔</td>
-</tr>
-<tr>
-<td>Terminal monitoring</td>
-<td></td>
-<td>✔</td>
-</tr>
-<tr>
-<td>Clustering</td>
-<td></td>
-<td>✔</td>
-</tr>
-<tr>
-<td>JSON configuration</td>
-<td></td>
-<td>✔</td>
-</tr>
-</tbody>
-</table>
-<a id="more"></a>
-<p>所以如果还在使用 <code>forever</code> 的读者，快快加入到 <code>pm2</code> 的阵营来吧。</p>
-<h2 id="pm2-使用"><a href="#pm2-使用" class="headerlink" title="pm2 使用"></a>pm2 使用</h2><p>详情请看<a href="https://pm2.io/doc/en/runtime/overview/" target="_blank" rel="noopener">官方文档</a></p>
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p><code>pm2</code> 可以直接在命令行中通过参数配置，也可以用过 <code>ecosystem.config.js</code> 文件来配置，<code>pm2 init</code> 初始化一个配置文件如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  apps : [&#123;</span><br><span class="line">    name: <span class="string">"app"</span>,</span><br><span class="line">    script: <span class="string">"./app.js"</span>,</span><br><span class="line">    env: &#123;</span><br><span class="line">      NODE_ENV: <span class="string">"development"</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    env_production: &#123;</span><br><span class="line">      NODE_ENV: <span class="string">"production"</span>,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;]</span><br><span class="line"></span><br><span class="line">  <span class="comment">// deploy config(部署配置也在这里)</span></span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="集成-log"><a href="#集成-log" class="headerlink" title="集成 log"></a>集成 log</h3><p>可以单独配置普通输出和错误输出到不同的文件：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  apps: [</span><br><span class="line">    &#123;</span><br><span class="line">      name: <span class="string">'app'</span>,</span><br><span class="line">      script: <span class="string">'app.js'</span>,</span><br><span class="line">      output: <span class="string">'./out.log'</span>,</span><br><span class="line">      error: <span class="string">'./error.log'</span>,</span><br><span class="line">      log: <span class="string">'./combined.outerr.log'</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>同时也可以集成 <code>pm2-logrotate</code> 工具来管理日志，可以配置日志分片大小、时间、名字等等。</p>
-<h3 id="自启动"><a href="#自启动" class="headerlink" title="自启动"></a>自启动</h3><p><code>pm2</code> 可以配置开机启动，通过 <code>pm2 startup</code> 命令会自动提示你该怎么配置自启动。</p>
-<h3 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h3><p><code>pm2</code> 支持集群模式，可以在不更改代码的前提下自动帮你配置集群，有效利用系统的 <code>CPU</code> 资源，充分利用计算机能力，消除 <code>Node.js</code> 单线程的瓶颈，可以同时启动多个进程来监听同一个端口(这在文后会提到具体怎么实现多进程监听)，提高性能。</p>
-<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-i &lt;number-instances&gt;</span><br></pre></td></tr></table></figure>
-<p>或者配置 <code>ecosystem.config.js</code> 文件：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  apps: [</span><br><span class="line">    &#123;</span><br><span class="line">      script: <span class="string">'app.js'</span>,</span><br><span class="line">      instances: <span class="string">'max'</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="SSH-部署"><a href="#SSH-部署" class="headerlink" title="SSH 部署"></a>SSH 部署</h3><p><code>pm2</code> 还支持自动化将代码部署到远程服务器，只需要做一些简单的配置即可。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  apps: [&#123;</span><br><span class="line">    name: <span class="string">"app"</span>,</span><br><span class="line">    script: <span class="string">"app.js"</span></span><br><span class="line">  &#125;],</span><br><span class="line">  deploy: &#123;</span><br><span class="line">    <span class="comment">// "production" is the environment name</span></span><br><span class="line">    production: &#123;</span><br><span class="line">      <span class="comment">// SSH key path, default to $HOME/.ssh</span></span><br><span class="line">      key: <span class="string">"/path/to/some.pem"</span>,</span><br><span class="line">      <span class="comment">// SSH user</span></span><br><span class="line">      user: <span class="string">"ubuntu"</span>,</span><br><span class="line">      <span class="comment">// SSH host</span></span><br><span class="line">      host: [<span class="string">"192.168.0.13"</span>],</span><br><span class="line">      <span class="comment">// SSH options with no command-line flag, see 'man ssh'</span></span><br><span class="line">      <span class="comment">// can be either a single string or an array of strings</span></span><br><span class="line">      ssh_options: <span class="string">"StrictHostKeyChecking=no"</span>,</span><br><span class="line">      <span class="comment">// GIT remote/branch</span></span><br><span class="line">      ref: <span class="string">"origin/master"</span>,</span><br><span class="line">      <span class="comment">// GIT remote</span></span><br><span class="line">      repo: <span class="string">"git@github.com:Username/repository.git"</span>,</span><br><span class="line">      <span class="comment">// path in the server</span></span><br><span class="line">      path: <span class="string">"/var/www/my-repository"</span>,</span><br><span class="line">      <span class="comment">// Pre-setup command or path to a script on your local machine</span></span><br><span class="line">      pre-setup: <span class="string">"apt-get install git ; ls -la"</span>,</span><br><span class="line">      <span class="comment">// Post-setup commands or path to a script on the host machine</span></span><br><span class="line">      <span class="comment">// eg: placing configurations in the shared dir etc</span></span><br><span class="line">      post-setup: <span class="string">"ls -la"</span>,</span><br><span class="line">      <span class="comment">// pre-deploy action</span></span><br><span class="line">      pre-deploy-local: <span class="string">"echo 'This is a local executed command'"</span></span><br><span class="line">      <span class="comment">// post-deploy action</span></span><br><span class="line">      post-deploy: <span class="string">"npm install"</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ol>
-<li>如果使用集群模式需要主要应用得是个无状态应用，所以诸如 <code>sessions</code>、<code>websocket connection</code> 等不要使用，可以使用 <code>Redis</code> 等来共享应用的状态。</li>
-<li>关闭应用之前最好确认所有的请求已经被处理，数据库连接已经释放，释放其他资源。</li>
-</ol>
-<h2 id="cluster-原理"><a href="#cluster-原理" class="headerlink" title="cluster 原理"></a>cluster 原理</h2><p><code>pm2</code> 集群其实是封装了 <code>cluster</code> 模块的一系列操作，自动包装代码启动集群，重加载的时候也是先启动新的 <code>worker</code> 再把之前的 <code>worker</code> 停掉等等。</p>
-<p>这里是一个简单的 <code>cluster</code> 的示例：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cluster = <span class="built_in">require</span>(<span class="string">'cluster'</span>)</span><br><span class="line"><span class="keyword">const</span> os = <span class="built_in">require</span>(<span class="string">'os'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (cluster.isMaster) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>, n = os.cpus().length; i &lt; n; i += <span class="number">1</span>) &#123;</span><br><span class="line">    cluster.fork()</span><br><span class="line">  &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  http</span><br><span class="line">    .createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">      res.writeHead(<span class="number">200</span>)</span><br><span class="line">      res.end(<span class="string">'hello world\n'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    .listen(<span class="number">8000</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>fork</code> 的本质还是使用了 <code>child_process.fork</code> 生成的子进程，但是注意不能直接使用 <code>child_process.fork()</code> 来生成，因为这样会缺少 <code>process.env.NODE_UNIQUE_ID</code>，会导致 <code>cluster.isMaster</code> 判断总是为 <code>true</code>。</p>
-<p>运行时，所有新建立的连接都由主进程完成，然后主进程再把 <code>TCP</code> 连接分配给指定的 <code>worker</code> 进程。分配根据 <code>Round-robin</code> 算法分发，子进程 <code>worker</code> 具体处理请求。</p>
-<p>更加详细的 <code>cluser</code> 用法与讲解可查看<a href="http://javascript.ruanyifeng.com/nodejs/cluster.html" target="_blank" rel="noopener">阮一峰的博客</a> 和 <a href="https://nodejs.org/dist/latest-v10.x/docs/api/cluster.html" target="_blank" rel="noopener">官方文档</a>。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -276,152 +204,27 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Node</a>
         		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">优化</a>
+        		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://1016990109.github.io/2018/06/09/Node-服务部署/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2018/06/13/Node-应用性能优化/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Node 应用性能优化
-        
-      </div>
-    </a>
   
   
-    <a href="/2018/06/07/Node-js-设计模式读书笔记-第三章/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">《Node.js 设计模式》读书笔记 第三章</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#forever-与-pm2"><span class="toc-number">1.</span> <span class="toc-text">forever 与 pm2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pm2-使用"><span class="toc-number">2.</span> <span class="toc-text">pm2 使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置"><span class="toc-number">2.1.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#集成-log"><span class="toc-number">2.2.</span> <span class="toc-text">集成 log</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自启动"><span class="toc-number">2.3.</span> <span class="toc-text">自启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#负载均衡"><span class="toc-number">2.4.</span> <span class="toc-text">负载均衡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSH-部署"><span class="toc-number">2.5.</span> <span class="toc-text">SSH 部署</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意事项"><span class="toc-number">2.6.</span> <span class="toc-text">注意事项</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cluster-原理"><span class="toc-number">3.</span> <span class="toc-text">cluster 原理</span></a></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  <div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Node-服务部署" data-title="Node 服务部署" data-url="http://1016990109.github.io/2018/06/09/Node-服务部署/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"hcw13"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -444,9 +247,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
