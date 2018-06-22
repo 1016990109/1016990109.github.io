@@ -6,24 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://1016990109.github.io">
-  <title>《Node.js 设计模式》读书笔记 第一章 | 七秒悲伤的博客</title>
+  <title>kryo vs avro vs protobuf vs thrift vs jce | 七秒悲伤的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to the Node.js PlatformSmall modules(小模块)Node.js使用module(模块)的概念组织代码的结构。package可提供复用的模块，有一个 module 作为入口。Node.js中，致力于设计小模块，为了代码的简洁，更为了更好地控制作用域。有两个主要原则：">
-<meta name="keywords" content="读书笔记">
+  <meta name="description" content="我们知道结构化数据存储方式多种多样，有 json、xml、kryo等等，而 json 与 xml 虽然可读性较强，但是需要的额外空间太多，当数据量过大的时候很浪费性能，所以就需要压缩率更高的编码方式，这里对比比较流行的几种存储（编码）方式：kryo、avro、protobuf、thrift、jce：">
+<meta name="keywords" content="序列化,反序列化,kryo,avro,protobuf,jce">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《Node.js 设计模式》读书笔记 第一章">
-<meta property="og:url" content="http://1016990109.github.io/2018/05/11/Node-js-设计模式读书笔记-第一章/index.html">
+<meta property="og:title" content="kryo vs avro vs protobuf vs thrift vs jce">
+<meta property="og:url" content="http://1016990109.github.io/2018/06/20/kryo-vs-avro-vs-protobuf-vs-thrift-vs-jce/index.html">
 <meta property="og:site_name" content="七秒悲伤的博客">
-<meta property="og:description" content="Welcome to the Node.js PlatformSmall modules(小模块)Node.js使用module(模块)的概念组织代码的结构。package可提供复用的模块，有一个 module 作为入口。Node.js中，致力于设计小模块，为了代码的简洁，更为了更好地控制作用域。有两个主要原则：">
+<meta property="og:description" content="我们知道结构化数据存储方式多种多样，有 json、xml、kryo等等，而 json 与 xml 虽然可读性较强，但是需要的额外空间太多，当数据量过大的时候很浪费性能，所以就需要压缩率更高的编码方式，这里对比比较流行的几种存储（编码）方式：kryo、avro、protobuf、thrift、jce：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://1016990109.github.io/assets/img/node_demultiplexer.png">
-<meta property="og:image" content="http://1016990109.github.io/assets/img/event_loop.png">
-<meta property="og:image" content="http://1016990109.github.io/assets/img/node_architecture.png">
-<meta property="og:updated_time" content="2018-05-22T03:12:52.105Z">
+<meta property="og:updated_time" content="2018-06-22T08:56:16.497Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《Node.js 设计模式》读书笔记 第一章">
-<meta name="twitter:description" content="Welcome to the Node.js PlatformSmall modules(小模块)Node.js使用module(模块)的概念组织代码的结构。package可提供复用的模块，有一个 module 作为入口。Node.js中，致力于设计小模块，为了代码的简洁，更为了更好地控制作用域。有两个主要原则：">
-<meta name="twitter:image" content="http://1016990109.github.io/assets/img/node_demultiplexer.png">
+<meta name="twitter:title" content="kryo vs avro vs protobuf vs thrift vs jce">
+<meta name="twitter:description" content="我们知道结构化数据存储方式多种多样，有 json、xml、kryo等等，而 json 与 xml 虽然可读性较强，但是需要的额外空间太多，当数据量过大的时候很浪费性能，所以就需要压缩率更高的编码方式，这里对比比较流行的几种存储（编码）方式：kryo、avro、protobuf、thrift、jce：">
   
     <link rel="alternative" href="/atom.xml" title="七秒悲伤的博客" type="application/atom+xml">
   
@@ -173,148 +169,154 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Node-js-设计模式读书笔记-第一章" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-kryo-vs-avro-vs-protobuf-vs-thrift-vs-jce" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      《Node.js 设计模式》读书笔记 第一章
+      kryo vs avro vs protobuf vs thrift vs jce
     </h1>
   
 
         
-        <a href="/2018/05/11/Node-js-设计模式读书笔记-第一章/" class="archive-article-date">
-  	<time datetime="2018-05-11T12:00:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-11</time>
+        <a href="/2018/06/20/kryo-vs-avro-vs-protobuf-vs-thrift-vs-jce/" class="archive-article-date">
+  	<time datetime="2018-06-20T08:16:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Welcome-to-the-Node-js-Platform"><a href="#Welcome-to-the-Node-js-Platform" class="headerlink" title="Welcome to the Node.js Platform"></a>Welcome to the Node.js Platform</h1><h2 id="Small-modules-小模块"><a href="#Small-modules-小模块" class="headerlink" title="Small modules(小模块)"></a>Small modules(小模块)</h2><p><code>Node.js</code>使用<code>module</code>(模块)的概念组织代码的结构。<br><code>package</code>可提供复用的模块，有一个 module 作为入口。<br><code>Node.js</code>中，致力于设计小模块，为了代码的简洁，更为了更好地控制作用域。有两个主要原则：</p>
+        <p>我们知道结构化数据存储方式多种多样，有 <code>json</code>、<code>xml</code>、<code>kryo</code>等等，而 <code>json</code> 与 <code>xml</code> 虽然可读性较强，但是需要的额外空间太多，当数据量过大的时候很浪费性能，所以就需要压缩率更高的编码方式，这里对比比较流行的几种存储（编码）方式：<code>kryo</code>、<code>avro</code>、<code>protobuf</code>、<code>thrift</code>、<code>jce</code>：</p>
 <a id="more"></a>
-<blockquote>
+<h2 id="protobuf"><a href="#protobuf" class="headerlink" title="protobuf"></a>protobuf</h2><h3 id="结构化数据："><a href="#结构化数据：" class="headerlink" title="结构化数据："></a>结构化数据：</h3><p>需要预定义结构体（<code>.proto</code> 文件），消息经过序列化后会成为一个二进制数据流，该流中的数据为一系列的 <code>Key-Value</code> 对，定义好结构体的优势就是不用多余的数据来分隔不同的键值对。<code>Key</code> 用来标识具体的 <code>field</code>，在解包的时候，<code>Protocol Buffer</code> 根据 <code>Key</code> 就可以知道相应的 <code>Value</code> 应该对应于消息中的哪一个 <code>field</code>。</p>
+<p><code>Key</code> 定义：(field_number &lt;&lt; 3) | wire_type</p>
+<p><code>field_number</code> 代表在 <code>.proto</code> 中定义的编号，1~15 用一个字节，16~2047 用两个字节，结合公式 （field_number &lt;&lt; 3）| wire_type ，如果 <code>filed_number</code> 大于等于 16，两个字节共 16 位，去掉移位的 3 位，去掉两个字节中第一个比特位(<code>msb</code>)，总共 16 个比特位只有 16-5=11 个比特位用来表示 <code>Key</code>，所以 <code>Key</code> 的 <code>filed_number</code> 要小于 2^11== 2048。</p>
+<p>更大的以此类推，主要就是看一个字节的 <code>msb</code> 是否为 1，最大可以为 2^29 - 1。</p>
+<p><code>wire_type</code> 表示该数据的类型，有 <code>Vaint</code>、<code>64-bit</code>、<code>Length-delimi</code>、<code>Start group</code>、<code>End group</code>、<code>32-bit</code>共 6 中类型，具体可查看<a href="https://developers.google.com/protocol-buffers/docs/encoding#order" target="_blank" rel="noopener">官方文档</a></p>
+<h3 id="Varint"><a href="#Varint" class="headerlink" title="Varint"></a>Varint</h3><p>了解 <code>protobuf</code> 首先就要了解 <code>Varint</code>，是它的一大核心，变长整数存储。长整数存储多的位数，短整数存储少的位数，来减少空间的浪费。除了最后一字节外每字节第一位都是 <code>most significant big</code>(<strong>msb</strong>)，表示是否后面是否还有字节表示该整数。例如：</p>
+<p><code>0000 0001</code> 就表示 1</p>
+<p><code>1010 1100 0000 0010</code> 第一个字节第一位为 1 表示后面还有数据，直到字节第一位为 0（这里就是第二个字节 <code>0000 0010</code>），将字节顺序逆向，变为 <code>0000 0010 010 1100</code>：<code>100101100</code>(300)</p>
+<h3 id="ZigZag"><a href="#ZigZag" class="headerlink" title="ZigZag"></a>ZigZag</h3><p>而有符号整数则使用 <code>ZigZag</code> 编码方式，用无符号的整数同时代表正负两种数：</p>
+<table>
+<thead>
+<tr>
+<th>Signed Original</th>
+<th>Encoded As</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>-1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>-2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2147483647</td>
+<td>4294967294</td>
+</tr>
+<tr>
+<td>-2147483648</td>
+<td>4294967295</td>
+</tr>
+</tbody>
+</table>
+<p>这样就大大减少了占用的位数，算法使用：</p>
+<p><code>(n &lt;&lt; 1) ^ (n &gt;&gt; 31)</code> sint32<br><code>(n &lt;&lt; 1) ^ (n &gt;&gt; 63)</code> sint64</p>
+<h2 id="float-double"><a href="#float-double" class="headerlink" title="float double"></a>float double</h2><p>不压缩，多少位就多少位存储。</p>
+<h3 id="string"><a href="#string" class="headerlink" title="string"></a>string</h3><p><code>string</code> 则是在 <code>Value</code> 中多加了一个或多个字节表示长度（<code>msb</code>标识），剩下的内容才是真正的值。</p>
+<h3 id="repeated"><a href="#repeated" class="headerlink" title="repeated"></a>repeated</h3><p>这里介绍压缩率更高的 <code>Packed Repeated Fields</code>。</p>
+<p>在 <code>2.1.0</code> 版本以后，<code>protocol buffers</code> 引入了该种类型，其与 <code>repeated</code> 字段一样，只是在末尾声明了 <code>[packed=true]</code>。类似 <code>repeated</code> 字段却又不同。在 <code>proto3</code> 中 <code>Repeated</code> 字段默认就是以这种方式处理。</p>
+<p>例如有如下 <code>message</code> 类型：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">message Test4 &#123;  </span><br><span class="line">  repeated int32 d = 4 [packed=true];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>构造一个 <code>Test4</code> 字段，并且设置 <code>repeated</code> 字段 d 3 个值：3，270 和 86942，编码后：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">22 // tag 0010 0010(field number 010 0 = 4, wire type 010 = 2)</span><br><span class="line"></span><br><span class="line">06 // payload size (设置的length = 6 bytes)</span><br><span class="line"></span><br><span class="line">03 // first element (varint 3)</span><br><span class="line"></span><br><span class="line">8E 02 // second element (varint 270)</span><br><span class="line"></span><br><span class="line">9E A7 05 // third element (varint 86942)</span><br></pre></td></tr></table></figure>
+<p>形成了 Tag - Length - Value - Value - Value …… 对，增加了压缩率。</p>
+<h2 id="jce"><a href="#jce" class="headerlink" title="jce"></a>jce</h2><h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><p>也需要定义结构体，头部+内容，与 <code>protobuf</code> 类似，<code>tag + type</code>(4+4) 形式，<code>tag</code> 类似 <code>filed_number</code> 也是超过 15 后继续下一字节，但是由于不是通过第一位标识后面是否有数据，故而之后后面再多一个字节，最大为 255。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tag(4) type(4) [tag(8)]</span><br></pre></td></tr></table></figure>
+<h3 id="int"><a href="#int" class="headerlink" title="int"></a>int</h3><p>直接定义 4 种，而不是变长，int8,int16,int32,int64</p>
+<h3 id="string-1"><a href="#string-1" class="headerlink" title="string"></a>string</h3><p>两种，string1 和 string4，分别表示 8 位代表字符串长度，4*8=32 位表示字符串长度，所以字符串长度最大 2^32 - 1。</p>
+<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><p>存放时分开存放，先存 size（大小），再根据大小存对应个数的 <code>key-value</code>，<code>key</code> 的 <code>tag</code> 为 0，<code>value</code> 的 <code>tag</code> 为 1。</p>
+<h3 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h3><p>用不同的 <code>tag</code> 标识开头和结尾即可。<code>protobuf</code> 不需要，是根据定义的 <code>.proto</code> 来自动解析结构体的，类似于 <code>map</code>。</p>
+<h2 id="avro"><a href="#avro" class="headerlink" title="avro"></a>avro</h2><p><code>avro</code> 支持两种编码，一种 <code>json</code> 一种 <code>binary</code>，<code>json</code> 一般用于 <code>Web</code> 应用等需要易读性高的场景，大多数情况下都是二进制编码的。</p>
+<p>同其他高效序列化-反序列化库一样，也是需要定义一个数据结构，只不过是用 <code>json</code> 定义的，内容如下：</p>
 <ul>
-<li>“Small is beautiful.”(小而精)</li>
-<li>“Make each program do one thing well.” (每个程序只有单一的职责)</li>
+<li>type: 类型（基本的和复杂的）</li>
+<li>name: 字段名称</li>
+<li>其他的一些属性</li>
 </ul>
-</blockquote>
-<p><code>Node.js</code> 通过官方包管理工具<code>npm</code>解决包之间的依赖问题，每个<code>package</code>都有它自己的依赖，故而一个程序中多个<code>package</code>能够无冲突地安装。应用程序都是由一个个很小的、单职责的依赖构成的。</p>
-<p><strong>小模块</strong>应该有的特性：</p>
-<blockquote>
-<ul>
-<li>Easier to understand and use(易理解、易用)</li>
-<li>Simpler to test and maintain(易于测试和维护)</li>
-<li>Perfect to share with the browser(完美支持浏览器)</li>
+<p>详情查看<a href="https://avro.apache.org/docs/1.8.2/spec.html" target="_blank" rel="noopener">官方文档</a></p>
+<p>举个例子：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"type"</span>: <span class="string">"record"</span>,</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"MyStruct"</span>,</span><br><span class="line">  <span class="attr">"fields"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"type"</span>: <span class="string">"int"</span>,</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">"id"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"type"</span>: <span class="string">"string"</span>,</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">"description"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的 <code>json</code> 等价于定义了一个类似于 <code>protobuf</code> 这样的结构体：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Message MyStruct &#123;</span><br><span class="line">  uint32 id = 1,</span><br><span class="line">  string description =2</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="int-long"><a href="#int-long" class="headerlink" title="int, long"></a>int, long</h3><p>使用 <code>varlength zigzag</code>，同时使用变长和 <code>zigzag</code>，类似于 <code>protobuf</code>。</p>
+<h3 id="string-array-map"><a href="#string-array-map" class="headerlink" title="string, array, map"></a>string, array, map</h3><p>也是先声明长度，接着才是真正的内容。</p>
+<h2 id="thrift"><a href="#thrift" class="headerlink" title="thrift"></a>thrift</h2><h3 id="int-long-1"><a href="#int-long-1" class="headerlink" title="int, long"></a>int, long</h3><p>先进行 <code>zigzag</code>，再 <code>var int</code>。</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>与 <code>avro</code>、<code>protobuf</code>大同小异，具体可查看<a href="https://github.com/apache/thrift/blob/master/doc/specs/thrift-compact-protocol.md" target="_blank" rel="noopener">官方文档</a></p>
+<p><code>map</code> 每个键值对都有 <code>key-type</code> 和 <code>value-type</code>。</p>
+<h2 id="kryo"><a href="#kryo" class="headerlink" title="kryo"></a>kryo</h2><p><code>kryo</code> 是一种快速高效的 <code>Java</code> 对象图（<code>Object graph</code>）序列化框架，要实现跨语言是比较困难的。</p>
+<h3 id="int-long-2"><a href="#int-long-2" class="headerlink" title="int, long"></a>int, long</h3><p>也使用 <code>varint</code> 变长存储，减少空间。</p>
+<h3 id="class"><a href="#class" class="headerlink" title="class"></a>class</h3><p>不像 <code>Java</code> 自带的序列化工具携带了很多信息，<code>kryo</code> 只携带了 <strong>标识+类名+字段</strong> 三部分，更加简单，而且还不用自定义结构体，省去了 <code>.proto</code> 类似文件编写的麻烦。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>可以发现高效的序列化库都对 <code>int</code> 和 <code>long</code> 这类整型做了变长的压缩（<code>jce</code> 定义不同长度整型也是变长的一种），而对结构体的存储基本上也是存储 <strong>键值对</strong> ，每一个键值对再标记值的类型，这样能大大压缩数据的空间，提高传输的效率。</p>
+<p>需要预先定义数据格式的有：<code>protobuf</code>、<code>jce</code>、<code>avro</code>、<code>thrift</code>。</p>
+<p>不需要预先定义数据格式的有：<code>kryo</code>。</p>
+<p>跨语言：<code>protobuf</code>、<code>jce</code>、<code>avro</code>、<code>thrift</code>。</p>
+<p>性能上<code>protobuf</code>、<code>jce</code>、<code>avro</code>、<code>thrift</code> 几者差别不大，<code>kryo</code> 序列化和反序列化较慢（但是不用预先定义数据格式，可省去麻烦），但是 <code>kryo</code> 的编码后的大小略微小一点。</p>
+<h3 id="Google-protobuf"><a href="#Google-protobuf" class="headerlink" title="Google protobuf"></a>Google protobuf</h3><h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
+<li>二进制消息，性能好/效率高（空间和时间效率都很不错）</li>
+<li><code>proto</code> 文件生成目标代码，简单易用</li>
+<li>序列化反序列化直接对应程序中的数据类，不需要解析后在进行映射(<code>XML</code>,<code>JSON</code>都是这种方式)</li>
+<li>支持向前兼容（新加字段采用默认值）和向后兼容（忽略新加字段），简化升级</li>
+<li>支持多种语言（可以把 <code>proto</code> 文件看做 <code>IDL</code> 文件）</li>
+<li><code>Netty</code> 等一些框架集成</li>
 </ul>
-</blockquote>
-<p><strong>DRY(Dont’t Repeat Yourself)原则</strong></p>
-<h2 id="Small-surface-area-暴露需要的接口"><a href="#Small-surface-area-暴露需要的接口" class="headerlink" title="Small surface area(暴露需要的接口)"></a>Small surface area(暴露需要的接口)</h2><p>一般使用者只会用到很有限的功能，而很少去  扩展一个模块，所以<code>Node.js</code>的很多模块只会暴露一个函数或者一个构造器，然后把更细节的东西都放在函数或者构造器里，这样能帮助  使用者认清什么是主要的什么是次要的.</p>
-<p>模块是不允许被扩展的，看起来扩展性低，但实际上有很多优势：减少了应用场景(这样考虑的情况就少了，容易实现)，简化了实现，便于维护，提高了可用性。</p>
-<h2 id="Simplicity-and-progmatism-简单而实用"><a href="#Simplicity-and-progmatism-简单而实用" class="headerlink" title="Simplicity and progmatism(简单而实用)"></a>Simplicity and progmatism(简单而实用)</h2><blockquote>
-<p>简单就是复杂到极致。—— 达尔文</p>
-</blockquote>
-<blockquote>
-<p>设计必须简单， 不管是实现还是接口。实现的简洁比接口的简洁更重要。设计中最重要的就是简洁。—— Richard P.Gabriel(一位杰出的计算机科学家)</p>
-</blockquote>
-<p>设计简单的而不是完美或功能完备的软件是一个好的实践：</p>
-<ul>
-<li> 更容易实现</li>
-<li>更少的资源，传输更快</li>
-<li>更容易适应</li>
-<li>容易维护和理解</li>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ul>
+<li>官方只支持 <code>C++</code>,<code>JAVA</code> 和 <code>Python</code> 语言绑定</li>
+<li>二进制可读性差（貌似提供了 <code>Text_Fromat</code> 功能）</li>
+<li>二进制不具有自描述特性</li>
+<li>默认不具备动态特性（可以通过动态定义生成消息类型或者动态编译支持）</li>
+<li>只涉及序列化和反序列化技术，不涉及 <code>RPC</code> 功能（类似 <code>XML</code> 或者 <code>JSON</code> 的解析器）</li>
 </ul>
-<p>设计简单这个原则同样也适用于<code>JavaScript</code>，简单函数、闭包、<code>object</code>替代了复杂的类继承。</p>
-<h2 id="Introduction-to-Node-js-6-and-ES2015-介绍-Node-js-6-和-ES6"><a href="#Introduction-to-Node-js-6-and-ES2015-介绍-Node-js-6-和-ES6" class="headerlink" title="Introduction to Node.js 6 and ES2015 (介绍 Node.js 6 和 ES6)"></a>Introduction to Node.js 6 and ES2015 (介绍 Node.js 6 和 ES6)</h2><h3 id="The-let-and-const-keywords-let-和-const-关键字"><a href="#The-let-and-const-keywords-let-和-const-关键字" class="headerlink" title="The let and const keywords(let 和 const 关键字)"></a>The let and const keywords(let 和 const 关键字)</h3><p>在之前(ES2015 之前)，<code>js</code>只支持函数作用域和全局作用域，例如在 if 中声明一个变量却能在 if 块之外访问：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="literal">false</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> x = <span class="string">'hello'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(x) <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
-<p>但是使用<code>let</code>关键字后，if 块外就访问不到其中声明的变量了，这在一定程度上能减少因为误操作其中的变量而导致的 bug：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="literal">false</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> x = <span class="string">'hello'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(x) <span class="comment">//ReferenceError: x is not defined</span></span><br></pre></td></tr></table></figure>
-<p><code>const</code>关键字用于声明不可变变量：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> x = <span class="string">'This will never change'</span></span><br><span class="line">x = <span class="string">'...'</span></span><br><span class="line"><span class="comment">//TypeError: Assignment to constant variable</span></span><br></pre></td></tr></table></figure>
-<p>需要注意的是，<code>const</code>  是意味着变量的绑定不变而不是内容不变，示例入下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cosnt x = &#123;&#125;</span><br><span class="line">x.name = <span class="string">'John'</span><span class="comment">//work</span></span><br><span class="line"></span><br><span class="line">x = <span class="literal">null</span><span class="comment">//don't work</span></span><br></pre></td></tr></table></figure>
-<p>通常来说引入模块使用 <code>const</code>防止模块发生变化：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> path = <span class="string">'./some/path'</span> <span class="comment">//fail</span></span><br></pre></td></tr></table></figure>
-<p>如果你想要创建一个不可更改的对象，<code>const</code>是不够的，你可以使用 ES5 的<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze" target="_blank" rel="noopener">Object.freeze()</a>或者 <a href="https://www.npmjs.com/package/deep-freeze" target="_blank" rel="noopener">deep-freeze</a>模块，或者我使用<code>react</code>框架时候经常用的<a href="https://www.npmjs.com/package/immutable" target="_blank" rel="noopener">immutable</a>模块也可以。</p>
-<blockquote>
-<p>扩展——这里提一下<strong>ES5</strong>中<code>freeze</code>和<code>seal</code>的区别，<code>seal</code>只限制无法增加和删除对象属性 ，而<code>freeze</code>在<code>seal</code>的基础上还限制了不可更改对象的属性。</p>
-</blockquote>
-<h3 id="The-arrow-function-箭头函数"><a href="#The-arrow-function-箭头函数" class="headerlink" title="The arrow function(箭头函数)"></a>The arrow function(箭头函数)</h3><p>箭头函数是<strong>ES6</strong>的一大亮点，能很大程度上简化代码。一个参数可以不需要圆括号，函数体只有一行且结果为返回值可不需要花括号，具体示例如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> numbers = [<span class="number">2</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">1</span>]</span><br><span class="line"><span class="keyword">const</span> event = numbers.filter(<span class="function"><span class="params">x</span> =&gt;</span> x % <span class="number">2</span> === <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> event2 = numbers.filter(<span class="function"><span class="params">x</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (x % <span class="number">2</span> === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>箭头函数中 this 的指向跟随父函数，示例：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">DelayedGreeter</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DelayedGreeter.prototype.greet = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span> <span class="title">cb</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Hello '</span> + <span class="keyword">this</span>.name)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> DelayedGreeter(<span class="string">'World'</span>).greet() <span class="comment">//Hello undefined</span></span><br><span class="line"></span><br><span class="line">DelayedGreeter.prototype.greet = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'Hello '</span> + <span class="keyword">this</span>.name))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> DelayedGreeter(<span class="string">'World'</span>).greet() <span class="comment">//Hello World</span></span><br></pre></td></tr></table></figure>
-<h3 id="Class-syntax-Class-语法"><a href="#Class-syntax-Class-语法" class="headerlink" title="Class syntax(Class 语法)"></a>Class syntax(Class 语法)</h3><p><code>class</code>只是个语法糖，使用 class 实现对象继承并不是通过<code>class</code>继承的，还是通过内部的 prototypes，properties 实现继承，但是<code>class</code>使得程序可读性变强了。</p>
-<p>让我们来看个例子：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//复杂，晦涩难懂</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, surname, age</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name</span><br><span class="line">  <span class="keyword">this</span>.surname = surname</span><br><span class="line">  <span class="keyword">this</span>.age = age</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype.getFullName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.name + <span class="string">' '</span> + <span class="keyword">this</span>.surname</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.older = <span class="function"><span class="keyword">function</span>(<span class="params">person1, person2</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> preson1.age &gt;= person2.age ? person1 : person2</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//易懂</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(name, surname, age) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">    <span class="keyword">this</span>.surname = surname</span><br><span class="line">    <span class="keyword">this</span>.age = age</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  getFullName() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.name + <span class="string">' '</span> + <span class="keyword">this</span>.surname</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> older(person1, person2) &#123;</span><br><span class="line">    <span class="keyword">return</span> preson1.age &gt;= person2.age ? person1 : person2</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PersonWithMiddlename</span> <span class="keyword">extends</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(name, middlename, surname, age) &#123;</span><br><span class="line">    <span class="keyword">super</span>(name, surname, age)</span><br><span class="line">    <span class="keyword">this</span>.middlename = middlename</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  getFullName() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.name + <span class="string">' '</span> + <span class="keyword">this</span>.middlename + <span class="string">' '</span> + <span class="keyword">this</span>.surname</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Enhanced-object-literals-对象字面量语法增强"><a href="#Enhanced-object-literals-对象字面量语法增强" class="headerlink" title="Enhanced object literals(对象字面量语法增强)"></a>Enhanced object literals(对象字面量语法增强)</h3><ul>
-<li>缺省键值，属性名和变量名相同时可省略属性名</li>
+<h3 id="Apache-Thrift"><a href="#Apache-Thrift" class="headerlink" title="Apache Thrift"></a>Apache Thrift</h3><h4 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h4><ul>
+<li>支持非常多的语言绑定</li>
+<li>thrift` 文件生成目标代码，简单易用</li>
+<li>消息定义文件支持注释</li>
+<li>数据结构与传输表现的分离，支持多种消息格式</li>
+<li>包含完整的客户端/服务端堆栈，可快速实现 <code>RPC</code></li>
+<li>支持同步和异步通信</li>
 </ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> x = <span class="number">22</span></span><br><span class="line"><span class="keyword">const</span> y = <span class="number">17</span></span><br><span class="line"><span class="keyword">const</span> obj = &#123; x, y &#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>计算属性，属性可以是由变量计算而来</li>
+<h4 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h4><ul>
+<li>和 <code>protobuf</code> 一样不支持动态特性</li>
 </ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> namespace = <span class="string">'-webkit-'</span></span><br><span class="line"><span class="keyword">const</span> style = &#123;</span><br><span class="line">  [namespace + <span class="string">'box-sizing'</span>]: <span class="string">'border-box'</span>,</span><br><span class="line">  [namespace + <span class="string">'box-shadow'</span>]: <span class="string">'10px 10px 5px #888888'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>getter 和 setter</li>
+<h3 id="Apache-Avro"><a href="#Apache-Avro" class="headerlink" title="Apache Avro"></a>Apache Avro</h3><h4 id="优点-2"><a href="#优点-2" class="headerlink" title="优点"></a>优点</h4><ul>
+<li>二进制消息，性能好/效率高</li>
+<li>使用 <code>JSON</code> 描述模式</li>
+<li>模式和数据统一存储，消息自描述，不需要生成 <code>stub</code> 代码（支持生成 <code>IDL</code>）</li>
+<li><code>RPC</code> 调用在握手阶段交换模式定义</li>
+<li>包含完整的客户端/服务端堆栈，可快速实现 <code>RPC</code></li>
+<li>支持同步和异步通信</li>
+<li>支持动态消息</li>
+<li>模式定义允许定义数据的排序（序列化时会遵循这个顺序）</li>
+<li>提供了基于 <code>Jetty</code> 内核的服务基于 <code>Netty</code> 的服务</li>
 </ul>
-<p>先看例子：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> person = &#123;</span><br><span class="line">  name: <span class="string">'George'</span>,</span><br><span class="line">  surname: <span class="string">'Boole'</span>,</span><br><span class="line">  get fullname() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.name + <span class="string">''</span> + <span class="keyword">this</span>.surname</span><br><span class="line">  &#125;,</span><br><span class="line">  set fullname(fullname) &#123;</span><br><span class="line">    <span class="keyword">let</span> parts = fullname.split(<span class="string">''</span>)</span><br><span class="line">    <span class="keyword">this</span>.name = parts[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">this</span>.surname = parts[<span class="number">1</span>]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(person.fullname) <span class="comment">// "George Boole"</span></span><br><span class="line"><span class="built_in">console</span>.log((person.fullname = <span class="string">'Alan Turing'</span>)) <span class="comment">// "Alan Turing"</span></span><br><span class="line"><span class="built_in">console</span>.log(person.name) <span class="comment">// "Alan"</span></span><br></pre></td></tr></table></figure>
-<p>可以看到第二个 console.log 输出的是“Alan Turing”，这是因为调用 set 后默认返回 get 获得的值。</p>
-<h3 id="Map-and-Set-collections-Map-和-Set-集合"><a href="#Map-and-Set-collections-Map-和-Set-集合" class="headerlink" title="Map and Set collections(Map 和 Set 集合)"></a>Map and Set collections(Map 和 Set 集合)</h3><p>原来我们建立 hash map 的时候都是用<code>object</code>来完成的，而现在可以直接使用<code>Map</code>原型，提供了 set、get、has、delete 方法和 size 属性，比使用<code>object</code>更加直接、简单，遍历可使用<code>for...of</code>语法，这种遍历方式是和 Map 中属性的插入顺序是一样的(这在普通<code>object</code>中是无法保证的)。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> tests = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">   tests.set(<span class="function"><span class="params">()</span> =&gt;</span> <span class="number">2</span>+<span class="number">2</span>, <span class="number">4</span>);</span><br><span class="line">   tests.set(<span class="function"><span class="params">()</span> =&gt;</span> <span class="number">2</span>*<span class="number">2</span>, <span class="number">4</span>);</span><br><span class="line">   tests.set(<span class="function"><span class="params">()</span> =&gt;</span> <span class="number">2</span>/<span class="number">2</span>, <span class="number">1</span>);</span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">const</span> entry <span class="keyword">of</span> tests) &#123;</span><br><span class="line">     <span class="built_in">console</span>.log((entry[<span class="number">0</span>]() === entry[<span class="number">1</span>])   <span class="string">'PASS'</span> : <span class="string">'FAIL'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>Set</code>只允许存在不同的值，和数学上的集合是一个概念，里面内容可以是<code>number</code>也可以是<code>object</code>或<code>function</code>，除了 set 换成 add 外其他的都与 map 相同，遍历时每一个 entry 内容是 value。</p>
-<h3 id="WeakMap-and-WeakSet-collections"><a href="#WeakMap-and-WeakSet-collections" class="headerlink" title="WeakMap and WeakSet collections"></a>WeakMap and WeakSet collections</h3><p>顾名思义，<code>WeakMap</code>和<code>WeakSet</code>是<code>Map</code>和<code>Set</code>弱化后的原型，但是这其中并无优劣之分，只是适用于不同的场合。</p>
-<p><code>WeakMap</code>的<strong>key</strong>只能是非空对象，对<strong>key</strong>仅保持弱引用，最大的好处是可以避免内存泄漏，一旦<strong>key</strong>的引用为空或者 undefined，垃圾回收器就可以回收这个对象，但是<code>WeakMap</code>不能迭代遍历。</p>
-<p><code>WeakSet</code>与<code>WeakMap</code>同。</p>
-<h3 id="Template-literals-模板字符串"><a href="#Template-literals-模板字符串" class="headerlink" title="Template literals(模板字符串)"></a>Template literals(模板字符串)</h3><p>使用`代替双引号和单引号，在字符串中可以使用表达式${expression}，可以换行。</p>
-<h3 id="ES6-其他语法"><a href="#ES6-其他语法" class="headerlink" title="ES6 其他语法"></a>ES6 其他语法</h3><ul>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank" rel="noopener">Promise</a>(稍后会详细讲到)</li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters" target="_blank" rel="noopener">函数默认参数</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Rest_parameters" target="_blank" rel="noopener">剩余参数语法</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator" target="_blank" rel="noopener">拓展运算符</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment" target="_blank" rel="noopener">解构赋值</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new.target" target="_blank" rel="noopener">new.target</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy" target="_blank" rel="noopener">代理</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect" target="_blank" rel="noopener">反射</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Glossary/Symbol" target="_blank" rel="noopener">Symbol</a></li>
+<h3 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>只支持 <code>Avro</code> 自己的序列化格式</li>
+<li>语言绑定不如 <code>Thrift</code> 丰富</li>
 </ul>
-<h2 id="The-reactor-pattern"><a href="#The-reactor-pattern" class="headerlink" title="The reactor pattern"></a>The reactor pattern</h2><p><code>reactor</code>模式是 <code>Node.js</code> 异步的核心。</p>
-<h3 id="I-O-is-slow-I-O-操作是慢的"><a href="#I-O-is-slow-I-O-操作是慢的" class="headerlink" title="I/O is slow(I/O 操作是慢的)"></a>I/O is slow(I/O 操作是慢的)</h3><p>I/O 操作可以说是计算机操作中最慢的一环，I/O 的速度可能和网络速度、磁盘速率有关，也可能和其他因素有关，比如用户点击事件等等。</p>
-<h3 id="Blocking-I-O-阻塞-I-O"><a href="#Blocking-I-O-阻塞-I-O" class="headerlink" title="Blocking I/O(阻塞 I/O)"></a>Blocking I/O(阻塞 I/O)</h3><p>传统的阻塞 I/O 模型中，I/O 请求会阻塞之后代码块的运行，例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 直到请求完成，数据可用，线程都是阻塞的</span></span><br><span class="line">data = socket.read()</span><br><span class="line"><span class="comment">// 请求完成，数据可用</span></span><br><span class="line">print(data)</span><br></pre></td></tr></table></figure>
-<p>而为了达到并发的  目的，传统的 web 服务器是  选择新开一个线程或进程，这样因为线程(或进程)之间的相互独立性，一个线程(或进程)阻塞并不会影响另一个。</p>
-<p>但是创建一个线程是昂贵的，一个线程需要内存，而且切换线程需要保留线程的上下文等等，所以这种方式并不是最佳实践。</p>
-<h3 id="Non-blocking-I-O-非阻塞-I-O"><a href="#Non-blocking-I-O-非阻塞-I-O" class="headerlink" title="Non-blocking I/O(非阻塞 I/O)"></a>Non-blocking I/O(非阻塞 I/O)</h3><p>与阻塞 I/O 相反，遇到 I/O 请求不会阻塞后续代码的执行，如果访问的资源不可用则会返回一个预定义的常量值。</p>
-<p>非阻塞 I/O 最基本的模式是轮询直到有数据已经返回了，也叫做 <code>忙等待</code>模式：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">resources = [socketA, socketB, pipeA]</span><br><span class="line"><span class="keyword">while</span> (!resources.isEmpty()) &#123;</span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; resources.length; i++) &#123;</span><br><span class="line">    resource = resources[i]</span><br><span class="line">    <span class="comment">// 进行读操作</span></span><br><span class="line">    <span class="keyword">let</span> data = resource.read()</span><br><span class="line">    <span class="keyword">if</span> (data === NO_DATA_AVAILABLE) &#123;</span><br><span class="line">      <span class="comment">// 此时还没有数据</span></span><br><span class="line">      <span class="keyword">continue</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (data === RESOURCE_CLOSED) &#123;</span><br><span class="line">      <span class="comment">// 资源被释放，从队列中移除该链接</span></span><br><span class="line">      resources.remove(i)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      consumeData(data)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这个例子已经能有单线程处理多个请求了， 但是不够高效，资源不可用时循环占了太多了 CPU 时间，轮询算法浪费 CPU 时间。</p>
-<h3 id="Event-demultiplexing-事件多路复用"><a href="#Event-demultiplexing-事件多路复用" class="headerlink" title="Event demultiplexing(事件多路复用)"></a>Event demultiplexing(事件多路复用)</h3><p>对于获取非阻塞的资源而言，忙等待模型不是一个理想的技术，大多数现代的操作系统都提供了一种机制来处理并发和非阻塞资源，这个机制被称为<code>同步多路复用</code>。</p>
-<p>这个组件从一系列被监听的资源中收集 I/O 事件并放入队列中，而且会一直处于阻塞状态直到有新的事件可以被处理：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">socketA, pipeB;</span><br><span class="line">wachedList.add(socketA, FOR_READ);</span><br><span class="line">wachedList.add(pipeB, FOR_READ);</span><br><span class="line"><span class="keyword">while</span>(events = demultiplexer.watch(wachedList)) &#123;</span><br><span class="line">  <span class="comment">// 事件循环</span></span><br><span class="line">  foreach(event <span class="keyword">in</span> events) &#123;</span><br><span class="line">    <span class="comment">// 永远不会阻塞，并且总会有返回值</span></span><br><span class="line">    data = event.resource.read();</span><br><span class="line">    <span class="keyword">if</span> (data === RESOURCE_CLOSED) &#123;</span><br><span class="line">      <span class="comment">// 资源已经被释放，从观察者队列移除</span></span><br><span class="line">      demultiplexer.unwatch(event.resource);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// 获得数据进行处理</span></span><br><span class="line">      consumeData(data);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>代码的三个重要步骤：</p>
-<ol>
-<li>资源被添加到一个数据结构中，为每个资源关联一个特定的操作，在这个例子中是 read。</li>
-<li>事件通知器由一组被观察的资源组成，事件通知器是同步和阻塞的直到有资源可以被<code>read</code>，事件触发后会从调用中返回，之后这些事件可以被处理。</li>
-<li>多路复用器返回的每个事件被处理，此时，和事件相关的资源都可用且不会在操作中阻塞。当所有的事件都被处理完后，继续进入循环等待下一个可以被处理的事件。这个被称作为<code>事件循环(event loop)</code>。</li>
-</ol>
-<p><img src="/assets/img/node_demultiplexer.png" alt="多路复用"></p>
-<p>上图帮助我们理解如何在一个单线程中使用多路复用器和非阻塞 I/O 来处理并发。我们能够看到，只使用一个线程并不会影响我们处理多个 I/O 任务的性能。同时，我们看到任务是在单个线程中随着时间的推移而展开的，而不是分散在多个线程中。我们看到，在单线程中传播的任务相对于多线程中传播的任务反而节约了线程的总体空闲时间，并且更利于程序员编写代码。</p>
-<h3 id="Introducing-to-reactor-pattern-reactor-模式的介绍"><a href="#Introducing-to-reactor-pattern-reactor-模式的介绍" class="headerlink" title="Introducing to reactor pattern(reactor 模式的介绍)"></a>Introducing to reactor pattern(reactor 模式的介绍)</h3><p>主要思想就是每一个 I/O 操作都有一个<code>handler</code>或者成为回调函数(<code>callback</code>)，当事件发生并且被<code>事件循环</code>处理后，这个回调函数就会被调用：</p>
-<p><img src="/assets/img/event_loop.png" alt="event loop"></p>
-<p>一个应用使用<code>reactor</code>模式后：</p>
-<ol>
-<li>应用提交一个请求给事件多路复用器 ，生成 I/O 操作，同时提供事件触发时的<code>handler</code>， 发送请求给事件多路复用器是一个非阻塞的操作，发送后立即返回到应用。</li>
-<li>当一组 I/O 操作完成，事件多路复用器会将新来的事件添加到事件队列中。</li>
-<li>此时，事件循环会迭代事件队列中的每个事件。</li>
-<li>对于每个事件，对应的<code>handler</code>被处理。</li>
-<li><code>handler</code>，是应用程序代码的一部分，<code>handler</code>执行结束后执行权会交回事件循环。但是，在<code>handler</code>执行时可能请求新的异步操作，从而新的操作被添加到事件多路复用器。</li>
-<li>当事件队列的全部事件被处理完后，事件多路复用器再次阻塞直到有一个新的事件触发。</li>
-</ol>
-<p>现在来定义 Node.js 的核心模式：<br><code>模式(reactor)</code>这样处理 I/O，阻塞直到有新的事件从被观察的资源中触发，然后将事件派发给相应的<code>handler</code>。</p>
-<h3 id="Node-js-非阻塞-I-O-引擎——libuv"><a href="#Node-js-非阻塞-I-O-引擎——libuv" class="headerlink" title="Node.js 非阻塞 I/O 引擎——libuv"></a>Node.js 非阻塞 I/O 引擎——libuv</h3><p>每个操作系统都有不同的接口来实现事件多路复用器，Linux 是 epoll，Mac OSX 是 kqueue，Windows 的 IOCP API，即使是在相同的操作系统中对于不同资源的 I/O 操作也不同，所以 Node.js 使用<code>libuv</code>来统一处理 I/O 操作，来达到兼容不同操作系统的目的。</p>
-<h3 id="Node-js-架构"><a href="#Node-js-架构" class="headerlink" title="Node.js 架构"></a>Node.js 架构</h3><p><img src="/assets/img/node_architecture.png" alt="Node.js 架构"></p>
 
       
 
@@ -328,13 +330,44 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">序列化</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">反序列化</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">kryo</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">avro</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">protobuf</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jce</a>
         		</li>
       		
 		</ul>
 	</div>
 
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/学习//" class="article-tag-list-link color3">学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -384,7 +417,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://1016990109.github.io/2018/05/11/Node-js-设计模式读书笔记-第一章/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://1016990109.github.io/2018/06/20/kryo-vs-avro-vs-protobuf-vs-thrift-vs-jce/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -398,18 +431,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/05/18/Node-js-设计模式读书笔记-第二章/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          《Node.js 设计模式》读书笔记 第二章
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/05/09/Python-处理excel文件/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Python 处理excel文件</div>
+    <a href="/2018/06/13/Node-应用性能优化/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Node 应用性能优化</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -436,7 +460,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Welcome-to-the-Node-js-Platform"><span class="toc-number">1.</span> <span class="toc-text">Welcome to the Node.js Platform</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Small-modules-小模块"><span class="toc-number">1.1.</span> <span class="toc-text">Small modules(小模块)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Small-surface-area-暴露需要的接口"><span class="toc-number">1.2.</span> <span class="toc-text">Small surface area(暴露需要的接口)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Simplicity-and-progmatism-简单而实用"><span class="toc-number">1.3.</span> <span class="toc-text">Simplicity and progmatism(简单而实用)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction-to-Node-js-6-and-ES2015-介绍-Node-js-6-和-ES6"><span class="toc-number">1.4.</span> <span class="toc-text">Introduction to Node.js 6 and ES2015 (介绍 Node.js 6 和 ES6)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#The-let-and-const-keywords-let-和-const-关键字"><span class="toc-number">1.4.1.</span> <span class="toc-text">The let and const keywords(let 和 const 关键字)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-arrow-function-箭头函数"><span class="toc-number">1.4.2.</span> <span class="toc-text">The arrow function(箭头函数)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Class-syntax-Class-语法"><span class="toc-number">1.4.3.</span> <span class="toc-text">Class syntax(Class 语法)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Enhanced-object-literals-对象字面量语法增强"><span class="toc-number">1.4.4.</span> <span class="toc-text">Enhanced object literals(对象字面量语法增强)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map-and-Set-collections-Map-和-Set-集合"><span class="toc-number">1.4.5.</span> <span class="toc-text">Map and Set collections(Map 和 Set 集合)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WeakMap-and-WeakSet-collections"><span class="toc-number">1.4.6.</span> <span class="toc-text">WeakMap and WeakSet collections</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Template-literals-模板字符串"><span class="toc-number">1.4.7.</span> <span class="toc-text">Template literals(模板字符串)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ES6-其他语法"><span class="toc-number">1.4.8.</span> <span class="toc-text">ES6 其他语法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-reactor-pattern"><span class="toc-number">1.5.</span> <span class="toc-text">The reactor pattern</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#I-O-is-slow-I-O-操作是慢的"><span class="toc-number">1.5.1.</span> <span class="toc-text">I/O is slow(I/O 操作是慢的)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Blocking-I-O-阻塞-I-O"><span class="toc-number">1.5.2.</span> <span class="toc-text">Blocking I/O(阻塞 I/O)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Non-blocking-I-O-非阻塞-I-O"><span class="toc-number">1.5.3.</span> <span class="toc-text">Non-blocking I/O(非阻塞 I/O)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Event-demultiplexing-事件多路复用"><span class="toc-number">1.5.4.</span> <span class="toc-text">Event demultiplexing(事件多路复用)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Introducing-to-reactor-pattern-reactor-模式的介绍"><span class="toc-number">1.5.5.</span> <span class="toc-text">Introducing to reactor pattern(reactor 模式的介绍)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Node-js-非阻塞-I-O-引擎——libuv"><span class="toc-number">1.5.6.</span> <span class="toc-text">Node.js 非阻塞 I/O 引擎——libuv</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Node-js-架构"><span class="toc-number">1.5.7.</span> <span class="toc-text">Node.js 架构</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#protobuf"><span class="toc-number">1.</span> <span class="toc-text">protobuf</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#结构化数据："><span class="toc-number">1.1.</span> <span class="toc-text">结构化数据：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Varint"><span class="toc-number">1.2.</span> <span class="toc-text">Varint</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ZigZag"><span class="toc-number">1.3.</span> <span class="toc-text">ZigZag</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#float-double"><span class="toc-number">2.</span> <span class="toc-text">float double</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#string"><span class="toc-number">2.1.</span> <span class="toc-text">string</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#repeated"><span class="toc-number">2.2.</span> <span class="toc-text">repeated</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jce"><span class="toc-number">3.</span> <span class="toc-text">jce</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#结构"><span class="toc-number">3.1.</span> <span class="toc-text">结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#int"><span class="toc-number">3.2.</span> <span class="toc-text">int</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#string-1"><span class="toc-number">3.3.</span> <span class="toc-text">string</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#map"><span class="toc-number">3.4.</span> <span class="toc-text">map</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结构体"><span class="toc-number">3.5.</span> <span class="toc-text">结构体</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#avro"><span class="toc-number">4.</span> <span class="toc-text">avro</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#int-long"><span class="toc-number">4.1.</span> <span class="toc-text">int, long</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#string-array-map"><span class="toc-number">4.2.</span> <span class="toc-text">string, array, map</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#thrift"><span class="toc-number">5.</span> <span class="toc-text">thrift</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#int-long-1"><span class="toc-number">5.1.</span> <span class="toc-text">int, long</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他"><span class="toc-number">5.2.</span> <span class="toc-text">其他</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#kryo"><span class="toc-number">6.</span> <span class="toc-text">kryo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#int-long-2"><span class="toc-number">6.1.</span> <span class="toc-text">int, long</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#class"><span class="toc-number">6.2.</span> <span class="toc-text">class</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">7.</span> <span class="toc-text">总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Google-protobuf"><span class="toc-number">7.1.</span> <span class="toc-text">Google protobuf</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#优点"><span class="toc-number">7.1.1.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#缺点"><span class="toc-number">7.1.2.</span> <span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Apache-Thrift"><span class="toc-number">7.2.</span> <span class="toc-text">Apache Thrift</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#优点-1"><span class="toc-number">7.2.1.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#缺点-1"><span class="toc-number">7.2.2.</span> <span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Apache-Avro"><span class="toc-number">7.3.</span> <span class="toc-text">Apache Avro</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#优点-2"><span class="toc-number">7.3.1.</span> <span class="toc-text">优点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缺点-2"><span class="toc-number">7.4.</span> <span class="toc-text">缺点</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -450,7 +474,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Node-js-设计模式读书笔记-第一章" data-title="《Node.js 设计模式》读书笔记 第一章" data-url="http://1016990109.github.io/2018/05/11/Node-js-设计模式读书笔记-第一章/"></div>
+	<div class="ds-thread" data-thread-key="kryo-vs-avro-vs-protobuf-vs-thrift-vs-jce" data-title="kryo vs avro vs protobuf vs thrift vs jce" data-url="http://1016990109.github.io/2018/06/20/kryo-vs-avro-vs-protobuf-vs-thrift-vs-jce/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
