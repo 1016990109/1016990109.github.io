@@ -169,6 +169,271 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Node-js-设计模式读书笔记-第七章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/28/Node-js-设计模式读书笔记-第七章/">《Node.js 设计模式》读书笔记 第七章</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/28/Node-js-设计模式读书笔记-第七章/" class="archive-article-date">
+  	<time datetime="2018-07-28T15:36:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Wiring-Modules-连接模块"><a href="#Wiring-Modules-连接模块" class="headerlink" title="Wiring Modules(连接模块)"></a>Wiring Modules(连接模块)</h1><p>对模块常见的一个问题就是：将组件X的实例传递到模块Y的最佳方式是什么？</p>
+<p>常见的模式有一下几种：</p>
+<ul>
+<li>硬编码依赖</li>
+<li>依赖注入</li>
+<li>服务定位器</li>
+<li>依赖注入容器</li>
+</ul>
+        
+          <a class="article-more-a" href="/2018/07/28/Node-js-设计模式读书笔记-第七章/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/28/Node-js-设计模式读书笔记-第七章/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-前端——网络" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/19/前端——网络/">前端——网络</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/19/前端——网络/" class="archive-article-date">
+  	<time datetime="2018-07-19T08:20:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="强缓存与协商缓存"><a href="#强缓存与协商缓存" class="headerlink" title="强缓存与协商缓存"></a>强缓存与协商缓存</h2><h3 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h3><p>1.<code>Expires</code>：<br>服务器返回的一个时间，在这个时间之前都使用缓存，不发送 <code>http</code> 请求。</p>
+<p>例如：<code>Expires: Thu, 10 Dec 2015 23:21:37 GMT</code></p>
+<p><strong>缺点</strong>：服务器的时间和客户端不同会出现问题，老版本 <code>http 1.0</code> 中才使用，现在一般使用 <code>Cache-Contorl</code>。</p>
+<p>2.<code>Cache-Control</code>(优先级高)：<br>声明一个相对的秒数，表示从现在起一段时间内缓存都有效，也不会发送 <code>http</code> 请求。</p>
+<p>例如：<code>Cache-Control: max-age=3600</code></p>
+        
+          <a class="article-more-a" href="/2018/07/19/前端——网络/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">tcp</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/19/前端——网络/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-前端——JS数组" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/19/前端——JS数组/">前端——JS数组</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/19/前端——JS数组/" class="archive-article-date">
+  	<time datetime="2018-07-19T07:18:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><ol>
+<li><code>push(val1,val2,...)</code>、<code>pop</code> 操作，增加和删除，后进先出。</li>
+<li><code>unshift(val1,val2,...)</code>、<code>shift()</code> 对应在开头添加元素和删除元素。</li>
+<li><code>splice(start,deleteCount,val1,val2,...)</code> 从开始位置删除一定数量的元素，并从这个位置插入新的元素。</li>
+<li><code>reverse()</code> 反向。</li>
+<li><code>sort([orderfunction])</code> 排序。</li>
+<li><code>slice([start] [,end])</code> 返回子数组，拷贝后的，复制一个数组简单地 <code>slice()</code>。</li>
+<li><code>join(seperator)</code> 返回以 <code>seperator</code> 作为间隔的字符串，默认为 <code>,</code>。</li>
+<li><code>concat([arr1][,arr2]...)</code> 连接数组并返回新的数组，<code>concat()</code> 复制数组。</li>
+<li>其他：<code>indexOf(val)</code>,<code>includes(val)</code>,<code>toString</code>(同 <code>join()</code> 或 <code>join(&quot;,&quot;)</code>),<code>forEach()</code>,<code>every</code>,<code>findIndex</code>,<code>map</code>,<code>reduce</code>,<code>keys</code>,<code>values</code>。</li>
+</ol>
+        
+          <a class="article-more-a" href="/2018/07/19/前端——JS数组/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/19/前端——JS数组/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Linux-命令-学习Shell" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -801,276 +1066,9 @@
 
 
   
-    <article id="post-Node-js-设计模式读书笔记-第三章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/07/Node-js-设计模式读书笔记-第三章/">《Node.js 设计模式》读书笔记 第三章</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/07/Node-js-设计模式读书笔记-第三章/" class="archive-article-date">
-  	<time datetime="2018-06-07T02:39:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Asynchorous-Control-Flow-Patterns-with-Callbacks-使用回调的异步控制流模式"><a href="#Asynchorous-Control-Flow-Patterns-with-Callbacks-使用回调的异步控制流模式" class="headerlink" title="Asynchorous Control Flow Patterns with Callbacks(使用回调的异步控制流模式)"></a>Asynchorous Control Flow Patterns with Callbacks(使用回调的异步控制流模式)</h1><p>异步的代码使得难以预测语句的执行顺序，所以在一些场景(比如遍历一些文件，执行一系列任务等等)下，这就要求开发者去使用一些方法或技术来防止编写出低效和难以阅读的代码。</p>
-<h2 id="The-difficulties-of-asynchonous-programming-异步编程的困难"><a href="#The-difficulties-of-asynchonous-programming-异步编程的困难" class="headerlink" title="The difficulties of asynchonous programming(异步编程的困难)"></a>The difficulties of asynchonous programming(异步编程的困难)</h2><blockquote>
-<p><code>KISS</code> 原则：Keep It Simple, Stupid，注重简约。</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2018/06/07/Node-js-设计模式读书笔记-第三章/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/学习//" class="article-tag-list-link color3">学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/07/Node-js-设计模式读书笔记-第三章/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-关系型数据库存储树形结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/05/关系型数据库存储树形结构/">关系型数据库存储树形结构</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/05/关系型数据库存储树形结构/" class="archive-article-date">
-  	<time datetime="2018-06-05T08:05:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在日常开发中不免遇到需要在关系型数据库中存储树形结构数据的情况，这里介绍 3 种存储方法。</p>
-<p>三种方法都以下面这个嵌套评论场景为背景。</p>
-        
-          <a class="article-more-a" href="/2018/06/05/关系型数据库存储树形结构/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/学习//" class="article-tag-list-link color3">学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/05/关系型数据库存储树形结构/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Git-Flow-学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/05/Git-Flow-学习/">git-flow 学习</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/05/Git-Flow-学习/" class="archive-article-date">
-  	<time datetime="2018-06-05T01:35:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>这里只是针对 <code>Git</code> 中的 <code>git-flow</code> 做一次学习记录，更加详细系统地学习 <code>Git</code> 请移步<a href="https://www.git-tower.com/learn/git/ebook" target="_blank" rel="noopener">这里</a>。</p>
-<p>首先，<code>git-flow</code> 并不会为 <code>Git</code> 扩展任何新的功能，它仅仅使用了脚本来捆绑了一系列 <code>Git</code> 命令来完成一些特定的工作流程。</p>
-<p>其次，定义一个固定的工作流程会使得团队协作更加简单容易。无论是一个 “版本控制的新手” 还是 “Git 专家”，每一个人都知道如何来正确地完成某个任务。</p>
-        
-          <a class="article-more-a" href="/2018/06/05/Git-Flow-学习/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/学习//" class="article-tag-list-link color3">学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/05/Git-Flow-学习/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -1165,6 +1163,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -1173,19 +1179,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1194,6 +1188,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">优化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1210,14 +1208,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">RPC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1245,7 +1235,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">tcp</a>
               </li>
             
             <div class="clearfix"></div>
