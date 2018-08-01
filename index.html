@@ -189,7 +189,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Wiring-Modules-连接模块"><a href="#Wiring-Modules-连接模块" class="headerlink" title="Wiring Modules(连接模块)"></a>Wiring Modules(连接模块)</h1><p>对模块常见的一个问题就是：将组件X的实例传递到模块Y的最佳方式是什么？</p>
+        <h1 id="Wiring-Modules-连接模块"><a href="#Wiring-Modules-连接模块" class="headerlink" title="Wiring Modules(连接模块)"></a>Wiring Modules(连接模块)</h1><p>对模块常见的一个问题就是：将组件 X 的实例传递到模块 Y 的最佳方式是什么？</p>
 <p>常见的模式有一下几种：</p>
 <ul>
 <li>硬编码依赖</li>
@@ -272,11 +272,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="强缓存与协商缓存"><a href="#强缓存与协商缓存" class="headerlink" title="强缓存与协商缓存"></a>强缓存与协商缓存</h2><h3 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h3><p>1.<code>Expires</code>：<br>服务器返回的一个时间，在这个时间之前都使用缓存，不发送 <code>http</code> 请求。</p>
-<p>例如：<code>Expires: Thu, 10 Dec 2015 23:21:37 GMT</code></p>
-<p><strong>缺点</strong>：服务器的时间和客户端不同会出现问题，老版本 <code>http 1.0</code> 中才使用，现在一般使用 <code>Cache-Contorl</code>。</p>
-<p>2.<code>Cache-Control</code>(优先级高)：<br>声明一个相对的秒数，表示从现在起一段时间内缓存都有效，也不会发送 <code>http</code> 请求。</p>
-<p>例如：<code>Cache-Control: max-age=3600</code></p>
+        <h2 id="网络模型"><a href="#网络模型" class="headerlink" title="网络模型"></a>网络模型</h2><p><img src="/assets/img/network_model.png" alt="Network Model">)</p>
+<ul>
+<li><code>TCP/IP</code> 四层模型</li>
+</ul>
+<p>应用层、运输层、网际层和网络接口层。从实质上讲，只有上边三层，网络接口层没有什么具体的内容。<code>HTTP</code> 对应应用层。</p>
+<ul>
+<li><code>OSI</code> 七层模型</li>
+</ul>
+<p>应用层（<code>Application</code>）、表示层（<code>Presentation</code>）、会话层（<code>Session</code>）、传输层（<code>Transport</code>）、网络层（<code>Network</code>）、数据链路层（<code>Data Link</code>）、物理层（<code>Physical</code>）。<code>HTTP</code> 也是对应应用层。</p>
+<ul>
+<li>五层模型</li>
+</ul>
+<p>应用层、运输层、网络层、数据链路层和物理层。</p>
         
           <a class="article-more-a" href="/2018/07/19/前端——网络/#more">more >></a>
         
@@ -1167,15 +1175,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Shell</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1203,14 +1211,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RPC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">序列化</a>
               </li>
              
@@ -1235,6 +1235,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RPC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">源码</a>
               </li>
              
@@ -1247,15 +1255,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">tcp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
             
             <div class="clearfix"></div>

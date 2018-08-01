@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://1016990109.github.io">
   <title>《Node.js 设计模式》读书笔记 第七章 | 七秒悲伤的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Wiring Modules(连接模块)对模块常见的一个问题就是：将组件X的实例传递到模块Y的最佳方式是什么？ 常见的模式有一下几种：  硬编码依赖 依赖注入 服务定位器 依赖注入容器">
+  <meta name="description" content="Wiring Modules(连接模块)对模块常见的一个问题就是：将组件 X 的实例传递到模块 Y 的最佳方式是什么？ 常见的模式有一下几种：  硬编码依赖 依赖注入 服务定位器 依赖注入容器">
 <meta name="keywords" content="读书笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《Node.js 设计模式》读书笔记 第七章">
 <meta property="og:url" content="http://1016990109.github.io/2018/07/28/Node-js-设计模式读书笔记-第七章/index.html">
 <meta property="og:site_name" content="七秒悲伤的博客">
-<meta property="og:description" content="Wiring Modules(连接模块)对模块常见的一个问题就是：将组件X的实例传递到模块Y的最佳方式是什么？ 常见的模式有一下几种：  硬编码依赖 依赖注入 服务定位器 依赖注入容器">
+<meta property="og:description" content="Wiring Modules(连接模块)对模块常见的一个问题就是：将组件 X 的实例传递到模块 Y 的最佳方式是什么？ 常见的模式有一下几种：  硬编码依赖 依赖注入 服务定位器 依赖注入容器">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-28T17:32:20.855Z">
+<meta property="og:updated_time" content="2018-07-29T02:37:49.092Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Node.js 设计模式》读书笔记 第七章">
-<meta name="twitter:description" content="Wiring Modules(连接模块)对模块常见的一个问题就是：将组件X的实例传递到模块Y的最佳方式是什么？ 常见的模式有一下几种：  硬编码依赖 依赖注入 服务定位器 依赖注入容器">
+<meta name="twitter:description" content="Wiring Modules(连接模块)对模块常见的一个问题就是：将组件 X 的实例传递到模块 Y 的最佳方式是什么？ 常见的模式有一下几种：  硬编码依赖 依赖注入 服务定位器 依赖注入容器">
   
     <link rel="alternative" href="/atom.xml" title="七秒悲伤的博客" type="application/atom+xml">
   
@@ -189,7 +189,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Wiring-Modules-连接模块"><a href="#Wiring-Modules-连接模块" class="headerlink" title="Wiring Modules(连接模块)"></a>Wiring Modules(连接模块)</h1><p>对模块常见的一个问题就是：将组件X的实例传递到模块Y的最佳方式是什么？</p>
+        <h1 id="Wiring-Modules-连接模块"><a href="#Wiring-Modules-连接模块" class="headerlink" title="Wiring Modules(连接模块)"></a>Wiring Modules(连接模块)</h1><p>对模块常见的一个问题就是：将组件 X 的实例传递到模块 Y 的最佳方式是什么？</p>
 <p>常见的模式有一下几种：</p>
 <ul>
 <li>硬编码依赖</li>
@@ -198,7 +198,18 @@
 <li>依赖注入容器</li>
 </ul>
 <a id="more"></a>
-<h2 id="Modules-and-dependencies-模块和依赖"><a href="#Modules-and-dependencies-模块和依赖" class="headerlink" title="Modules and dependencies(模块和依赖)"></a>Modules and dependencies(模块和依赖)</h2><h3 id="The-most-common-dependency-in-Node-js-Node-js中最常见的模块"><a href="#The-most-common-dependency-in-Node-js-Node-js中最常见的模块" class="headerlink" title="The most common dependency in Node.js(Node.js中最常见的模块)"></a>The most common dependency in Node.js(Node.js中最常见的模块)</h3>
+<h2 id="Modules-and-dependencies-模块和依赖"><a href="#Modules-and-dependencies-模块和依赖" class="headerlink" title="Modules and dependencies(模块和依赖)"></a>Modules and dependencies(模块和依赖)</h2><h3 id="The-most-common-dependency-in-Node-js-Node-js-中最常见的模块"><a href="#The-most-common-dependency-in-Node-js-Node-js-中最常见的模块" class="headerlink" title="The most common dependency in Node.js(Node.js 中最常见的模块)"></a>The most common dependency in Node.js(Node.js 中最常见的模块)</h3><p>一个模块的属性可以概括如下：</p>
+<ul>
+<li>一个模块应该具有可读性和可理解性，因为它应该专注于一件事。</li>
+<li>一个模块被表示为一个单独的文件，使得其更容易被识别。</li>
+<li>模块可以更容易地在不同的应用程序中复用。</li>
+</ul>
+<h3 id="Cohesion-and-coupling-内聚和耦合"><a href="#Cohesion-and-coupling-内聚和耦合" class="headerlink" title="Cohesion and coupling(内聚和耦合)"></a>Cohesion and coupling(内聚和耦合)</h3><p>评判创建的模块平衡性两个最重要的特征就是内聚度和耦合度。这两个特征可以应用于软件体系结构中的任何类型的组件或子系统。因此在构建 <code>Node.js</code> 模块时也可以把这两个特征作为重要的参考价值。这两个属性定义如下：</p>
+<p>内聚度：用于度量模块内部功能之间的相关性。例如，对于一个只做一件事的模块，其中的所有部件都只对这一件事起作用，那说明这个模块具有很高的内聚度。举个例子，那种包含把任何类型的对象存储到数据库的函数内聚度就较低，如 <code>saveProduct()</code>、<code>saveInvoice()</code>、<code>saveUser()</code> 等。</p>
+<p>耦合度：评判模块对系统其他模块的依赖程度。例如，当一个模块直接读取或修改另一个模块的数据时，该模块与另一个模块是紧密耦合的；另外，通过全局或共享状态交互的两个模块也是紧密耦合的；另一方面，仅通过参数传递进行通信的两个模块耦合度较低。</p>
+<p>理想情况下，一个模块应该具有较高的内聚度和较低的耦合度，这样的模块更易于理解、重用和扩展。</p>
+<h3 id="Stateful-modules-有状态的模块"><a href="#Stateful-modules-有状态的模块" class="headerlink" title="Stateful modules(有状态的模块)"></a>Stateful modules(有状态的模块)</h3><p>在 <code>JavaScript</code> 中，将接口与实现分离的例子很少。 然而，通过使用 <code>Node.js</code> 模块系统，我们引入了一个特定的模块，接口不会受到其它模块的影响。在正常情况下，这没有什么问题，但是如果我们使用 <code>require()</code> 来加载一个导出有状态实例的模块，比如数据库交互对象，<code>HTTP</code> 服务器实例，乃至普通的任何对象这不是无状态的，我们实际上是在引用的模块都是一个又一个的单例，因此模块系统有着单例模式的优点和缺点，此外，也有一些不同的地方。</p>
+<h4 id="The-Singleton-pattern-in-Node-js-Node-js-中的单例模式"><a href="#The-Singleton-pattern-in-Node-js-Node-js-中的单例模式" class="headerlink" title="The Singleton pattern in Node.js(Node.js 中的单例模式)"></a>The Singleton pattern in Node.js(Node.js 中的单例模式)</h4>
       
 
       
@@ -310,7 +321,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Wiring-Modules-连接模块"><span class="toc-number">1.</span> <span class="toc-text">Wiring Modules(连接模块)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Modules-and-dependencies-模块和依赖"><span class="toc-number">1.1.</span> <span class="toc-text">Modules and dependencies(模块和依赖)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#The-most-common-dependency-in-Node-js-Node-js中最常见的模块"><span class="toc-number">1.1.1.</span> <span class="toc-text">The most common dependency in Node.js(Node.js中最常见的模块)</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Wiring-Modules-连接模块"><span class="toc-number">1.</span> <span class="toc-text">Wiring Modules(连接模块)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Modules-and-dependencies-模块和依赖"><span class="toc-number">1.1.</span> <span class="toc-text">Modules and dependencies(模块和依赖)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#The-most-common-dependency-in-Node-js-Node-js-中最常见的模块"><span class="toc-number">1.1.1.</span> <span class="toc-text">The most common dependency in Node.js(Node.js 中最常见的模块)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cohesion-and-coupling-内聚和耦合"><span class="toc-number">1.1.2.</span> <span class="toc-text">Cohesion and coupling(内聚和耦合)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Stateful-modules-有状态的模块"><span class="toc-number">1.1.3.</span> <span class="toc-text">Stateful modules(有状态的模块)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#The-Singleton-pattern-in-Node-js-Node-js-中的单例模式"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">The Singleton pattern in Node.js(Node.js 中的单例模式)</span></a></li></ol></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -446,15 +457,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Shell</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -482,14 +493,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RPC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">序列化</a>
               </li>
              
@@ -514,6 +517,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RPC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">源码</a>
               </li>
              
@@ -526,15 +537,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">tcp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
             
             <div class="clearfix"></div>
