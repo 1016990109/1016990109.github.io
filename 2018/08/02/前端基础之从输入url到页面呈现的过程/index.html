@@ -6,18 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://1016990109.github.io">
-  <title>Tag: RPC | 七秒悲伤的博客</title>
+  <title>前端基础之从输入url到页面呈现的过程 | 七秒悲伤的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个深藏功与名的软件开发爱好者">
-<meta property="og:type" content="website">
-<meta property="og:title" content="七秒悲伤的博客">
-<meta property="og:url" content="http://1016990109.github.io/tags/RPC/index.html">
+  <meta name="description" content="1.用户输入网址 2.浏览器通过 DNS 获取网站的 IP 地址。客户端先检查本地是否有对应的 IP 地址，若找到则返回响应的 IP 地址。若没找到则请求上级 DNS 服务器，直至找到或到根节点。  DNS 查找 IP 地址的顺序: 浏览器缓存、系统缓存、互联网服务提供商（ISP）的 DNS 缓存、递归搜索（从浏览器缓存开始，如果没找到就继续往下一个找）。找到后，浏览器会获得一个 IP 地址。">
+<meta name="keywords" content="前端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端基础之从输入url到页面呈现的过程">
+<meta property="og:url" content="http://1016990109.github.io/2018/08/02/前端基础之从输入url到页面呈现的过程/index.html">
 <meta property="og:site_name" content="七秒悲伤的博客">
-<meta property="og:description" content="一个深藏功与名的软件开发爱好者">
+<meta property="og:description" content="1.用户输入网址 2.浏览器通过 DNS 获取网站的 IP 地址。客户端先检查本地是否有对应的 IP 地址，若找到则返回响应的 IP 地址。若没找到则请求上级 DNS 服务器，直至找到或到根节点。  DNS 查找 IP 地址的顺序: 浏览器缓存、系统缓存、互联网服务提供商（ISP）的 DNS 缓存、递归搜索（从浏览器缓存开始，如果没找到就继续往下一个找）。找到后，浏览器会获得一个 IP 地址。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://1016990109.github.io/assets/img/dns.png">
+<meta property="og:updated_time" content="2018-08-02T15:39:38.250Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="七秒悲伤的博客">
-<meta name="twitter:description" content="一个深藏功与名的软件开发爱好者">
+<meta name="twitter:title" content="前端基础之从输入url到页面呈现的过程">
+<meta name="twitter:description" content="1.用户输入网址 2.浏览器通过 DNS 获取网站的 IP 地址。客户端先检查本地是否有对应的 IP 地址，若找到则返回响应的 IP 地址。若没找到则请求上级 DNS 服务器，直至找到或到根节点。  DNS 查找 IP 地址的顺序: 浏览器缓存、系统缓存、互联网服务提供商（ISP）的 DNS 缓存、递归搜索（从浏览器缓存开始，如果没找到就继续往下一个找）。找到后，浏览器会获得一个 IP 地址。">
+<meta name="twitter:image" content="http://1016990109.github.io/assets/img/dns.png">
   
     <link rel="alternative" href="/atom.xml" title="七秒悲伤的博客" type="application/atom+xml">
   
@@ -167,64 +171,198 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-前端基础之从输入url到页面呈现的过程" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/22/dubbo探索/" class="archive-article-date">
-  	<time datetime="2018-05-22T03:09:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-22</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/22/dubbo探索/">Dubbo 探索</a>
+    <h1 class="article-title" itemprop="name">
+      前端基础之从输入url到页面呈现的过程
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/08/02/前端基础之从输入url到页面呈现的过程/" class="archive-article-date">
+  	<time datetime="2018-08-02T08:18:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1.用户输入网址</p>
+<p>2.浏览器通过 <code>DNS</code> 获取网站的 <code>IP</code> 地址。客户端先检查本地是否有对应的 <code>IP</code> 地址，若找到则返回响应的 <code>IP</code> 地址。若没找到则请求上级 <code>DNS</code> 服务器，直至找到或到根节点。</p>
+<blockquote>
+<p><code>DNS</code> 查找 <code>IP</code> 地址的顺序: 浏览器缓存、系统缓存、互联网服务提供商（<code>ISP</code>）的 <code>DNS</code> 缓存、递归搜索（从浏览器缓存开始，如果没找到就继续往下一个找）。找到后，浏览器会获得一个 <code>IP</code> 地址。</p>
+</blockquote>
+<a id="more"></a>
+<p><code>DNS</code> 递归查询和迭代查询区别：</p>
+<p><img src="/assets/img/dns.png" alt="DNS"></p>
+<blockquote>
+<p>关于 <code>DNS</code> 的一些知识可以看看阮一峰老师的 <a href="http://www.ruanyifeng.com/blog/2018/05/root-domain.html" target="_blank" rel="noopener">根域名的知识</a> 和 <a href="http://www.ruanyifeng.com/blog/2016/06/dns.html" target="_blank" rel="noopener">DNS 原理入门</a></p>
+</blockquote>
+<p>3.浏览器客户端发送 <code>HTTP</code> 请求<br><code>HTTP</code> 请求包括请求报头和请求主体两个部分，其中请求报头包含了至关重要的信息，包括请求的方法（<code>GET</code> / <code>POST</code>）、目标 <code>url</code>、遵循的协议（<code>http</code> / <code>https</code> / <code>ftp</code> …），返回的信息是否需要缓存，以及客户端是否发送 <code>cookie</code> 等。</p>
+<p>4.传输层 <code>TCP</code> 传输报文。<br><code>TCP</code> 协议通过“三次握手”等方法保证传输的安全可靠。</p>
+<p>5.网络层 <code>IP</code> 协议查询 <code>MAC</code> 地址<br><code>IP</code> 协议的作用是把 <code>TCP</code> 分割好的各种数据包传送给接收方。而要保证确实能传到接收方还需要接收方的 <code>MAC</code> 地址，也就是物理地址。<code>IP</code> 地址和 <code>MAC</code> 地址是一一对应的关系，一个网络设备的 <code>IP</code> 地址可以更换，但是 <code>MAC</code> 地址一般是固定不变的。<code>ARP</code> 协议可以将 <code>IP</code> 地址解析成对应的 <code>MAC</code> 地址。当通信的双方不在同一个局域网时，需要多次中转才能到达最终的目标，在中转的过程中需要通过下一个中转站的 <code>MAC</code> 地址来搜索下一个中转目标。</p>
+<p>6.数据到达数据链路层<br>在找到对方的 <code>MAC</code> 地址后，就将数据发送到数据链路层传输。这时，客户端发送请求的阶段结束。</p>
+<p>7.服务器接收数据<br>接收端的服务器在链路层接收到数据包，再层层向上直到应用层。这过程中包括在运输层通过 <code>TCP</code> 协议将分段的数据包重新组成原来的 <code>HTTP</code> 请求报文。</p>
+<p>8.服务器响应请求<br>服务接收到客户端发送的 <code>HTTP</code> 请求后，查找客户端请求的资源，并返回响应报文，响应报文中包括一个重要的信息——状态码。状态码由三位数字组成，其中比较常见的是:</p>
+<p><code>200 OK</code> 表示请求成功。<br><code>301 Moved Permanently</code> 表示永久重定向，即请求的资源已经永久转移到新的位置。在返回 <code>301</code> 状态码的同时，响应报文也会附带重定向的 <code>url</code>，客户端接收到后将 <code>http</code> 请求的 <code>url</code> 做相应的改变再重新发送。<br><code>302</code> 是暂时重定向，对用户来说没有区别，只是对搜索引擎有区别，具体可查看 <a href="https://www.jianshu.com/p/995a3000f7d6" target="_blank" rel="noopener">https://www.jianshu.com/p/995a3000f7d6</a>。<br><code>404 Not Found</code> 表示客户端请求的资源找不到。<br><code>400 Bad Request</code>，客户端请求语法错误，一般是参数错了。<br><code>401 Unauthorized</code>，需要用户认证，一般未登录。<br><code>403 Forbidden</code>，拒绝请求，可能是没权限。<br><code>405 Method Not Allowed</code>，方法错了。<br><code>500</code>，服务器错误，一般是服务器抛异常。<br><code>501 Not Implemented</code>，服务器还没实现这个功能。<br><code>502 Bad Gateway</code>，网关错误，可能是网关与后端服务连接断了。<br><code>503 Service Unavailable</code>，服务暂不可用，系统维护。<br><code>504 Gateway Time-out</code>，网关超时，后端处理太久还没返回，网关直接返回 <code>504</code>。</p>
+<p>9.服务器返回响应文件<br>请求成功后，服务器会返回相应的 <code>HTML</code> 文件。接下来就到了页面的渲染阶段了。</p>
+<p>10.页面渲染：  解析 <code>HTML</code> 以构建 <code>DOM</code> 树 –&gt; 构建渲染树 –&gt; 布局渲染树 –&gt; 绘制渲染树。<br>关于页面渲染过程：<br>1）解析 <code>HTML</code> 代码，生成一棵 <code>DOM</code> 树<br>2）解析 <code>CSS</code> 文件<br>3）生成渲染树（受样式影响，不包含不可见元素）<br>4）渲染树中的节点</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RPC</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://1016990109.github.io/2018/08/02/前端基础之从输入url到页面呈现的过程/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/07/28/Node-js-设计模式读书笔记-第七章/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">《Node.js 设计模式》读书笔记 第七章</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="前端基础之从输入url到页面呈现的过程" data-title="前端基础之从输入url到页面呈现的过程" data-url="http://1016990109.github.io/2018/08/02/前端基础之从输入url到页面呈现的过程/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"hcw13"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -247,9 +385,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
