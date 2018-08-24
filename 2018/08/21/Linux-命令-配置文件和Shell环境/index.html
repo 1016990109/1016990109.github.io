@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://1016990109.github.io">
-  <title>七秒悲伤的博客</title>
+  <title>Linux 命令 —— 配置文件和 Shell 环境 | 七秒悲伤的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个深藏功与名的软件开发爱好者">
-<meta property="og:type" content="website">
-<meta property="og:title" content="七秒悲伤的博客">
-<meta property="og:url" content="http://1016990109.github.io/page/3/index.html">
+  <meta name="description" content="Shell 环境shell 在环境中存储了两种基本类型的数据，虽然 bash 几乎无法分辨这些数据的类型。它们是环境变量和 shell 变量。">
+<meta name="keywords" content="Linux,Shell">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 命令 —— 配置文件和 Shell 环境">
+<meta property="og:url" content="http://1016990109.github.io/2018/08/21/Linux-命令-配置文件和Shell环境/index.html">
 <meta property="og:site_name" content="七秒悲伤的博客">
-<meta property="og:description" content="一个深藏功与名的软件开发爱好者">
+<meta property="og:description" content="Shell 环境shell 在环境中存储了两种基本类型的数据，虽然 bash 几乎无法分辨这些数据的类型。它们是环境变量和 shell 变量。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-24T03:24:06.569Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="七秒悲伤的博客">
-<meta name="twitter:description" content="一个深藏功与名的软件开发爱好者">
+<meta name="twitter:title" content="Linux 命令 —— 配置文件和 Shell 环境">
+<meta name="twitter:description" content="Shell 环境shell 在环境中存储了两种基本类型的数据，虽然 bash 几乎无法分辨这些数据的类型。它们是环境变量和 shell 变量。">
   
     <link rel="alternative" href="/atom.xml" title="七秒悲伤的博客" type="application/atom+xml">
   
@@ -167,36 +169,302 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-5月28日学习笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-Linux-命令-配置文件和Shell环境" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/28/5月28日学习笔记/">5月28日学习笔记</a>
+    <h1 class="article-title" itemprop="name">
+      Linux 命令 —— 配置文件和 Shell 环境
     </h1>
   
 
         
-        <a href="/2018/05/28/5月28日学习笔记/" class="archive-article-date">
-  	<time datetime="2018-05-28T14:17:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-28</time>
+        <a href="/2018/08/21/Linux-命令-配置文件和Shell环境/" class="archive-article-date">
+  	<time datetime="2018-08-21T11:31:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-21</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><h3 id="该记录何种日志？"><a href="#该记录何种日志？" class="headerlink" title="该记录何种日志？"></a>该记录何种日志？</h3><ol>
-<li>操作时间日志可能有些操作耗时会比较长，可以对方法的处理时间做个记录，例如数据库连接可能耗时很长（但是具体的数据库操作时间记录一般交由数据库本身来做，调用者也不可能知道一条语句耗费了多少时间）则需要记录，某些 <code>api</code> 也可能出现耗时长的问题，记录操作时长可有效发现问题。</li>
-<li>异常日志程序在运行中抛出的异常，可以记录，方便定位错误。</li>
-<li>调试日志有时候本地不方便调试可输出调试信息到日志，方便调试。</li>
-</ol>
-        
-          <a class="article-more-a" href="/2018/05/28/5月28日学习笔记/#more">more >></a>
-        
+        <h2 id="Shell-环境"><a href="#Shell-环境" class="headerlink" title="Shell 环境"></a>Shell 环境</h2><p><code>shell</code> 在环境中存储了两种基本类型的数据，虽然 <code>bash</code> 几乎无法分辨这些数据的类型。它们是环境变量和 <code>shell</code> 变量。</p>
+<a id="more"></a>
+<h3 id="检查环境变量"><a href="#检查环境变量" class="headerlink" title="检查环境变量"></a>检查环境变量</h3><p><code>set</code> 显示 <code>shell</code> 变量、<code>shell</code> 函数和环境变量，<code>printenv</code> 只显示环境变量。<code>printenv [name]</code> 还能输出变量的值(当然常用的还是 <code>echo $[name]</code>)。而别名只能通过 <code>alias</code> 来查看。</p>
+<h3 id="建立-shell-环境"><a href="#建立-shell-环境" class="headerlink" title="建立 shell 环境"></a>建立 shell 环境</h3><p>当我们登录系统后，<code>bash</code> 程序启动，并且会读取一系列称为启动文件的配置脚本，这些文件定义了默认的可供所有用户共享的 <code>shell</code> 环境。然后是读取更多位于我们自己家目录中的启动文件，这些启动文件定义了用户个人的 <code>shell</code> 环境。确切的启动顺序依赖于要运行的 <code>shell</code> 会话类型。有两种 <code>shell</code> 会话类型：一个是登录 <code>shell</code> 会话，另一个是非登录 <code>shell</code> 会话。</p>
+<p>登录 <code>shell</code> 会话会在其中提示用户输入用户名和密码；例如，我们启动一个虚拟控制台会话。非登录 <code>shell</code> 会话通常当我们在 <code>GUI</code> 下启动终端会话时出现。</p>
+<p>退出命令：</p>
+<ul>
+<li>执行 <code>exit</code> 命令，退出一个 <code>shell</code>（登录或非登录 <code>shell</code>）；</li>
+<li>执行 <code>logout</code> 命令，退出登录 <code>shell</code>（不能退出非登录 <code>shell</code>）。</li>
+</ul>
+<p>登录 <code>shell</code> 会读取一个或多个启动文件，如下表：</p>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/etc/profile</td>
+<td>应用于所有用户的全局配置脚本。</td>
+</tr>
+<tr>
+<td>~/.bash_profile</td>
+<td>用户个人的启动文件。可以用来扩展或重写全局配置脚本中的设置。</td>
+</tr>
+<tr>
+<td>~/.bash_login</td>
+<td>如果文件 ~/.bash_profile 没有找到，bash 会尝试读取这个脚本。</td>
+</tr>
+<tr>
+<td>~/.profile</td>
+<td>如果文件 ~/.bash_profile 或文件 ~/.bash_login 都没有找到，bash 会试图读取这个文件。 这是基于 Debian 发行版的默认设置，比方说 Ubuntu。</td>
+</tr>
+</tbody>
+</table>
+<p>非登录 <code>shell</code> 会读取以下启动文件：</p>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/etc/bash.bashrc</td>
+<td>应用于所有用户的全局配置文件。</td>
+</tr>
+<tr>
+<td>~/.bashrc</td>
+<td>用户个人的启动文件。可以用来扩展或重写全局配置脚本中的设置。</td>
+</tr>
+</tbody>
+</table>
+<p>除了读取以上启动文件之外，非登录 <code>shell</code> 会话也会继承它们父进程的环境设置，通常是一个登录 <code>shell</code>。</p>
+<p>在普通用户看来，文件 <code>~/.bashrc</code> 可能是最重要的启动文件，因为它几乎总是被读取(每次执行 <code>shell</code> 脚本时都会重新读取)。非登录 <code>shell</code> 默认会读取它，并且大多数登录 <code>shell</code> 的启动文件也会能读取 <code>~/.bashrc</code> 文件。</p>
+<h3 id="一个启动文件的内容"><a href="#一个启动文件的内容" class="headerlink" title="一个启动文件的内容"></a>一个启动文件的内容</h3><p>看一下典型的 <code>.bash_profile</code> 文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># .bash_profile</span></span><br><span class="line"><span class="comment"># Get the aliases and functions</span></span><br><span class="line"><span class="keyword">if</span> [ -f ~/.bashrc ]; <span class="keyword">then</span></span><br><span class="line">. ~/.bashrc</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="comment"># User specific environment and startup programs</span></span><br><span class="line">PATH=<span class="variable">$PATH</span>:<span class="variable">$HOME</span>/bin</span><br><span class="line"><span class="built_in">export</span> PATH</span><br></pre></td></tr></table></figure>
+<h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><p>修改后使用 <code>source ***</code> 激活启动文件。</p>
+<h2 id="vi-简介"><a href="#vi-简介" class="headerlink" title="vi 简介"></a>vi 简介</h2><p>第一版 <code>vi</code> 是在 1976 由 Bill Joy 写成的，当时他是加州大学伯克利分校的学生，后来他共同创建了 <code>Sun</code> 微系统公司。<code>vi</code> 这个名字来源于单词“visual”，因为它打算在带有可移动光标的视频终端上编辑文本。在发明可视化编辑器之前，有一次只能操作一行文本的行编辑器。为了编辑，我们需要告诉行编辑器到一个特殊行并且说明做什么修改，比方说添加或删除文本。视频终端（而不是基于打印机的终端，像电传打印机）的出现，使可视化编辑成为可能。<code>vi</code> 实际上整合了一个强大的行编辑器 ———— ex , 所以我们在使用 <code>vi</code> 时能运行行编辑命令。</p>
+<h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><ul>
+<li><p>按 <code>i</code> 进入插入模式。</p>
+</li>
+<li><p><code>:w</code> 保存。</p>
+</li>
+<li><p><code>u</code> 是 <code>undo</code>。</p>
+</li>
+<li><p><code>p</code> 粘贴到光标位置之后，<code>P</code> 粘贴到光标位置之前。</p>
+</li>
+<li><p>查找：<code>f</code> 命令能搜索一特定行，并将光标移动到下一个匹配的字符上。例如，命令 <code>fa</code> 会把光标定位到同一行中下一个出现的”a”字符上。在进行了一次行内搜索后，输入分号能重复这次搜索。<br>移动光标到下一个出现的单词或短语上，使用 <code>/</code> 命令。当你输入 <code>/</code> 命令后，一个”/”字符会出现在屏幕底部。接下来，输入要查找的单词或短语， 按下回车。光标就会移动到下一个包含所查找字符串的位置。通过 <code>n</code> 命令来重复先前的查找。</p>
+</li>
+<li><p>替换<br><code>vi</code> 使用 <code>ex</code> 命令来执行查找和替代操作（<code>vi</code> 中叫做“替换”）。将整个文件中的单词“Line”更改为“line”， 输入以下命令(后面再加个 <code>c</code> 则每次替换会提醒用户确认)：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:%s/Line/line/g</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>条目</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>:</td>
+<td>冒号字符运行一个 <code>ex</code> 命令。</td>
+</tr>
+<tr>
+<td>%</td>
+<td>指定要操作的行数。% 是一个快捷方式，表示从第一行到最后一行。另外，操作范围也 可以用 1,5 来代替（因为我们的文件只有 5 行文本），或者用 1,$ 来代替，意思是 “ 从第一行到文件的最后一行。”如果省略了文本行的范围，那么操作只对当前行生效。</td>
+</tr>
+<tr>
+<td>s</td>
+<td>指定操作。在这种情况下是，替换（查找与替代）。</td>
+</tr>
+<tr>
+<td>/Line/line</td>
+<td>查找类型与替代文本。</td>
+</tr>
+<tr>
+<td>g</td>
+<td>这是“全局”的意思，意味着对文本行中所有匹配的字符串执行查找和替换操作。如果省略 g，则 只替换每个文本行中第一个匹配的字符串。</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>编辑多个文件<br><code>vi file1 file2 file3...</code> 打开多个文件。<br><code>:n</code> 切换到下一个文件。<br><code>:N</code> 切换到上一个文件。<br><code>:buffers</code> 列出文件缓冲，<code>:buffers 缓冲区编号</code> 切换到对应的文件。</li>
+</ul>
+<p>移动光标：</p>
+<table>
+<thead>
+<tr>
+<th>按键</th>
+<th>移动光标</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>l or 右箭头</td>
+<td>向右移动一个字符</td>
+</tr>
+<tr>
+<td>h or 左箭头</td>
+<td>向左移动一个字符</td>
+</tr>
+<tr>
+<td>j or 下箭头</td>
+<td>向下移动一行</td>
+</tr>
+<tr>
+<td>k or 上箭头</td>
+<td>向上移动一行</td>
+</tr>
+<tr>
+<td>0 (零按键)</td>
+<td>移动到当前行的行首。</td>
+</tr>
+<tr>
+<td>^</td>
+<td>移动到当前行的第一个非空字符。</td>
+</tr>
+<tr>
+<td>$</td>
+<td>移动到当前行的末尾。</td>
+</tr>
+<tr>
+<td>w</td>
+<td>移动到下一个单词或标点符号的开头。</td>
+</tr>
+<tr>
+<td>W</td>
+<td>移动到下一个单词的开头，忽略标点符号。</td>
+</tr>
+<tr>
+<td>b</td>
+<td>移动到上一个单词或标点符号的开头。</td>
+</tr>
+<tr>
+<td>B</td>
+<td>移动到上一个单词的开头，忽略标点符号。</td>
+</tr>
+<tr>
+<td>Ctrl-f or Page Down</td>
+<td>向下翻一页</td>
+</tr>
+<tr>
+<td>Ctrl-b or Page Up</td>
+<td>向上翻一页</td>
+</tr>
+<tr>
+<td>numberG</td>
+<td>移动到第 number 行。例如，1G 移动到文件的第一行。</td>
+</tr>
+<tr>
+<td>G</td>
+<td>移动到文件末尾。</td>
+</tr>
+</tbody>
+</table>
+<p>文本删除命令(这个 <code>d</code> 命令不仅删除文本，它还“剪切”文本。)：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>删除的文本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x</td>
+<td>当前字符</td>
+</tr>
+<tr>
+<td>3x</td>
+<td>当前字符及其后的两个字符。</td>
+</tr>
+<tr>
+<td>dd</td>
+<td>当前行。</td>
+</tr>
+<tr>
+<td>5dd</td>
+<td>当前行及随后的四行文本。</td>
+</tr>
+<tr>
+<td>dW</td>
+<td>从光标位置开始到下一个单词的开头。</td>
+</tr>
+<tr>
+<td>d$</td>
+<td>从光标位置开始到当前行的行尾。</td>
+</tr>
+<tr>
+<td>d0</td>
+<td>从光标位置开始到当前行的行首。</td>
+</tr>
+<tr>
+<td>d^</td>
+<td>从光标位置开始到文本行的第一个非空字符。</td>
+</tr>
+<tr>
+<td>dG</td>
+<td>从当前行到文件的末尾。</td>
+</tr>
+<tr>
+<td>d20G</td>
+<td>从当前行到文件的第 20 行。</td>
+</tr>
+</tbody>
+</table>
+<p>复制命令：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>复制的内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yy</td>
+<td>当前行。</td>
+</tr>
+<tr>
+<td>5yy</td>
+<td>当前行及随后的四行文本。</td>
+</tr>
+<tr>
+<td>yW</td>
+<td>从当前光标位置到下一个单词的开头。</td>
+</tr>
+<tr>
+<td>y$</td>
+<td>从当前光标位置到当前行的末尾。</td>
+</tr>
+<tr>
+<td>y0</td>
+<td>从当前光标位置到行首。</td>
+</tr>
+<tr>
+<td>y^</td>
+<td>从当前光标位置到文本行的第一个非空字符。</td>
+</tr>
+<tr>
+<td>yG</td>
+<td>从当前行到文件末尾。</td>
+</tr>
+<tr>
+<td>y20G</td>
+<td>从当前行到文件的第 20 行。</td>
+</tr>
+</tbody>
+</table>
+
       
 
       
@@ -209,99 +477,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/学习//" class="article-tag-list-link color3">学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/28/5月28日学习笔记/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-dubbo探索" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/22/dubbo探索/">Dubbo 探索</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/22/dubbo探索/" class="archive-article-date">
-  	<time datetime="2018-05-22T03:09:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Dubbo-框架的介绍以及源码阅读"><a href="#Dubbo-框架的介绍以及源码阅读" class="headerlink" title="Dubbo 框架的介绍以及源码阅读"></a>Dubbo 框架的介绍以及源码阅读</h1><h2 id="Dubbo-简介"><a href="#Dubbo-简介" class="headerlink" title="Dubbo 简介"></a>Dubbo 简介</h2><p><code>Apache Dubbo|ˈdʌbəʊ|</code> 是阿里开源的一个 RPC 框架。</p>
-<p>和大多数 <code>RPC</code> 系统一样， <code>dubbo</code> 基于一个理念：定义一个服务，确定远程调用的方法，并且包含他们的参数和返回类型。在服务端，服务器实现接口并且运行一个 <code>dubbo</code> 的服务来处理来自客户端的请求；在客户端，客户端持有提供与服务端方法一模一样的桩。</p>
-        
-          <a class="article-more-a" href="/2018/05/22/dubbo探索/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RPC</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Shell</a>
         		</li>
       		
 		</ul>
@@ -310,16 +490,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/22/dubbo探索/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://1016990109.github.io/2018/08/21/Linux-命令-配置文件和Shell环境/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2018/08/20/前端基础之Webpack/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">前端基础之Webpack</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -334,658 +573,52 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Node-js-设计模式读书笔记-第二章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/18/Node-js-设计模式读书笔记-第二章/">《Node.js 设计模式》读书笔记 第二章</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/18/Node-js-设计模式读书笔记-第二章/" class="archive-article-date">
-  	<time datetime="2018-05-18T08:51:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Node-js-Essential-Patterns-Node-js-基本模式"><a href="#Node-js-Essential-Patterns-Node-js-基本模式" class="headerlink" title="Node.js Essential Patterns(Node.js 基本模式)"></a>Node.js Essential Patterns(Node.js 基本模式)</h1><h2 id="The-callback-pattern-回调模式"><a href="#The-callback-pattern-回调模式" class="headerlink" title="The callback pattern(回调模式)"></a>The callback pattern(回调模式)</h2><p>回调是<code>reactor</code>模式中<code>handler</code>的实例。</p>
-<h3 id="The-continuation-passing-pattern-连续传递模式"><a href="#The-continuation-passing-pattern-连续传递模式" class="headerlink" title="The continuation-passing pattern(连续传递模式)"></a>The continuation-passing pattern(连续传递模式)</h3><p>在 JavaScript 中回调就是传入作为参数传入另外一个函数中的函数，并且在操作完成后调用。在函数式编程中，这种传递结果的方式被称为<code>continuation-passing style(CPS)</code>。这是个一般概念，并不是针对异步操作。实际上，它只是通过将结果作为参数传递给另一个函数（回调函数）来传递结果，然后在主体逻辑中调用回调函数拿到操作结果，而不是直接将其返回给调用者。</p>
-        
-          <a class="article-more-a" href="/2018/05/18/Node-js-设计模式读书笔记-第二章/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/18/Node-js-设计模式读书笔记-第二章/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Shell-环境"><span class="toc-number">1.</span> <span class="toc-text">Shell 环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#检查环境变量"><span class="toc-number">1.1.</span> <span class="toc-text">检查环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#建立-shell-环境"><span class="toc-number">1.2.</span> <span class="toc-text">建立 shell 环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一个启动文件的内容"><span class="toc-number">1.3.</span> <span class="toc-text">一个启动文件的内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改"><span class="toc-number">1.4.</span> <span class="toc-text">修改</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vi-简介"><span class="toc-number">2.</span> <span class="toc-text">vi 简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#命令"><span class="toc-number">2.1.</span> <span class="toc-text">命令</span></a></li></ol></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
   
-    <article id="post-Node-js-设计模式读书笔记-第一章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/11/Node-js-设计模式读书笔记-第一章/">《Node.js 设计模式》读书笔记 第一章</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/11/Node-js-设计模式读书笔记-第一章/" class="archive-article-date">
-  	<time datetime="2018-05-11T12:00:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Welcome-to-the-Node-js-Platform"><a href="#Welcome-to-the-Node-js-Platform" class="headerlink" title="Welcome to the Node.js Platform"></a>Welcome to the Node.js Platform</h1><h2 id="Small-modules-小模块"><a href="#Small-modules-小模块" class="headerlink" title="Small modules(小模块)"></a>Small modules(小模块)</h2><p><code>Node.js</code>使用<code>module</code>(模块)的概念组织代码的结构。<br><code>package</code>可提供复用的模块，有一个 module 作为入口。<br><code>Node.js</code>中，致力于设计小模块，为了代码的简洁，更为了更好地控制作用域。有两个主要原则：</p>
-        
-          <a class="article-more-a" href="/2018/05/11/Node-js-设计模式读书笔记-第一章/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/11/Node-js-设计模式读书笔记-第一章/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Python-处理excel文件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/09/Python-处理excel文件/">Python 处理excel文件</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/09/Python-处理excel文件/" class="archive-article-date">
-  	<time datetime="2018-05-09T14:42:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近需要用到Python去处理excel，目标是根据用户输入的信息，先显示每列的列名以及这一列示例行（取前两行信息），然后根据输入的列号删除对应的列。</p>
-<p>网上搜索了下主要有几种方案：</p>
-<h3 id="1-使用xlrd、xlwt、xlutils组合"><a href="#1-使用xlrd、xlwt、xlutils组合" class="headerlink" title="1. 使用xlrd、xlwt、xlutils组合"></a>1. 使用xlrd、xlwt、xlutils组合</h3><p>这种方案比较常见，而且读取和写入速度较快，但是只能操作2003版本之前的xls文件，处理不了xlsx，所以想要处理2003版本之后的请绕道。</p>
-<blockquote>
-<p>注意！<br>xlutils复制的excel格式上会存在一些问题，我在使用的时候就因为这个原因而弃用了，灰底的表格会变成深蓝色底的，难以接受。 </p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2018/05/09/Python-处理excel文件/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/09/Python-处理excel文件/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Vue-过渡-动画" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/06/Vue-过渡-动画/">Vue 过渡&amp;动画</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/06/Vue-过渡-动画/" class="archive-article-date">
-  	<time datetime="2018-05-06T12:56:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="单元素-组件的过渡"><a href="#单元素-组件的过渡" class="headerlink" title="单元素/组件的过渡"></a>单元素/组件的过渡</h2><p>使用 transition 封装组件：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">transition</span> <span class="attr">name</span>=<span class="string">"fade"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-if</span>=<span class="string">"show"</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">transition</span>&gt;</span></span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2018/05/06/Vue-过渡-动画/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/06/Vue-过渡-动画/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-VSCode配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/05/VSCode配置/">VSCode配置</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/05/VSCode配置/" class="archive-article-date">
-  	<time datetime="2018-05-05T11:30:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近使用IDE从WebStorm更换到VSCode，故在此记录下VSCode的一些配置，供以后查看。</p>
-<h2 id="插件篇"><a href="#插件篇" class="headerlink" title="插件篇"></a>插件篇</h2><p>VSCode更倾向于定制化，所以需要自行寻找需要的插件，来提高打码的效率~</p>
-<p>我这里使用了一些暂时需要用到的插件：</p>
-        
-          <a class="article-more-a" href="/2018/05/05/VSCode配置/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/05/VSCode配置/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Vue基础的一些注意事项" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/17/Vue基础的一些注意事项/">Vue 基础的一些注意事项</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/17/Vue基础的一些注意事项/" class="archive-article-date">
-  	<time datetime="2018-04-17T07:47:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近准备学习一波 Vue，因为有 React 的基础，所以学起来倒也不是很吃力。下面是一些在学习中遇到的可能需要注意的地方。</p>
-<h2 id="模板语法"><a href="#模板语法" class="headerlink" title="模板语法"></a>模板语法</h2><h3 id="插值"><a href="#插值" class="headerlink" title="插值"></a>插值</h3><blockquote>
-<ol>
-<li>绝对不要使用用户的输入作为插值，可能造成 XSS 攻击。</li>
-<li>每个绑定只能包含单个表达式，下面表达式都不会生效。</li>
-</ol>
-</blockquote>
-        
-          <a class="article-more-a" href="/2018/04/17/Vue基础的一些注意事项/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/17/Vue基础的一些注意事项/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-rbac-php" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/23/rbac-php/">rbac分析（php源码）</a>
-    </h1>
-  
-
-        
-        <a href="/2016/05/23/rbac-php/" class="archive-article-date">
-  	<time datetime="2016-05-23T14:23:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="rbac简介"><a href="#rbac简介" class="headerlink" title="rbac简介"></a>rbac简介</h2><blockquote>
-<p>基于角色的访问控制（Role-Based Access Control）作为传统访问控制（自主访问，强制访问）的有前景的代替受到广泛的关注。在RBAC中，权限与角色相关联，用户通过成为适当角色的成员而得到这些角色的权限。这就极大地简化了权限的管理。在一个组织中，角色是为了完成各种工作而创造，用户则依据它的责任和资格来被指派相应的角色，用户可以很容易地从一个角色被指派到另一个角色。角色可依新的需求和系统的合并而赋予新的权限，而权限也可根据需要而从某角色中回收。角色与角色的关系可以建立起来以囊括更广泛的客观情况。</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2016/05/23/rbac-php/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">源码</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/23/rbac-php/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-instagrame" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/20/instagrame/">开始我的instagrame</a>
-    </h1>
-  
-
-        
-        <a href="/2016/05/20/instagrame/" class="archive-article-date">
-  	<time datetime="2016-05-20T07:09:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一次偶然的机会，我认识了instagrame"><a href="#一次偶然的机会，我认识了instagrame" class="headerlink" title="一次偶然的机会，我认识了instagrame"></a>一次偶然的机会，我认识了instagrame</h2><p>一天，一个偶然，我逛了下<a href="http://litten.github.io/" title="litten的博客" target="_blank" rel="noopener">litten</a>的博客，发现了他把自己的照片分享在了博客上，于是我便很好奇博主是用了什么方法分享的。于是我查看了博主搭建博客的过程，了解到他是分享了在instagrame上的照片，这就是我第一次认识instagrame。</p>
-<h2 id="开始了解instagrame"><a href="#开始了解instagrame" class="headerlink" title="开始了解instagrame"></a>开始了解instagrame</h2><p>秉着好学的心态，我也想在自己的博客上搭建一个这样分享照片的平台，就这样我开始了我的instagrame之旅。<br>
-        
-          <a class="article-more-a" href="/2016/05/20/instagrame/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/生活//" class="article-tag-list-link color3">生活</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/20/instagrame/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Linux-命令-配置文件和Shell环境" data-title="Linux 命令 —— 配置文件和 Shell 环境" data-url="http://1016990109.github.io/2018/08/21/Linux-命令-配置文件和Shell环境/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"hcw13"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -1008,8 +641,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

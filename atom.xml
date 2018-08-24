@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://1016990109.github.io/"/>
-  <updated>2018-08-20T10:51:40.728Z</updated>
+  <updated>2018-08-24T03:24:06.569Z</updated>
   <id>http://1016990109.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux 命令 —— 配置文件和 Shell 环境</title>
+    <link href="http://1016990109.github.io/2018/08/21/Linux-%E5%91%BD%E4%BB%A4-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%92%8CShell%E7%8E%AF%E5%A2%83/"/>
+    <id>http://1016990109.github.io/2018/08/21/Linux-命令-配置文件和Shell环境/</id>
+    <published>2018-08-21T11:31:51.000Z</published>
+    <updated>2018-08-24T03:24:06.569Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Shell-环境"><a href="#Shell-环境" class="headerlink" title="Shell 环境"></a>Shell 环境</h2><p><code>shell</code> 在环境中存储了两种基本类型的数据，虽然 <code>bash</code> 几乎无法分辨这些数据的类型。它们是环境变量和 <code>shell</code> 变量。</p><a id="more"></a><h3 id="检查环境变量"><a href="#检查环境变量" class="headerlink" title="检查环境变量"></a>检查环境变量</h3><p><code>set</code> 显示 <code>shell</code> 变量、<code>shell</code> 函数和环境变量，<code>printenv</code> 只显示环境变量。<code>printenv [name]</code> 还能输出变量的值(当然常用的还是 <code>echo $[name]</code>)。而别名只能通过 <code>alias</code> 来查看。</p><h3 id="建立-shell-环境"><a href="#建立-shell-环境" class="headerlink" title="建立 shell 环境"></a>建立 shell 环境</h3><p>当我们登录系统后，<code>bash</code> 程序启动，并且会读取一系列称为启动文件的配置脚本，这些文件定义了默认的可供所有用户共享的 <code>shell</code> 环境。然后是读取更多位于我们自己家目录中的启动文件，这些启动文件定义了用户个人的 <code>shell</code> 环境。确切的启动顺序依赖于要运行的 <code>shell</code> 会话类型。有两种 <code>shell</code> 会话类型：一个是登录 <code>shell</code> 会话，另一个是非登录 <code>shell</code> 会话。</p><p>登录 <code>shell</code> 会话会在其中提示用户输入用户名和密码；例如，我们启动一个虚拟控制台会话。非登录 <code>shell</code> 会话通常当我们在 <code>GUI</code> 下启动终端会话时出现。</p><p>退出命令：</p><ul><li>执行 <code>exit</code> 命令，退出一个 <code>shell</code>（登录或非登录 <code>shell</code>）；</li><li>执行 <code>logout</code> 命令，退出登录 <code>shell</code>（不能退出非登录 <code>shell</code>）。</li></ul><p>登录 <code>shell</code> 会读取一个或多个启动文件，如下表：</p><table><thead><tr><th>文件</th><th>内容</th></tr></thead><tbody><tr><td>/etc/profile</td><td>应用于所有用户的全局配置脚本。</td></tr><tr><td>~/.bash_profile</td><td>用户个人的启动文件。可以用来扩展或重写全局配置脚本中的设置。</td></tr><tr><td>~/.bash_login</td><td>如果文件 ~/.bash_profile 没有找到，bash 会尝试读取这个脚本。</td></tr><tr><td>~/.profile</td><td>如果文件 ~/.bash_profile 或文件 ~/.bash_login 都没有找到，bash 会试图读取这个文件。 这是基于 Debian 发行版的默认设置，比方说 Ubuntu。</td></tr></tbody></table><p>非登录 <code>shell</code> 会读取以下启动文件：</p><table><thead><tr><th>文件</th><th>内容</th></tr></thead><tbody><tr><td>/etc/bash.bashrc</td><td>应用于所有用户的全局配置文件。</td></tr><tr><td>~/.bashrc</td><td>用户个人的启动文件。可以用来扩展或重写全局配置脚本中的设置。</td></tr></tbody></table><p>除了读取以上启动文件之外，非登录 <code>shell</code> 会话也会继承它们父进程的环境设置，通常是一个登录 <code>shell</code>。</p><p>在普通用户看来，文件 <code>~/.bashrc</code> 可能是最重要的启动文件，因为它几乎总是被读取(每次执行 <code>shell</code> 脚本时都会重新读取)。非登录 <code>shell</code> 默认会读取它，并且大多数登录 <code>shell</code> 的启动文件也会能读取 <code>~/.bashrc</code> 文件。</p><h3 id="一个启动文件的内容"><a href="#一个启动文件的内容" class="headerlink" title="一个启动文件的内容"></a>一个启动文件的内容</h3><p>看一下典型的 <code>.bash_profile</code> 文件：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># .bash_profile</span></span><br><span class="line"><span class="comment"># Get the aliases and functions</span></span><br><span class="line"><span class="keyword">if</span> [ -f ~/.bashrc ]; <span class="keyword">then</span></span><br><span class="line">. ~/.bashrc</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="comment"># User specific environment and startup programs</span></span><br><span class="line">PATH=<span class="variable">$PATH</span>:<span class="variable">$HOME</span>/bin</span><br><span class="line"><span class="built_in">export</span> PATH</span><br></pre></td></tr></table></figure><h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><p>修改后使用 <code>source ***</code> 激活启动文件。</p><h2 id="vi-简介"><a href="#vi-简介" class="headerlink" title="vi 简介"></a>vi 简介</h2><p>第一版 <code>vi</code> 是在 1976 由 Bill Joy 写成的，当时他是加州大学伯克利分校的学生，后来他共同创建了 <code>Sun</code> 微系统公司。<code>vi</code> 这个名字来源于单词“visual”，因为它打算在带有可移动光标的视频终端上编辑文本。在发明可视化编辑器之前，有一次只能操作一行文本的行编辑器。为了编辑，我们需要告诉行编辑器到一个特殊行并且说明做什么修改，比方说添加或删除文本。视频终端（而不是基于打印机的终端，像电传打印机）的出现，使可视化编辑成为可能。<code>vi</code> 实际上整合了一个强大的行编辑器 ———— ex , 所以我们在使用 <code>vi</code> 时能运行行编辑命令。</p><h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><ul><li><p>按 <code>i</code> 进入插入模式。</p></li><li><p><code>:w</code> 保存。</p></li><li><p><code>u</code> 是 <code>undo</code>。</p></li><li><p><code>p</code> 粘贴到光标位置之后，<code>P</code> 粘贴到光标位置之前。</p></li><li><p>查找：<code>f</code> 命令能搜索一特定行，并将光标移动到下一个匹配的字符上。例如，命令 <code>fa</code> 会把光标定位到同一行中下一个出现的”a”字符上。在进行了一次行内搜索后，输入分号能重复这次搜索。<br>移动光标到下一个出现的单词或短语上，使用 <code>/</code> 命令。当你输入 <code>/</code> 命令后，一个”/”字符会出现在屏幕底部。接下来，输入要查找的单词或短语， 按下回车。光标就会移动到下一个包含所查找字符串的位置。通过 <code>n</code> 命令来重复先前的查找。</p></li><li><p>替换<br><code>vi</code> 使用 <code>ex</code> 命令来执行查找和替代操作（<code>vi</code> 中叫做“替换”）。将整个文件中的单词“Line”更改为“line”， 输入以下命令(后面再加个 <code>c</code> 则每次替换会提醒用户确认)：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:%s/Line/line/g</span><br></pre></td></tr></table></figure></li></ul><table><thead><tr><th>条目</th><th>含义</th></tr></thead><tbody><tr><td>:</td><td>冒号字符运行一个 <code>ex</code> 命令。</td></tr><tr><td>%</td><td>指定要操作的行数。% 是一个快捷方式，表示从第一行到最后一行。另外，操作范围也 可以用 1,5 来代替（因为我们的文件只有 5 行文本），或者用 1,$ 来代替，意思是 “ 从第一行到文件的最后一行。”如果省略了文本行的范围，那么操作只对当前行生效。</td></tr><tr><td>s</td><td>指定操作。在这种情况下是，替换（查找与替代）。</td></tr><tr><td>/Line/line</td><td>查找类型与替代文本。</td></tr><tr><td>g</td><td>这是“全局”的意思，意味着对文本行中所有匹配的字符串执行查找和替换操作。如果省略 g，则 只替换每个文本行中第一个匹配的字符串。</td></tr></tbody></table><ul><li>编辑多个文件<br><code>vi file1 file2 file3...</code> 打开多个文件。<br><code>:n</code> 切换到下一个文件。<br><code>:N</code> 切换到上一个文件。<br><code>:buffers</code> 列出文件缓冲，<code>:buffers 缓冲区编号</code> 切换到对应的文件。</li></ul><p>移动光标：</p><table><thead><tr><th>按键</th><th>移动光标</th></tr></thead><tbody><tr><td>l or 右箭头</td><td>向右移动一个字符</td></tr><tr><td>h or 左箭头</td><td>向左移动一个字符</td></tr><tr><td>j or 下箭头</td><td>向下移动一行</td></tr><tr><td>k or 上箭头</td><td>向上移动一行</td></tr><tr><td>0 (零按键)</td><td>移动到当前行的行首。</td></tr><tr><td>^</td><td>移动到当前行的第一个非空字符。</td></tr><tr><td>$</td><td>移动到当前行的末尾。</td></tr><tr><td>w</td><td>移动到下一个单词或标点符号的开头。</td></tr><tr><td>W</td><td>移动到下一个单词的开头，忽略标点符号。</td></tr><tr><td>b</td><td>移动到上一个单词或标点符号的开头。</td></tr><tr><td>B</td><td>移动到上一个单词的开头，忽略标点符号。</td></tr><tr><td>Ctrl-f or Page Down</td><td>向下翻一页</td></tr><tr><td>Ctrl-b or Page Up</td><td>向上翻一页</td></tr><tr><td>numberG</td><td>移动到第 number 行。例如，1G 移动到文件的第一行。</td></tr><tr><td>G</td><td>移动到文件末尾。</td></tr></tbody></table><p>文本删除命令(这个 <code>d</code> 命令不仅删除文本，它还“剪切”文本。)：</p><table><thead><tr><th>命令</th><th>删除的文本</th></tr></thead><tbody><tr><td>x</td><td>当前字符</td></tr><tr><td>3x</td><td>当前字符及其后的两个字符。</td></tr><tr><td>dd</td><td>当前行。</td></tr><tr><td>5dd</td><td>当前行及随后的四行文本。</td></tr><tr><td>dW</td><td>从光标位置开始到下一个单词的开头。</td></tr><tr><td>d$</td><td>从光标位置开始到当前行的行尾。</td></tr><tr><td>d0</td><td>从光标位置开始到当前行的行首。</td></tr><tr><td>d^</td><td>从光标位置开始到文本行的第一个非空字符。</td></tr><tr><td>dG</td><td>从当前行到文件的末尾。</td></tr><tr><td>d20G</td><td>从当前行到文件的第 20 行。</td></tr></tbody></table><p>复制命令：</p><table><thead><tr><th>命令</th><th>复制的内容</th></tr></thead><tbody><tr><td>yy</td><td>当前行。</td></tr><tr><td>5yy</td><td>当前行及随后的四行文本。</td></tr><tr><td>yW</td><td>从当前光标位置到下一个单词的开头。</td></tr><tr><td>y$</td><td>从当前光标位置到当前行的末尾。</td></tr><tr><td>y0</td><td>从当前光标位置到行首。</td></tr><tr><td>y^</td><td>从当前光标位置到文本行的第一个非空字符。</td></tr><tr><td>yG</td><td>从当前行到文件末尾。</td></tr><tr><td>y20G</td><td>从当前行到文件的第 20 行。</td></tr></tbody></table>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Shell-环境&quot;&gt;&lt;a href=&quot;#Shell-环境&quot; class=&quot;headerlink&quot; title=&quot;Shell 环境&quot;&gt;&lt;/a&gt;Shell 环境&lt;/h2&gt;&lt;p&gt;&lt;code&gt;shell&lt;/code&gt; 在环境中存储了两种基本类型的数据，虽然 &lt;code&gt;bash&lt;/code&gt; 几乎无法分辨这些数据的类型。它们是环境变量和 &lt;code&gt;shell&lt;/code&gt; 变量。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="http://1016990109.github.io/tags/Linux/"/>
+    
+      <category term="Shell" scheme="http://1016990109.github.io/tags/Shell/"/>
+    
+  </entry>
   
   <entry>
     <title>前端基础之Webpack</title>
@@ -550,32 +572,6 @@
     
     
       <category term="git" scheme="http://1016990109.github.io/tags/git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>5月28日学习笔记</title>
-    <link href="http://1016990109.github.io/2018/05/28/5%E6%9C%8828%E6%97%A5%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>http://1016990109.github.io/2018/05/28/5月28日学习笔记/</id>
-    <published>2018-05-28T14:17:10.000Z</published>
-    <updated>2018-05-28T14:51:41.419Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><h3 id="该记录何种日志？"><a href="#该记录何种日志？" class="headerlink" title="该记录何种日志？"></a>该记录何种日志？</h3><ol><li>操作时间日志可能有些操作耗时会比较长，可以对方法的处理时间做个记录，例如数据库连接可能耗时很长（但是具体的数据库操作时间记录一般交由数据库本身来做，调用者也不可能知道一条语句耗费了多少时间）则需要记录，某些 <code>api</code> 也可能出现耗时长的问题，记录操作时长可有效发现问题。</li><li>异常日志程序在运行中抛出的异常，可以记录，方便定位错误。</li><li>调试日志有时候本地不方便调试可输出调试信息到日志，方便调试。</li></ol><a id="more"></a><h3 id="日志类型："><a href="#日志类型：" class="headerlink" title="日志类型："></a>日志类型：</h3><ol><li>时间日志这种日志一般按照时间成文件，记录每段时间的日志（错误日志只记录索引，错误信息等，不记录错误栈，是为了日志分析以及格式化）。</li><li>滚动日志滚动日志一般比较随意了，有调试的信息、错误栈、其他一些日志。</li></ol><h3 id="日志工具："><a href="#日志工具：" class="headerlink" title="日志工具："></a>日志工具：</h3><p><code>awk</code> 了解一下</p><h3 id="日志作用"><a href="#日志作用" class="headerlink" title="日志作用"></a>日志作用</h3><ul><li>记录重要信息，如错误、异常、警告等等</li><li>用户行为分析<br>例如将对某一数据连贯的一系列操作共同组成一组事务，一组事务中有多个行为，如用户id、数据id、session_id共同组成对一个数据的一组有关联的操作，可以用来分析用户操作数据的行为，有时候也可以通过行为记录来查找 <code>bug</code> 的原因。</li><li>统计<br>例如某某接口调用次数特别多，某某接口调用非常少等等统计工作。</li><li>调试<br>学会使用日志调试</li></ul><h2 id="参数校验"><a href="#参数校验" class="headerlink" title="参数校验"></a>参数校验</h2><p>何时使用参数校验？</p><ul><li>接口需要<br>如某个接口一定需要id字段才可以查询，则对id做一个校验。</li><li>性能需要<br>例如分页的时候，每页数据量过大的时候可能会影响接口的性能，这时候需要对参数做限制。<br>参数不合法就可以不进行处理，避免不必要的操作，提升性能。</li><li>数据库需要<br>数据最多支持32位长度的字符串，这时候提前做校验可以避免错误产生，也可以避免不必要操作提升性能。</li><li>业务需要<br>例如邮箱有固定的格式，可以对参数做验证。</li></ul><h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>简洁不一定是对的，有时候更需要易懂。</p><p>一切的 <code>I/O</code> 操作都需要处理异常。</p><p>封装需要权衡易读性与一致性。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;日志&quot;&gt;&lt;a href=&quot;#日志&quot; class=&quot;headerlink&quot; title=&quot;日志&quot;&gt;&lt;/a&gt;日志&lt;/h2&gt;&lt;h3 id=&quot;该记录何种日志？&quot;&gt;&lt;a href=&quot;#该记录何种日志？&quot; class=&quot;headerlink&quot; title=&quot;该记录何种日志？&quot;&gt;&lt;/a&gt;该记录何种日志？&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;操作时间日志可能有些操作耗时会比较长，可以对方法的处理时间做个记录，例如数据库连接可能耗时很长（但是具体的数据库操作时间记录一般交由数据库本身来做，调用者也不可能知道一条语句耗费了多少时间）则需要记录，某些 &lt;code&gt;api&lt;/code&gt; 也可能出现耗时长的问题，记录操作时长可有效发现问题。&lt;/li&gt;
-&lt;li&gt;异常日志程序在运行中抛出的异常，可以记录，方便定位错误。&lt;/li&gt;
-&lt;li&gt;调试日志有时候本地不方便调试可输出调试信息到日志，方便调试。&lt;/li&gt;
-&lt;/ol&gt;
-    
-    </summary>
-    
-      <category term="学习" scheme="http://1016990109.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="随笔" scheme="http://1016990109.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
