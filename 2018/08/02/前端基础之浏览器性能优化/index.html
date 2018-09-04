@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://1016990109.github.io/assets/img/app-build-components.png">
 <meta property="og:image" content="http://1016990109.github.io/assets/img/chrome_priority.png">
 <meta property="og:image" content="http://1016990109.github.io/assets/img/res-prio-timeout.png">
-<meta property="og:updated_time" content="2018-08-20T10:42:19.079Z">
+<meta property="og:updated_time" content="2018-09-04T03:20:59.327Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端基础之浏览器性能优化">
 <meta name="twitter:description" content="渲染性能重绘重排以下三种情况会导致网页重新渲染：  修改 DOM 修改样式表 用户事件（比如鼠标悬停、页面滚动、输入框键入文字、改变窗口大小等等）">
@@ -378,8 +378,11 @@
 <blockquote>
 <p><code>subresources</code> 是另一个预获取资源的方式，只不过优先级更高，在所有的 <code>prefetch</code> 之前进行。<code>&lt;link rel=&quot;subresource&quot; href=&quot;styles.css&quot;&gt;</code>。</p>
 </blockquote>
-<p>未完待续…</p>
-<p><strong>可能更新关于 <code>webpack</code> 优化加载性能的内容。</strong></p>
+<h2 id="Webpack-优化加载性能"><a href="#Webpack-优化加载性能" class="headerlink" title="Webpack 优化加载性能"></a>Webpack 优化加载性能</h2><p>1.有效利用浏览器缓存：<code>code split</code>，如第三方库、<code>polyfill</code> 单独打包，分离公共库；<code>css</code> 单独提取出一个文件，<code>ExtractTextPlugin</code>。</p>
+<p>2.懒加载：动态引入，<code>import</code>，注意可能需要使用 <code>babel</code> 的 <code>dynamic-webpack-import</code> 插件，不然编译会报错。</p>
+<p>3.减少代码体积：<code>Minification</code>，使用 <code>UglifyJsPlugin</code> 来 <code>minify</code> 代码，生产环境相要对应上源代码需要同时设置 <code>devtool</code> 的值和 <code>UglifyJsPlugin</code> 的 <code>sourceMap</code> 为 <code>true</code>；使用 <code>babel-preset-env</code> 的 <code>useBuiltIns</code> 和 <code>target</code> 来共同控制需要 <code>shim</code> 的 <code>polyfill</code> 代码，尽量少加载垫片，比原来直接 <code>import &#39;babel-polyfill&#39;</code> 要少一部分的垫片；<code>tree-shaking</code> 来去除无用的代码。</p>
+<p>4.图片压缩：使用 <code>image-webpack-loader</code> 来压缩图片，注意 <code>webp</code> 支持度较低，不建议使用。</p>
+<p>5.分析包结构：使用 <code>BundleAnalyzerPlugin</code> 来分析打包后的包结构以及大小，便于后续的优化。</p>
 
       
 
@@ -509,7 +512,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#渲染性能"><span class="toc-number">1.</span> <span class="toc-text">渲染性能</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#重绘重排"><span class="toc-number">1.1.</span> <span class="toc-text">重绘重排</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#减少重排方案"><span class="toc-number">1.1.1.</span> <span class="toc-text">减少重排方案</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#刷新率"><span class="toc-number">1.2.</span> <span class="toc-text">刷新率</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#开发者工具-Timeline"><span class="toc-number">1.2.1.</span> <span class="toc-text">开发者工具 Timeline</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PerformanceObserver"><span class="toc-number">1.3.</span> <span class="toc-text">PerformanceObserver</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#window-requestAnimationFrame"><span class="toc-number">1.4.</span> <span class="toc-text">window.requestAnimationFrame</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#window-requestIdleCallback"><span class="toc-number">1.5.</span> <span class="toc-text">window.requestIdleCallback()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使输入处理程序去除抖动"><span class="toc-number">1.6.</span> <span class="toc-text">使输入处理程序去除抖动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#worker"><span class="toc-number">1.7.</span> <span class="toc-text">worker</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#加载性能"><span class="toc-number">2.</span> <span class="toc-text">加载性能</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#压缩资源"><span class="toc-number">2.1.</span> <span class="toc-text">压缩资源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图像优化"><span class="toc-number">2.2.</span> <span class="toc-text">图像优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JS-优化"><span class="toc-number">2.3.</span> <span class="toc-text">JS 优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字体优化"><span class="toc-number">2.4.</span> <span class="toc-text">字体优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#通过-Font-Loading-API-优化字体渲染"><span class="toc-number">2.4.1.</span> <span class="toc-text">通过 Font Loading API 优化字体渲染</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过内联优化字体渲染"><span class="toc-number">2.4.2.</span> <span class="toc-text">通过内联优化字体渲染</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#离线"><span class="toc-number">2.5.</span> <span class="toc-text">离线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-CDN-加速"><span class="toc-number">2.6.</span> <span class="toc-text">使用 CDN 加速</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-HTTP-缓存"><span class="toc-number">2.7.</span> <span class="toc-text">使用 HTTP 缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关键路径渲染优化"><span class="toc-number">2.8.</span> <span class="toc-text">关键路径渲染优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PRPL-模式"><span class="toc-number">2.9.</span> <span class="toc-text">PRPL 模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#资源优先级"><span class="toc-number">2.10.</span> <span class="toc-text">资源优先级</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#浏览器默认优先级"><span class="toc-number">2.10.1.</span> <span class="toc-text">浏览器默认优先级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Preload"><span class="toc-number">2.10.2.</span> <span class="toc-text">Preload</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Preconnect"><span class="toc-number">2.10.3.</span> <span class="toc-text">Preconnect</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Prefetch"><span class="toc-number">2.10.4.</span> <span class="toc-text">Prefetch</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#渲染性能"><span class="toc-number">1.</span> <span class="toc-text">渲染性能</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#重绘重排"><span class="toc-number">1.1.</span> <span class="toc-text">重绘重排</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#减少重排方案"><span class="toc-number">1.1.1.</span> <span class="toc-text">减少重排方案</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#刷新率"><span class="toc-number">1.2.</span> <span class="toc-text">刷新率</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#开发者工具-Timeline"><span class="toc-number">1.2.1.</span> <span class="toc-text">开发者工具 Timeline</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PerformanceObserver"><span class="toc-number">1.3.</span> <span class="toc-text">PerformanceObserver</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#window-requestAnimationFrame"><span class="toc-number">1.4.</span> <span class="toc-text">window.requestAnimationFrame</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#window-requestIdleCallback"><span class="toc-number">1.5.</span> <span class="toc-text">window.requestIdleCallback()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使输入处理程序去除抖动"><span class="toc-number">1.6.</span> <span class="toc-text">使输入处理程序去除抖动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#worker"><span class="toc-number">1.7.</span> <span class="toc-text">worker</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#加载性能"><span class="toc-number">2.</span> <span class="toc-text">加载性能</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#压缩资源"><span class="toc-number">2.1.</span> <span class="toc-text">压缩资源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图像优化"><span class="toc-number">2.2.</span> <span class="toc-text">图像优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JS-优化"><span class="toc-number">2.3.</span> <span class="toc-text">JS 优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字体优化"><span class="toc-number">2.4.</span> <span class="toc-text">字体优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#通过-Font-Loading-API-优化字体渲染"><span class="toc-number">2.4.1.</span> <span class="toc-text">通过 Font Loading API 优化字体渲染</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过内联优化字体渲染"><span class="toc-number">2.4.2.</span> <span class="toc-text">通过内联优化字体渲染</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#离线"><span class="toc-number">2.5.</span> <span class="toc-text">离线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-CDN-加速"><span class="toc-number">2.6.</span> <span class="toc-text">使用 CDN 加速</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-HTTP-缓存"><span class="toc-number">2.7.</span> <span class="toc-text">使用 HTTP 缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关键路径渲染优化"><span class="toc-number">2.8.</span> <span class="toc-text">关键路径渲染优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PRPL-模式"><span class="toc-number">2.9.</span> <span class="toc-text">PRPL 模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#资源优先级"><span class="toc-number">2.10.</span> <span class="toc-text">资源优先级</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#浏览器默认优先级"><span class="toc-number">2.10.1.</span> <span class="toc-text">浏览器默认优先级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Preload"><span class="toc-number">2.10.2.</span> <span class="toc-text">Preload</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Preconnect"><span class="toc-number">2.10.3.</span> <span class="toc-text">Preconnect</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Prefetch"><span class="toc-number">2.10.4.</span> <span class="toc-text">Prefetch</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Webpack-优化加载性能"><span class="toc-number">2.11.</span> <span class="toc-text">Webpack 优化加载性能</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -641,11 +644,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -665,11 +668,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">优化</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">优化</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -681,11 +684,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RPC</a>
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -713,31 +720,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">HTTP/2</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">eventloop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事件循环</a>
+                <a href="javascript:void(0)" class="js-tag color4">RPC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -749,7 +736,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">性能优化</a>
+                <a href="javascript:void(0)" class="js-tag color5">eventloop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">事件循环</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -781,7 +776,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">性能优化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">HTTP/2</a>
               </li>
             
             <div class="clearfix"></div>

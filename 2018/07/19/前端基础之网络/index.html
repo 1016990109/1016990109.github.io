@@ -24,7 +24,7 @@
 <meta property="og:image" content="http://1016990109.github.io/assets/img/tcp_slow_start.png">
 <meta property="og:image" content="http://1016990109.github.io/assets/img/tcp_fast_start.png">
 <meta property="og:image" content="http://1016990109.github.io/assets/img/CSRF.jpg">
-<meta property="og:updated_time" content="2018-08-02T15:52:22.977Z">
+<meta property="og:updated_time" content="2018-08-30T09:16:06.988Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端基础之网络">
 <meta name="twitter:description" content="网络模型  TCP/IP 四层模型  应用层、运输层、网际层和网络接口层。从实质上讲，只有上边三层，网络接口层没有什么具体的内容。HTTP 对应应用层。  OSI 七层模型  应用层（Application）、表示层（Presentation）、会话层（Session）、传输层（Transport）、网络层（Network）、数据链路层（Data Link）、物理层（Physical）。HTTP">
@@ -345,7 +345,7 @@
 </li>
 </ul>
 <p>“预检” 返回的结果除了 <code>Access-Control-Allow-Origin</code> 和 <code>Access-Control-Allow-Credentials</code> 与简单请求一样，还多两个字段：</p>
-<p>1.<code>Access-Control-Allow-Methods</code>：该字段必需，它的值是逗号分隔的一个字符串，表明服务器支持的所有跨域请求的方法。注意，返回的是所有支持的方法，而不单是浏览器请求的那个方法。这是为了避免多次”预检”请求。 2.<code>Access-Control-Max-Age</code>：该字段可选，用来指定本次预检请求的有效期，单位为秒。上面结果中，有效期是 20 天（1728000 秒），即允许缓存该条回应 1728000 秒（即 20 天），在此期间，不用发出另一条预检请求。</p>
+<p>1.<code>Access-Control-Allow-Methods</code>：该字段必需，它的值是逗号分隔的一个字符串，表明服务器支持的所有跨域请求的方法。注意，返回的是所有支持的方法，而不单是浏览器请求的那个方法。这是为了避免多次”预检”请求。 2.<code>Access-Control-Max-Age</code>：该字段可选，用来指定本次预检请求的有效期，单位为秒。例如 <code>1728000</code>，即允许缓存该条回应 1728000 秒（即 20 天），在此期间，不用发出另一条预检请求。</p>
 <h4 id="jsonp"><a href="#jsonp" class="headerlink" title="jsonp"></a>jsonp</h4><p>动态添加一个 <code>&lt;script&gt;</code> 标签，而 <code>script</code> 标签的 <code>src</code> 属性是没有跨域的限制的。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">jsonpCallback</span>(<span class="params">result</span>) </span>&#123;</span><br><span class="line">            alert(result.msg);</span><br><span class="line">        &#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/告诉服务器端的js代码这边的回调函数是jsonpCallback，下载的js文件会直接运行，运行回调函数把数据传回来</span></span><br><span class="line"><span class="regexp">&lt;script type="text/</span>javascript<span class="string">" src="</span>http:<span class="comment">//crossdomain.com/jsonServerResponse?jsonp=jsonpCallback"&gt;&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
 <p>优点：它不像 <code>XMLHttpRequest</code> 对象实现的 <code>Ajax</code> 请求那样受到同源策略的限制；它的兼容性更好，在更加古老的浏览器中都可以运行，不需要 <code>XMLHttpRequest</code> 或 <code>ActiveX</code> 的支持；并且在请求完毕后可以通过调用 <code>callback</code> 的方式回传结果。</p>
@@ -687,11 +687,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -711,11 +711,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">优化</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">优化</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -727,11 +727,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RPC</a>
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -759,31 +763,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">HTTP/2</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">eventloop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事件循环</a>
+                <a href="javascript:void(0)" class="js-tag color4">RPC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -795,7 +779,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">性能优化</a>
+                <a href="javascript:void(0)" class="js-tag color5">eventloop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">事件循环</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -827,7 +819,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">性能优化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">HTTP/2</a>
               </li>
             
             <div class="clearfix"></div>
