@@ -6,18 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://1016990109.github.io">
-  <title>Tag: 性能优化 | 七秒悲伤的博客</title>
+  <title>前端基础之CSS | 七秒悲伤的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个深藏功与名的软件开发爱好者">
-<meta property="og:type" content="website">
-<meta property="og:title" content="七秒悲伤的博客">
-<meta property="og:url" content="http://1016990109.github.io/tags/性能优化/index.html">
+  <meta name="description" content="CSS 选择器的优先级内联样式 &amp;gt; ID 选择器 &amp;gt; 类选择器、属性选择器和伪类选择器 &amp;gt; 标签（类型）选择器和伪元素选择器 相同则比较数量每一级的数量总和。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端基础之CSS">
+<meta property="og:url" content="http://1016990109.github.io/2018/09/04/前端基础之CSS/index.html">
 <meta property="og:site_name" content="七秒悲伤的博客">
-<meta property="og:description" content="一个深藏功与名的软件开发爱好者">
+<meta property="og:description" content="CSS 选择器的优先级内联样式 &amp;gt; ID 选择器 &amp;gt; 类选择器、属性选择器和伪类选择器 &amp;gt; 标签（类型）选择器和伪元素选择器 相同则比较数量每一级的数量总和。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://1016990109.github.io/assets/img/stacked_order.png">
+<meta property="og:image" content="http://1016990109.github.io/assets/img/rwd-vs-adapt-example.gif">
+<meta property="og:updated_time" content="2018-09-05T11:28:55.427Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="七秒悲伤的博客">
-<meta name="twitter:description" content="一个深藏功与名的软件开发爱好者">
+<meta name="twitter:title" content="前端基础之CSS">
+<meta name="twitter:description" content="CSS 选择器的优先级内联样式 &amp;gt; ID 选择器 &amp;gt; 类选择器、属性选择器和伪类选择器 &amp;gt; 标签（类型）选择器和伪元素选择器 相同则比较数量每一级的数量总和。">
+<meta name="twitter:image" content="http://1016990109.github.io/assets/img/stacked_order.png">
   
     <link rel="alternative" href="/atom.xml" title="七秒悲伤的博客" type="application/atom+xml">
   
@@ -167,110 +171,323 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-前端基础之CSS" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/09/前端基础之关键路径渲染优化/" class="archive-article-date">
-  	<time datetime="2018-08-09T15:14:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-09</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/09/前端基础之关键路径渲染优化/">前端基础之关键路径渲染优化</a>
+    <h1 class="article-title" itemprop="name">
+      前端基础之CSS
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">性能优化</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/02/前端基础之浏览器性能优化/" class="archive-article-date">
-  	<time datetime="2018-08-02T15:43:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-02</time>
+        
+        <a href="/2018/09/04/前端基础之CSS/" class="archive-article-date">
+  	<time datetime="2018-09-04T13:43:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-04</time>
 </a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="CSS-选择器的优先级"><a href="#CSS-选择器的优先级" class="headerlink" title="CSS 选择器的优先级"></a>CSS 选择器的优先级</h2><p>内联样式 &gt; <code>ID</code> 选择器 &gt; 类选择器、属性选择器和伪类选择器 &gt; 标签（类型）选择器和伪元素选择器</p>
+<p>相同则比较数量每一级的数量总和。</p>
+<a id="more"></a>
+<p>当出现优先级相等的情况时，最晚出现的样式规则会被采纳。</p>
+<h2 id="重置（resetting）CSS-和-标准化（normalizing）CSS-的区别"><a href="#重置（resetting）CSS-和-标准化（normalizing）CSS-的区别" class="headerlink" title="重置（resetting）CSS 和 标准化（normalizing）CSS 的区别"></a>重置（resetting）CSS 和 标准化（normalizing）CSS 的区别</h2><ul>
+<li><strong>重置（Resetting）</strong>： 重置意味着除去所有的浏览器默认样式。对于页面所有的元素，像 <code>margin</code>、<code>padding</code>、<code>font-size</code> 这些样式全部置成一样。你将必须重新定义各种元素的样式。</li>
+<li><strong>标准化（Normalizing）</strong>： 标准化没有去掉所有的默认样式，而是保留了有用的一部分，同时还纠正了一些常见错误。</li>
+</ul>
+<h2 id="Float-定位"><a href="#Float-定位" class="headerlink" title="Float 定位"></a>Float 定位</h2><p>浮动（<code>float</code>）是 <code>CSS</code> 定位属性。浮动元素从网页的正常流动中移出，但是保持了部分的流动性，会影响其他元素的定位（比如文字会围绕着浮动元素）。这一点与绝对定位不同，绝对定位的元素完全从文档流中脱离。</p>
+<p><code>CSS</code> 的 <code>clear</code> 属性通过使用 <code>left</code>、<code>right</code>、<code>both</code>，让该元素向下移动（清除浮动）到浮动元素下面。</p>
+<p>如果父元素只包含浮动元素，那么该父元素的高度将塌缩为 0。我们可以通过清除（<code>clear</code>）从浮动元素后到父元素关闭前之间的浮动来修复这个问题。一般方法是给父元素一个 <code>clearfix</code> 的类，内容如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">  <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>值得一提的是，把父元素属性设置为 <code>overflow: auto</code> 或 <code>overflow: hidden</code>，会使其内部的<strong>子元素</strong>形成块格式化上下文（<code>Block Formatting Context</code>），并且父元素会扩张自己，使其能够包围它的子元素。</p>
+<h2 id="z-index"><a href="#z-index" class="headerlink" title="z-index"></a>z-index</h2><p><code>CSS</code> 中的 <code>z-index</code> 属性控制重叠元素的垂直叠加顺序。<strong><code>z-index</code> 只能影响 <code>position</code> 值不是 <code>static</code> 的元素</strong>。</p>
+<p>没有定义 <code>z-index</code> 的值时，元素按照它们出现在 <code>DOM</code> 中的顺序堆叠（层级越低，出现位置越靠上）。非静态定位的元素（及其子元素）将始终覆盖静态定位（<code>static</code>）的元素，而不管 <code>HTML</code> 层次结构如何。</p>
+<p>层叠上下文元素有如下特性：</p>
+<ul>
+<li>层叠上下文的层叠水平要比普通元素高；</li>
+<li>层叠上下文可以阻断元素的混合模式；</li>
+<li>层叠上下文可以嵌套，内部层叠上下文及其所有子元素均受制于外部的层叠上下文。</li>
+<li>每个层叠上下文和兄弟元素独立，也就是当进行层叠变化或渲染的时候，只需要考虑后代元素。</li>
+<li>每个层叠上下文是自成体系的，当元素发生层叠的时候，整个元素被认为是在父层叠上下文的层叠顺序中。</li>
+</ul>
+<p><strong>普通元素的层叠水平优先由层叠上下文决定</strong>，因此，层叠水平的比较只有在当前层叠上下文元素中才有意义。</p>
+<p>层叠顺序：</p>
+<p><img src="/assets/img/stacked_order.png" alt="stacked order"></p>
+<p>层叠上下文的创建：</p>
+<ul>
+<li>页面根元素</li>
+<li>对于包含有 <code>position:relative</code> / <code>position:absolute</code> / <code>position:fixed</code> / <code>position:sticky</code> 的定位元素，且 <code>z-index</code> 不是 <code>auto</code></li>
+<li><code>z-index</code> 值不为 <code>auto</code> 的 <code>flex</code> 项(父元素 <code>display:flex|inline-flex</code>)，是 <code>flex</code> 布局的<strong>子元素</strong></li>
+<li>元素的 <code>opacity</code> 值不是 1</li>
+<li>元素的 <code>transform</code> 值不是 <code>none</code></li>
+<li>元素 <code>mix-blend-mode</code> 值不是 <code>normal</code></li>
+<li>元素的 <code>filter</code> 值不是 <code>none</code></li>
+<li>元素的 <code>isolation</code> 值是 <code>isolate</code></li>
+<li><code>will-change</code> 指定的属性值为上面任意一个</li>
+<li>元素的 <code>-webkit-overflow-scrolling</code> 设为 <code>touch</code></li>
+</ul>
+<p>具体的一些比较可查看 <a href="https://www.zhangxinxu.com/wordpress/2016/01/understand-css-stacking-context-order-z-index/" target="_blank" rel="noopener">深入理解 CSS 中的层叠上下文和层叠顺序</a></p>
+<h2 id="格式化上下文-Block-Formatting-Context"><a href="#格式化上下文-Block-Formatting-Context" class="headerlink" title="格式化上下文(Block Formatting Context)"></a>格式化上下文(Block Formatting Context)</h2><p>一个 HTML 盒（Box）满足以下任意一条，会创建块格式化上下文：</p>
+<ul>
+<li><code>float</code> 的值不是 <code>none</code>.</li>
+<li><code>position</code> 的值不是 <code>static</code> 或 <code>relative</code>.</li>
+<li><code>display</code> 的值是 <code>table-cell</code>、<code>table-caption</code>、<code>inline-block</code>、<code>flex</code>、或 <code>inline-flex</code>。</li>
+<li><code>overflow</code> 的值不是 <code>visible</code>。</li>
+</ul>
+<h3 id="BFC-特性："><a href="#BFC-特性：" class="headerlink" title="BFC 特性："></a><code>BFC</code> 特性：</h3><ol>
+<li>内部的 <code>Box</code> 会在垂直方向，从顶部开始一个接一个地放置。</li>
+<li><code>Box</code> 垂直方向的距离由 <code>margin</code> 决定。属于同一个 <code>BFC</code> 的两个相邻 <code>Box</code> 的 <code>margin</code> 会发生叠加。(用来解决边距叠加问题，给会重叠的元素加一个 <code>BFC</code> 的父元素，那么这个 <code>BFC</code> 块就不会和下一个元素的边距重叠了，<strong>水平方向的 <code>margin</code> 是不会叠加的</strong>)</li>
+<li>每个元素的 <code>margin box</code> 的左边， 与包含块 <code>border box</code> 的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此。</li>
+<li><code>BFC</code> 的区域不会与 <code>float box</code> 叠加。(解决布局问题，一个块元素与浮动块重叠了的问题)</li>
+<li><code>BFC</code> 就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素，反之亦然。</li>
+<li>计算 <code>BFC</code> 的高度时，浮动元素也参与计算。(经常用来解决浮动元素导致父元素坍塌的问题)</li>
+</ol>
+<h2 id="不同浏览器的样式兼容性问题"><a href="#不同浏览器的样式兼容性问题" class="headerlink" title="不同浏览器的样式兼容性问题"></a>不同浏览器的样式兼容性问题</h2><ol>
+<li>在确定问题原因和有问题的浏览器后，使用单独的样式表，仅供出现问题的浏览器加载。这种方法需要使用服务器端渲染。</li>
+<li>使用已经处理好此类问题的库，比如 <code>Bootstrap</code>。</li>
+<li>使用 <code>autoprefixer</code> 自动生成 <code>CSS</code> 属性前缀。(<code>webpack</code> 打包工具可使用 <code>postcss</code> 来完成)</li>
+<li>使用 <code>Reset.css</code> 或 <code>Normalize.css</code>。</li>
+</ol>
+<h2 id="如何为功能受限的浏览器提供页面"><a href="#如何为功能受限的浏览器提供页面" class="headerlink" title="如何为功能受限的浏览器提供页面"></a>如何为功能受限的浏览器提供页面</h2><ul>
+<li>优雅的降级：为现代浏览器构建应用，同时确保它在旧版浏览器中正常运行。</li>
+<li>渐进式增强：构建基于用户体验的应用，但在浏览器支持时添加新增功能。</li>
+<li>利用 <a href="https://caniuse.com" target="_blank" rel="noopener">caniuse.com</a> 检查特性支持。</li>
+<li>使用 <code>autoprefixer</code> 自动生成 <code>CSS</code> 属性前缀。</li>
+<li>使用 <a href="https://modernizr.com" target="_blank" rel="noopener">Modernizr</a> 进行特性检测。</li>
+</ul>
+<h2 id="用-CSS-隐藏页面元素"><a href="#用-CSS-隐藏页面元素" class="headerlink" title="用 CSS 隐藏页面元素"></a>用 CSS 隐藏页面元素</h2><ol>
+<li><code>opacity</code> 设为 0。</li>
+<li><code>visibility</code> 设为 <code>hidden</code>。</li>
+<li><code>display</code> 设为 <code>none</code>。</li>
+<li><code>position</code> 设为 <code>absolute</code>，然后移动到不可见区域，<code>left: -99999px</code>。</li>
+<li><code>width: 0; height: 0; overflow: hidden</code>：使元素不占用屏幕上的任何空间，导致不显示它。</li>
+<li><code>text-indent: -9999px</code>：这只适用于 <code>block</code> 元素中的文本。</li>
+<li><code>clip(clip-path):rect()/inset()/polygon()</code>，注意只对 <code>position</code> 值为 <code>absolute</code> 或 <code>fixed</code> 的元素有效。</li>
+<li><code>transform: scale(0,0)</code>。</li>
+<li>利用 <code>z-index</code> 来隐藏。</li>
+</ol>
+<h2 id="媒体查询"><a href="#媒体查询" class="headerlink" title="媒体查询"></a>媒体查询</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- link元素中的CSS媒体查询 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">media</span>=<span class="string">"only screen and (max-width: 800px)"</span> <span class="attr">href</span>=<span class="string">"example.css"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 样式表中的CSS媒体查询 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css">@<span class="keyword">media</span> only screen and (max-width: <span class="number">600px</span>) &#123;</span></span><br><span class="line"><span class="css">  <span class="selector-class">.facet_sidebar</span> &#123;</span></span><br><span class="line"><span class="undefined">    display: none;</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>and</code> 关键字用于合并多个媒体属性或合并媒体属性与媒体类型。</p>
+<p>媒体查询中使用逗号分隔效果等同于 <code>or</code> 逻辑操作符。</p>
+<p><code>not</code> 关键字应用于整个媒体查询，在媒体查询为假时返回真</p>
+<p>更多的设置查看 <a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Media_queries" target="_blank" rel="noopener">CSS 媒体查询</a></p>
+<h2 id="解释浏览器如何确定哪些元素与-CSS-选择器匹配"><a href="#解释浏览器如何确定哪些元素与-CSS-选择器匹配" class="headerlink" title="解释浏览器如何确定哪些元素与 CSS 选择器匹配"></a>解释浏览器如何确定哪些元素与 CSS 选择器匹配</h2><p>浏览器从最右边的选择器（关键选择器）根据关键选择器，浏览器从 <code>DOM</code> 中筛选出元素，然后向上遍历被选元素的父元素，判断是否匹配。选择器匹配语句链越短，浏览器的匹配速度越快。</p>
+<p>例如，对于形如 <code>p span</code> 的选择器，浏览器首先找到所有 <code>&lt;span&gt;</code> 元素，并遍历它的父元素直到根元素以找到 <code>&lt;p&gt;</code> 元素。对于特定的 <code>&lt;span&gt;</code>，只要找到一个 <code>&lt;p&gt;</code>，就知道已经匹配并停止继续匹配</p>
+<h2 id="box-sizing"><a href="#box-sizing" class="headerlink" title="box-sizing"></a>box-sizing</h2><p>改变计算元素 <code>height</code> 与 <code>width</code> 的方法。</p>
+<p>元素默认应用了 <code>box-sizing: content-box</code>，元素的宽高只会决定内容（<code>content</code>）的大小。</p>
+<p><code>box-sizing: border-box</code> 改变计算元素 <code>width</code> 和 <code>height</code> 的方式，<code>border</code> 和 <code>padding</code> 的大小也将计算在内。</p>
+<h2 id="block、inline-与-inline-block-区别"><a href="#block、inline-与-inline-block-区别" class="headerlink" title="block、inline 与 inline-block 区别"></a>block、inline 与 inline-block 区别</h2><table>
+<thead>
+<tr>
+<th></th>
+<th>block</th>
+<th>inline-block</th>
+<th>inline</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>大小</td>
+<td>填充其父容器的宽度。</td>
+<td>取决于内容。</td>
+<td>取决于内容。</td>
+</tr>
+<tr>
+<td>定位</td>
+<td>从新的一行开始，并且不允许旁边有 <code>HTML</code> 元素（除非是<code>float</code>）</td>
+<td>与其他内容一起流动，并允许旁边有其他元素。</td>
+<td>与其他内容一起流动，并允许旁边有其他元素。</td>
+</tr>
+<tr>
+<td>能否设置 <code>width</code> 和 <code>height</code></td>
+<td>能</td>
+<td>能</td>
+<td>不能。设置会被忽略。</td>
+</tr>
+<tr>
+<td>可以使用 <code>vertical-align</code> 对齐</td>
+<td>不可以</td>
+<td>可以</td>
+<td>可以</td>
+</tr>
+<tr>
+<td>边距（<code>margin</code>）和填充（<code>padding</code>）</td>
+<td>各个方向都存在</td>
+<td>各个方向都存在</td>
+<td>只有水平方向存在。垂直方向会被忽略。 尽管 border 和 padding 在 content 周围，但垂直方向上的空间取决于’line-height’</td>
+</tr>
+<tr>
+<td>浮动（<code>float</code>）</td>
+<td>-</td>
+<td>-</td>
+<td>就像一个 <code>block</code> 元素，可以设置垂直边距和填充。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="relative、fixed、absolute-和-static"><a href="#relative、fixed、absolute-和-static" class="headerlink" title="relative、fixed、absolute 和 static"></a>relative、fixed、absolute 和 static</h2><p>经过定位的元素，其 <code>position</code> 属性值必然是 <code>relative</code>、<code>absolute</code>、<code>fixed</code> 或 <code>sticky</code>。</p>
+<ul>
+<li><code>static</code>：默认定位属性值。该关键字指定元素使用正常的布局行为，即元素在文档常规流中当前的布局位置。此时 <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code> 和 <code>z-index</code> 属性无效。</li>
+<li><code>relative</code>：该关键字下，元素先放置在未添加定位时的位置，再在不改变页面布局的前提下调整元素位置（因此会在此元素未添加定位时所在位置留下空白）。</li>
+<li><code>absolute</code>：不为元素预留空间，通过指定元素相对于最近的非 <code>static</code> 定位祖先元素的偏移，来确定元素位置。绝对定位的元素可以设置外边距（<code>margins</code>），且不会与其他边距合并。</li>
+<li><code>fixed</code>：不为元素预留空间，而是通过指定元素相对于屏幕视口（<code>viewport</code>）的位置来指定元素位置。元素的位置在屏幕滚动时不会改变。打印时，元素会出现在的每页的固定位置。<code>fixed</code> 属性会创建新的层叠上下文。<strong>当元素祖先的 <code>transform</code> 属性非 <code>none</code> 时，容器由视口改为该祖先。</strong></li>
+<li><code>sticky</code>：盒位置根据正常流计算(这称为正常流动中的位置)，然后相对于该元素在流中的 <code>flow root</code>（<code>BFC</code>）和 <code>containing block</code>（最近的块级祖先元素）定位。在所有情况下（即便被定位元素为 <code>table</code> 时），该元素定位均不对后续元素造成影响。当元素 B 被粘性定位时，后续元素的位置仍按照 B 未定位时的位置来确定。<code>position: sticky</code> 对 <code>table</code> 元素的效果与 <code>position: relative</code> 相同。须指定 <code>top</code>, <code>right</code>, <code>bottom</code> 或 <code>left</code> 四个阈值其中之一，才可使粘性定位生效。否则其行为与相对定位相同。</li>
+</ul>
+<p>详情以及例子可查看 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/position" target="_blank" rel="noopener">position</a>。</p>
+<h2 id="响应式设计与自适应设计不同"><a href="#响应式设计与自适应设计不同" class="headerlink" title="响应式设计与自适应设计不同"></a>响应式设计与自适应设计不同</h2><p>用一张图片来描述更合适：</p>
+<p><em>上面是响应式设计，下面是自适应设计</em> <img src="/assets/img/rwd-vs-adapt-example.gif" alt="rwd-vs-adapt-example"></p>
+<p>响应式设计和自适应设计都以提高不同设备间的用户体验为目标，根据视窗大小、分辨率、使用环境和控制方式等参数进行优化调整。</p>
+<p>响应式设计的适应性原则：网站应该凭借一份代码，在各种设备上都有良好的显示和使用效果。响应式网站通过使用媒体查询，自适应栅格和响应式图片，基于多种因素进行变化，创造出优良的用户体验。就像一个球通过膨胀和收缩，来适应不同大小的篮圈。</p>
+<p>自适应设计更像是渐进式增强的现代解释。与响应式设计单一地去适配不同，自适应设计通过检测设备和其他特征，从早已定义好的一系列视窗大小和其他特性中，选出最恰当的功能和布局。与使用一个球去穿过各种的篮筐不同，自适应设计允许使用多个球，然后根据不同的篮筐大小，去选择最合适的一个。</p>
+<h2 id="视网膜分辨率处理"><a href="#视网膜分辨率处理" class="headerlink" title="视网膜分辨率处理"></a>视网膜分辨率处理</h2><p>使用媒体查询，像 <code>@media only screen and (min-device-pixel-ratio: 2) { ... }</code>，然后改变 <code>background-image</code>。</p>
+<p>对于图标类的图形，尽可能使用 <code>svg</code> 和图标字体，因为它们在任何分辨率下，都能被渲染得十分清晰。</p>
+<p>还有一种方法是，在检查了 <code>window.devicePixelRatio</code> 的值后，利用 <code>JavaScript</code> 将 <code>&lt;img&gt;</code> 的 <code>src</code> 属性修改，用更高分辨率的版本进行替换。<strong>注意：<code>IE</code> 和 <code>FireFox</code> 是不支持 <code>devicePixelRatio</code> 属性的。</strong></p>
+<h2 id="translate-vs-postion-absolute"><a href="#translate-vs-postion-absolute" class="headerlink" title="translate vs postion absolute"></a>translate vs postion absolute</h2><p><code>translate(x, y)</code> 是 <code>transform</code> 的一个值。改变 <code>transform</code> 或 <code>opacity</code> 不会触发浏览器重新布局（<code>reflow</code>）或重绘（<code>repaint</code>），只会触发组合（<code>compositions</code>）。而改变绝对定位会触发重新布局，进而触发重绘和复合。<code>transform</code> 使浏览器为元素创建一个 <code>GPU</code> 图层，但改变绝对定位会使用到 <code>CPU。</code> 因此 <code>translate()</code> 更高效，可以缩短平滑动画的绘制时间。</p>
+<p>当使用 <code>translate()</code> 时，元素仍然占据其原始空间（有点像 <code>position：relative</code>），这与改变绝对定位不同。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/02/前端基础之浏览器性能优化/">前端基础之浏览器性能优化</a>
-    </h1>
-  
+      </div>
+    </span>
+  </div>
+</div>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">性能优化</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">浏览器</a>
-        		</li>
-      		
-		</ul>
-	</div>
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://1016990109.github.io/2018/09/04/前端基础之CSS/" alt="微信分享二维码">
+    </div>
+</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/09/04/前端基础之HTML/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">前端基础之HTML</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS-选择器的优先级"><span class="toc-number">1.</span> <span class="toc-text">CSS 选择器的优先级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重置（resetting）CSS-和-标准化（normalizing）CSS-的区别"><span class="toc-number">2.</span> <span class="toc-text">重置（resetting）CSS 和 标准化（normalizing）CSS 的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Float-定位"><span class="toc-number">3.</span> <span class="toc-text">Float 定位</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#z-index"><span class="toc-number">4.</span> <span class="toc-text">z-index</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#格式化上下文-Block-Formatting-Context"><span class="toc-number">5.</span> <span class="toc-text">格式化上下文(Block Formatting Context)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BFC-特性："><span class="toc-number">5.1.</span> <span class="toc-text">BFC 特性：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#不同浏览器的样式兼容性问题"><span class="toc-number">6.</span> <span class="toc-text">不同浏览器的样式兼容性问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何为功能受限的浏览器提供页面"><span class="toc-number">7.</span> <span class="toc-text">如何为功能受限的浏览器提供页面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用-CSS-隐藏页面元素"><span class="toc-number">8.</span> <span class="toc-text">用 CSS 隐藏页面元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#媒体查询"><span class="toc-number">9.</span> <span class="toc-text">媒体查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解释浏览器如何确定哪些元素与-CSS-选择器匹配"><span class="toc-number">10.</span> <span class="toc-text">解释浏览器如何确定哪些元素与 CSS 选择器匹配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#box-sizing"><span class="toc-number">11.</span> <span class="toc-text">box-sizing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#block、inline-与-inline-block-区别"><span class="toc-number">12.</span> <span class="toc-text">block、inline 与 inline-block 区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#relative、fixed、absolute-和-static"><span class="toc-number">13.</span> <span class="toc-text">relative、fixed、absolute 和 static</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#响应式设计与自适应设计不同"><span class="toc-number">14.</span> <span class="toc-text">响应式设计与自适应设计不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#视网膜分辨率处理"><span class="toc-number">15.</span> <span class="toc-text">视网膜分辨率处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#translate-vs-postion-absolute"><span class="toc-number">16.</span> <span class="toc-text">translate vs postion absolute</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="前端基础之CSS" data-title="前端基础之CSS" data-url="http://1016990109.github.io/2018/09/04/前端基础之CSS/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"hcw13"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -293,9 +510,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
