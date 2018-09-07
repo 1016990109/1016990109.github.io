@@ -8,19 +8,20 @@
   <link rel="dns-prefetch" href="http://1016990109.github.io">
   <title>前端基础之CSS | 七秒悲伤的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="CSS 选择器的优先级内联样式 &amp;gt; ID 选择器 &amp;gt; 类选择器、属性选择器和伪类选择器 &amp;gt; 标签（类型）选择器和伪元素选择器 相同则比较数量每一级的数量总和。">
+  <meta name="description" content="CSS 选择器的优先级内联样式 &amp;gt; ID 选择器 &amp;gt; 类选择器、属性选择器和伪类选择器(:hover,:first-child 之类) &amp;gt; 标签（类型）选择器和伪元素选择器(::after,::first-letter,::selection等等) 相同则比较数量每一级的数量总和。">
+<meta name="keywords" content="前端,CSS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端基础之CSS">
 <meta property="og:url" content="http://1016990109.github.io/2018/09/04/前端基础之CSS/index.html">
 <meta property="og:site_name" content="七秒悲伤的博客">
-<meta property="og:description" content="CSS 选择器的优先级内联样式 &amp;gt; ID 选择器 &amp;gt; 类选择器、属性选择器和伪类选择器 &amp;gt; 标签（类型）选择器和伪元素选择器 相同则比较数量每一级的数量总和。">
+<meta property="og:description" content="CSS 选择器的优先级内联样式 &amp;gt; ID 选择器 &amp;gt; 类选择器、属性选择器和伪类选择器(:hover,:first-child 之类) &amp;gt; 标签（类型）选择器和伪元素选择器(::after,::first-letter,::selection等等) 相同则比较数量每一级的数量总和。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://1016990109.github.io/assets/img/stacked_order.png">
 <meta property="og:image" content="http://1016990109.github.io/assets/img/rwd-vs-adapt-example.gif">
-<meta property="og:updated_time" content="2018-09-05T11:28:55.427Z">
+<meta property="og:updated_time" content="2018-09-06T10:50:33.880Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端基础之CSS">
-<meta name="twitter:description" content="CSS 选择器的优先级内联样式 &amp;gt; ID 选择器 &amp;gt; 类选择器、属性选择器和伪类选择器 &amp;gt; 标签（类型）选择器和伪元素选择器 相同则比较数量每一级的数量总和。">
+<meta name="twitter:description" content="CSS 选择器的优先级内联样式 &amp;gt; ID 选择器 &amp;gt; 类选择器、属性选择器和伪类选择器(:hover,:first-child 之类) &amp;gt; 标签（类型）选择器和伪元素选择器(::after,::first-letter,::selection等等) 相同则比较数量每一级的数量总和。">
 <meta name="twitter:image" content="http://1016990109.github.io/assets/img/stacked_order.png">
   
     <link rel="alternative" href="/atom.xml" title="七秒悲伤的博客" type="application/atom+xml">
@@ -191,7 +192,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="CSS-选择器的优先级"><a href="#CSS-选择器的优先级" class="headerlink" title="CSS 选择器的优先级"></a>CSS 选择器的优先级</h2><p>内联样式 &gt; <code>ID</code> 选择器 &gt; 类选择器、属性选择器和伪类选择器 &gt; 标签（类型）选择器和伪元素选择器</p>
+        <h2 id="CSS-选择器的优先级"><a href="#CSS-选择器的优先级" class="headerlink" title="CSS 选择器的优先级"></a>CSS 选择器的优先级</h2><p>内联样式 &gt; <code>ID</code> 选择器 &gt; 类选择器、属性选择器和伪类选择器(<code>:hover</code>,<code>:first-child</code> 之类) &gt; 标签（类型）选择器和伪元素选择器(<code>::after</code>,<code>::first-letter</code>,<code>::selection</code>等等)</p>
 <p>相同则比较数量每一级的数量总和。</p>
 <a id="more"></a>
 <p>当出现优先级相等的情况时，最晚出现的样式规则会被采纳。</p>
@@ -355,6 +356,21 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -418,6 +434,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/09/07/前端基础之JS原型链/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          前端基础之JS原型链
+        
+      </div>
+    </a>
   
   
     <a href="/2018/09/04/前端基础之HTML/" id="article-nav-older" class="article-nav-link-wrap">
@@ -600,10 +625,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Node</a>
               </li>
              
@@ -612,7 +633,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -620,11 +641,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RPC</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -633,6 +650,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">php</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RPC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -660,11 +685,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -676,11 +697,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">eventloop</a>
+                <a href="javascript:void(0)" class="js-tag color4">原型链</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事件循环</a>
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -692,11 +717,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">性能优化</a>
+                <a href="javascript:void(0)" class="js-tag color5">eventloop</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+                <a href="javascript:void(0)" class="js-tag color5">事件循环</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">性能优化</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -725,6 +754,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">点击劫持</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
             
             <div class="clearfix"></div>

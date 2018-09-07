@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://1016990109.github.io">
   <title>前端基础之JS数组 | 七秒悲伤的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="基本用法 push(val1,val2,...)、pop 操作，增加和删除，后进先出。 unshift(val1,val2,...)、shift() 对应在开头添加元素和删除元素。 splice(start,deleteCount,val1,val2,...) 从开始位置删除一定数量的元素，并从这个位置插入新的元素。 reverse() 反向。 sort([orderfunction]) 排序。">
+  <meta name="description" content="基本用法 push(val1,val2,...)、pop 操作，增加和删除，后进先出。返回数组的长度、弹出的元素。 unshift(val1,val2,...)、shift() 对应在开头添加元素和删除元素。返回数组的长度、弹出的元素。 splice(start,deleteCount,val1,val2,...) 从开始位置删除一定数量的元素，并从这个位置插入新的元素。返回删除的数组。 reve">
 <meta name="keywords" content="前端,js,数组">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端基础之JS数组">
 <meta property="og:url" content="http://1016990109.github.io/2018/07/19/前端基础之JS数组/index.html">
 <meta property="og:site_name" content="七秒悲伤的博客">
-<meta property="og:description" content="基本用法 push(val1,val2,...)、pop 操作，增加和删除，后进先出。 unshift(val1,val2,...)、shift() 对应在开头添加元素和删除元素。 splice(start,deleteCount,val1,val2,...) 从开始位置删除一定数量的元素，并从这个位置插入新的元素。 reverse() 反向。 sort([orderfunction]) 排序。">
+<meta property="og:description" content="基本用法 push(val1,val2,...)、pop 操作，增加和删除，后进先出。返回数组的长度、弹出的元素。 unshift(val1,val2,...)、shift() 对应在开头添加元素和删除元素。返回数组的长度、弹出的元素。 splice(start,deleteCount,val1,val2,...) 从开始位置删除一定数量的元素，并从这个位置插入新的元素。返回删除的数组。 reve">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-04T07:27:08.578Z">
+<meta property="og:updated_time" content="2018-09-06T07:20:41.679Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端基础之JS数组">
-<meta name="twitter:description" content="基本用法 push(val1,val2,...)、pop 操作，增加和删除，后进先出。 unshift(val1,val2,...)、shift() 对应在开头添加元素和删除元素。 splice(start,deleteCount,val1,val2,...) 从开始位置删除一定数量的元素，并从这个位置插入新的元素。 reverse() 反向。 sort([orderfunction]) 排序。">
+<meta name="twitter:description" content="基本用法 push(val1,val2,...)、pop 操作，增加和删除，后进先出。返回数组的长度、弹出的元素。 unshift(val1,val2,...)、shift() 对应在开头添加元素和删除元素。返回数组的长度、弹出的元素。 splice(start,deleteCount,val1,val2,...) 从开始位置删除一定数量的元素，并从这个位置插入新的元素。返回删除的数组。 reve">
   
     <link rel="alternative" href="/atom.xml" title="七秒悲伤的博客" type="application/atom+xml">
   
@@ -190,10 +190,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><ol>
-<li><code>push(val1,val2,...)</code>、<code>pop</code> 操作，增加和删除，后进先出。</li>
-<li><code>unshift(val1,val2,...)</code>、<code>shift()</code> 对应在开头添加元素和删除元素。</li>
-<li><code>splice(start,deleteCount,val1,val2,...)</code> 从开始位置删除一定数量的元素，并从这个位置插入新的元素。</li>
-<li><code>reverse()</code> 反向。</li>
+<li><code>push(val1,val2,...)</code>、<code>pop</code> 操作，增加和删除，后进先出。返回数组的长度、弹出的元素。</li>
+<li><code>unshift(val1,val2,...)</code>、<code>shift()</code> 对应在开头添加元素和删除元素。返回数组的长度、弹出的元素。</li>
+<li><code>splice(start,deleteCount,val1,val2,...)</code> 从开始位置删除一定数量的元素，并从这个位置插入新的元素。返回删除的数组。</li>
+<li><code>reverse()</code> 反向。返回数组本身。</li>
 <li><code>sort([orderfunction])</code> 排序。</li>
 <li><code>slice([start] [,end])</code> 返回子数组，拷贝后的，复制一个数组简单地 <code>slice()</code>。</li>
 <li><code>join(seperator)</code> 返回以 <code>seperator</code> 作为间隔的字符串，默认为 <code>,</code>。</li>
@@ -488,10 +488,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Node</a>
               </li>
              
@@ -500,7 +496,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -508,11 +504,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RPC</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -521,6 +513,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">php</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RPC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -548,11 +548,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -564,11 +560,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">eventloop</a>
+                <a href="javascript:void(0)" class="js-tag color4">原型链</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事件循环</a>
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -580,11 +580,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">性能优化</a>
+                <a href="javascript:void(0)" class="js-tag color5">eventloop</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+                <a href="javascript:void(0)" class="js-tag color5">事件循环</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">性能优化</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -613,6 +617,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">点击劫持</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
             
             <div class="clearfix"></div>
