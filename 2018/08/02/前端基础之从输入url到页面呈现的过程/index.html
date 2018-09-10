@@ -17,7 +17,7 @@
 <meta property="og:description" content="1.用户输入网址 2.浏览器通过 DNS 获取网站的 IP 地址。客户端先检查本地是否有对应的 IP 地址，若找到则返回响应的 IP 地址。若没找到则请求上级 DNS 服务器，直至找到或到根节点。  DNS 查找 IP 地址的顺序: 浏览器缓存、系统缓存、互联网服务提供商（ISP）的 DNS 缓存、递归搜索（从浏览器缓存开始，如果没找到就继续往下一个找）。找到后，浏览器会获得一个 IP 地址。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://1016990109.github.io/assets/img/dns.png">
-<meta property="og:updated_time" content="2018-08-02T15:39:38.250Z">
+<meta property="og:updated_time" content="2018-09-08T09:20:58.894Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端基础之从输入url到页面呈现的过程">
 <meta name="twitter:description" content="1.用户输入网址 2.浏览器通过 DNS 获取网站的 IP 地址。客户端先检查本地是否有对应的 IP 地址，若找到则返回响应的 IP 地址。若没找到则请求上级 DNS 服务器，直至找到或到根节点。  DNS 查找 IP 地址的顺序: 浏览器缓存、系统缓存、互联网服务提供商（ISP）的 DNS 缓存、递归搜索（从浏览器缓存开始，如果没找到就继续往下一个找）。找到后，浏览器会获得一个 IP 地址。">
@@ -199,6 +199,8 @@
 <a id="more"></a>
 <p><code>DNS</code> 递归查询和迭代查询区别：</p>
 <p><img src="/assets/img/dns.png" alt="DNS"></p>
+<p>所谓递归查询就是：如果主机所询问的本地域名服务器不知道被查询的域名的 <code>IP</code> 地址，那么本地域名服务器就以 <code>DNS</code> 客户的身份，向其它根域名服务器继续发出查询请求报文(即替主机继续查询)，而不是让主机自己进行下一步查询。因此，递归查询返回的查询结果或者是所要查询的 <code>IP</code> 地址，或者是报错，表示无法查询到所需的 <code>IP</code> 地址。</p>
+<p>迭代查询的特点：当根域名服务器收到本地域名服务器发出的迭代查询请求报文时，要么给出所要查询的 <code>IP</code> 地址，要么告诉本地服务器：“你下一步应当向哪一个域名服务器进行查询”。然后让本地服务器进行后续的查询。根域名服务器通常是把自己知道的顶级域名服务器的 <code>IP</code> 地址告诉本地域名服务器，让本地域名服务器再向顶级域名服务器查询。顶级域名服务器在收到本地域名服务器的查询请求后，要么给出所要查询的 <code>IP</code> 地址，要么告诉本地服务器下一步应当向哪一个权限域名服务器进行查询。最后，知道了所要解析的 <code>IP</code> 地址或报错，然后把这个结果返回给发起查询的主机。</p>
 <blockquote>
 <p>关于 <code>DNS</code> 的一些知识可以看看阮一峰老师的 <a href="http://www.ruanyifeng.com/blog/2018/05/root-domain.html" target="_blank" rel="noopener">根域名的知识</a> 和 <a href="http://www.ruanyifeng.com/blog/2016/06/dns.html" target="_blank" rel="noopener">DNS 原理入门</a></p>
 </blockquote>
@@ -484,11 +486,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Node</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">优化</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -500,7 +498,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color5">Node</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">优化</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -544,7 +546,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">JS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -556,15 +570,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">eventloop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">事件循环</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">原型链</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -576,15 +590,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">eventloop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事件循环</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">性能优化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -613,10 +623,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">点击劫持</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
             
             <div class="clearfix"></div>
