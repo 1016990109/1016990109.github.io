@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://1016990109.github.io/assets/img/app-build-components.png">
 <meta property="og:image" content="http://1016990109.github.io/assets/img/chrome_priority.png">
 <meta property="og:image" content="http://1016990109.github.io/assets/img/res-prio-timeout.png">
-<meta property="og:updated_time" content="2018-09-04T03:20:59.327Z">
+<meta property="og:updated_time" content="2018-09-17T01:59:15.366Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端基础之浏览器性能优化">
 <meta name="twitter:description" content="渲染性能重绘重排以下三种情况会导致网页重新渲染：  修改 DOM 修改样式表 用户事件（比如鼠标悬停、页面滚动、输入框键入文字、改变窗口大小等等）">
@@ -275,7 +275,7 @@
 </ul>
 <h2 id="图像优化"><a href="#图像优化" class="headerlink" title="图像优化"></a>图像优化</h2><ul>
 <li>消除多余的图像资源</li>
-<li>尽可能利用 <code>CSS3</code> 效果</li>
+<li>尽可能利用 <code>CSS3</code> 效果，因为 <code>CSS3</code> 可能会启动 <code>GPU</code> 加速，这样就在单独的线程中去完成动画了，而不需要在主线程中，参考 <a href="https://developers.google.com/web/fundamentals/design-and-ux/animations/animations-and-performance?hl=zh-cn" target="_blank" rel="noopener">动画与性能</a></li>
 <li>使用网页字体取代在图像中进行文本编码</li>
 <li>使用矢量图(SVG)，还可以同时使用 <code>GZIP</code> 压缩</li>
 <li>将图片格式转为 <code>WebP</code> 来压缩图片(有些浏览器不支持需要注意)</li>
@@ -708,14 +708,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RPC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">源码</a>
               </li>
              
@@ -724,19 +716,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RPC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">HTTP/2</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -744,11 +732,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">基本数据类型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">原型链</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -760,7 +744,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">HTTP/2</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">JS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">内存管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">基本数据类型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">原型链</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -773,14 +777,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">性能优化</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SSR</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">服务端渲染</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -813,6 +809,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">点击劫持</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SSR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">服务端渲染</a>
               </li>
             
             <div class="clearfix"></div>
