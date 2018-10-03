@@ -169,6 +169,92 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-前端基础之HTTP2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/15/前端基础之HTTP2/">前端基础之HTTP/2</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/15/前端基础之HTTP2/" class="archive-article-date">
+  	<time datetime="2018-08-15T11:00:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><code>HTTP/2</code> 可以让我们的应用更快、更简单、更稳定。</p>
+<p><code>HTTP/2</code> 的目的是通过支持完整的请求与响应复用来减少延迟，通过有效压缩 <code>HTTP</code> 标头字段将协议开销降至最低，同时增加对请求优先级和服务器推送的支持。为达成这些目标，<code>HTTP/2</code> 还给我们带来了大量其他协议层面的辅助实现，例如新的流控制、错误处理和升级机制。</p>
+<p>需要注意的是，<code>HTTP/2</code> 仍是对之前 <code>HTTP</code> 标准的扩展，而非替代。<code>HTTP</code> 的应用语义不变，提供的功能不变，<code>HTTP</code> 方法、状态代码、<code>URI</code> 和标头字段等这些核心概念也不变。</p>
+        
+          <a class="article-more-a" href="/2018/08/15/前端基础之HTTP2/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网络</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">HTTP/2</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/15/前端基础之HTTP2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-前端基础之关键路径渲染优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -962,82 +1048,6 @@
 
 
   
-    <article id="post-Node-js-设计模式读书笔记-第四章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/23/Node-js-设计模式读书笔记-第四章/">《Node.js 设计模式》读书笔记 第四章</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/23/Node-js-设计模式读书笔记-第四章/" class="archive-article-date">
-  	<time datetime="2018-06-23T02:05:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Asynchronous-Control-Flow-Patterns-with-ES2015-and-Beyond-使用-ES2015-以上异步控制流模式"><a href="#Asynchronous-Control-Flow-Patterns-with-ES2015-and-Beyond-使用-ES2015-以上异步控制流模式" class="headerlink" title="Asynchronous Control Flow Patterns with ES2015 and Beyond(使用 ES2015 以上异步控制流模式)"></a>Asynchronous Control Flow Patterns with ES2015 and Beyond(使用 ES2015 以上异步控制流模式)</h1><h2 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h2><p><code>Promise</code> 是一种抽象的对象，我们通常允许函数返回一个名为 <code>Promise</code> 的对象，它表示异步操作的最终结果。通常情况下，我们说当异步操作尚未完成时，我们说 <code>Promise</code> 对象处于 <code>pending</code> 状态，当操作成功完成时，我们说 <code>Promise</code> 对象处于 <code>fulfilled</code> 状态，当操作错误终止时，我们说 <code>Promise</code> 对象处于 <code>rejected</code> 状态。一旦 <code>Promise</code> 处于 <code>fulfilled</code> 或 <code>rejected</code>，我们认为当前异步操作结束。</p>
-        
-          <a class="article-more-a" href="/2018/06/23/Node-js-设计模式读书笔记-第四章/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/23/Node-js-设计模式读书笔记-第四章/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1167,11 +1177,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1180,6 +1190,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">RPC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1207,23 +1225,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">JS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1232,10 +1246,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">HTTP/2</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">JS</a>
               </li>
              
               <li class="article-tag-list-item">

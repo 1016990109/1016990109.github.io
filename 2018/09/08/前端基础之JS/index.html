@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="七秒悲伤的博客">
 <meta property="og:description" content="JavaScript 中的 thisJS 中的 this 是一个相对复杂的概念，不是简单几句能解释清楚的。粗略地讲，函数的调用方式决定了 this 的值。this 取值符合以下规则：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-20T13:41:13.544Z">
+<meta property="og:updated_time" content="2018-09-25T07:23:09.148Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端基础之JS">
 <meta name="twitter:description" content="JavaScript 中的 thisJS 中的 this 是一个相对复杂的概念，不是简单几句能解释清楚的。粗略地讲，函数的调用方式决定了 this 的值。this 取值符合以下规则：">
@@ -298,6 +298,17 @@
 <li>没有 <code>prototype</code></li>
 <li>不能作为构造函数</li>
 </ul>
+<h2 id="禁用鼠标点击事件"><a href="#禁用鼠标点击事件" class="headerlink" title="禁用鼠标点击事件"></a>禁用鼠标点击事件</h2><ul>
+<li><code>CSS</code> 方法(<strong>最常用</strong>)<br><code>pointer-events: none</code></li>
+<li><code>HTML</code><br><code>disabled</code> 设置为 <code>true</code>，一般只对按钮有作用。</li>
+<li><code>JS</code><br>取消所有的监听事件，或者在监听事件中判断是否需要禁用点击事件再 <code>event.preventDefault();event.stopPropagation()</code>。</li>
+</ul>
+<h2 id="CommonJS-AMD-CMD-UMD-规范"><a href="#CommonJS-AMD-CMD-UMD-规范" class="headerlink" title="CommonJS AMD CMD UMD 规范"></a>CommonJS AMD CMD UMD 规范</h2><ul>
+<li>CommonJS<br>根据 <code>CommonJS</code> 规范，一个单独的文件就是一个模块。每一个模块都是一个单独的作用域，也就是说，在一个文件定义的变量（还包括函数和类），都是私有的，对其他文件是不可见的。<br><code>CommonJS</code> 是同步的，而 <code>AMD</code> 和 <code>CMD</code> 是异步的。</li>
+<li>AMD(Asynchromous Module Definition)<br><code>AMD</code> 是 <code>RequireJS</code> 在推广过程中对模块定义的规范化产出。<br><code>AMD</code> 异步加载模块。它的模块支持对象、函数、构造器、字符串、<code>JSON</code> 等各种类型的模块。<br>适用 <code>AMD</code> 规范适用 <code>define</code> 方法定义模块。<br><code>AMD</code> 运行时核心思想是「Early Executing」，也就是提前执行依赖。</li>
+<li>CMD(Common Module Definition)<br><code>CMD</code> 是 <code>SeaJS</code> 在推广过程中对模块定义的规范化产出。</li>
+<li>UMD(Universal Module Definition)<br><code>umd</code> 是 <code>AMD</code> 和 <code>CommonJS</code> 的糅合。<br>先判断是否支持 <code>AMD</code>（通过判断 <code>define</code> 是否存在），存在则使用 <code>AMD</code> 方式加载模块。再判断是否支持 <code>Node.js</code> 的模块（<code>exports</code>）是否存在，存在则使用 <code>Node.js</code> 模块模式。如果两个都不存在，那么可能就使用全局变量来定义了(一般根据传入的 <code>root</code>，可能是执行的 <code>this</code>)。</li>
+</ul>
 
       
 
@@ -423,7 +434,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-中的-this"><span class="toc-number">1.</span> <span class="toc-text">JavaScript 中的 this</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IIFE"><span class="toc-number">2.</span> <span class="toc-text">IIFE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null、undefined-和未声明变量"><span class="toc-number">3.</span> <span class="toc-text">null、undefined 和未声明变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#宿主对象（host-objects）和原生对象（native-objects）"><span class="toc-number">4.</span> <span class="toc-text">宿主对象（host objects）和原生对象（native objects）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#判断数据类型"><span class="toc-number">5.</span> <span class="toc-text">判断数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#document-write"><span class="toc-number">6.</span> <span class="toc-text">document.write</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#功能检测（feature-detection）、功能推断（feature-inference）和-UA-字符串"><span class="toc-number">7.</span> <span class="toc-text">功能检测（feature detection）、功能推断（feature inference）和 UA 字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#功能检测"><span class="toc-number">7.1.</span> <span class="toc-text">功能检测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#功能推断"><span class="toc-number">7.2.</span> <span class="toc-text">功能推断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UA-字符串"><span class="toc-number">7.3.</span> <span class="toc-text">UA 字符串</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#变量提升"><span class="toc-number">8.</span> <span class="toc-text">变量提升</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#attribute-和-property"><span class="toc-number">9.</span> <span class="toc-text">attribute 和 property</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#load-事件和-DOMContentLoaded-事件"><span class="toc-number">10.</span> <span class="toc-text">load 事件和 DOMContentLoaded 事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#严格模式"><span class="toc-number">11.</span> <span class="toc-text">严格模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#柯里化-curry"><span class="toc-number">12.</span> <span class="toc-text">柯里化(curry)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#页面的生命周期"><span class="toc-number">13.</span> <span class="toc-text">页面的生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事件委托"><span class="toc-number">14.</span> <span class="toc-text">事件委托</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#箭头函数与普通函数的不同"><span class="toc-number">15.</span> <span class="toc-text">箭头函数与普通函数的不同</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-中的-this"><span class="toc-number">1.</span> <span class="toc-text">JavaScript 中的 this</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IIFE"><span class="toc-number">2.</span> <span class="toc-text">IIFE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null、undefined-和未声明变量"><span class="toc-number">3.</span> <span class="toc-text">null、undefined 和未声明变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#宿主对象（host-objects）和原生对象（native-objects）"><span class="toc-number">4.</span> <span class="toc-text">宿主对象（host objects）和原生对象（native objects）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#判断数据类型"><span class="toc-number">5.</span> <span class="toc-text">判断数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#document-write"><span class="toc-number">6.</span> <span class="toc-text">document.write</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#功能检测（feature-detection）、功能推断（feature-inference）和-UA-字符串"><span class="toc-number">7.</span> <span class="toc-text">功能检测（feature detection）、功能推断（feature inference）和 UA 字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#功能检测"><span class="toc-number">7.1.</span> <span class="toc-text">功能检测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#功能推断"><span class="toc-number">7.2.</span> <span class="toc-text">功能推断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UA-字符串"><span class="toc-number">7.3.</span> <span class="toc-text">UA 字符串</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#变量提升"><span class="toc-number">8.</span> <span class="toc-text">变量提升</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#attribute-和-property"><span class="toc-number">9.</span> <span class="toc-text">attribute 和 property</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#load-事件和-DOMContentLoaded-事件"><span class="toc-number">10.</span> <span class="toc-text">load 事件和 DOMContentLoaded 事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#严格模式"><span class="toc-number">11.</span> <span class="toc-text">严格模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#柯里化-curry"><span class="toc-number">12.</span> <span class="toc-text">柯里化(curry)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#页面的生命周期"><span class="toc-number">13.</span> <span class="toc-text">页面的生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事件委托"><span class="toc-number">14.</span> <span class="toc-text">事件委托</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#箭头函数与普通函数的不同"><span class="toc-number">15.</span> <span class="toc-text">箭头函数与普通函数的不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#禁用鼠标点击事件"><span class="toc-number">16.</span> <span class="toc-text">禁用鼠标点击事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CommonJS-AMD-CMD-UMD-规范"><span class="toc-number">17.</span> <span class="toc-text">CommonJS AMD CMD UMD 规范</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -587,11 +598,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -600,6 +611,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">RPC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -627,23 +646,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">JS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -652,10 +667,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">HTTP/2</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">JS</a>
               </li>
              
               <li class="article-tag-list-item">

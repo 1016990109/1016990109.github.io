@@ -169,6 +169,82 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Node-js-设计模式读书笔记-第四章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/23/Node-js-设计模式读书笔记-第四章/">《Node.js 设计模式》读书笔记 第四章</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/23/Node-js-设计模式读书笔记-第四章/" class="archive-article-date">
+  	<time datetime="2018-06-23T02:05:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Asynchronous-Control-Flow-Patterns-with-ES2015-and-Beyond-使用-ES2015-以上异步控制流模式"><a href="#Asynchronous-Control-Flow-Patterns-with-ES2015-and-Beyond-使用-ES2015-以上异步控制流模式" class="headerlink" title="Asynchronous Control Flow Patterns with ES2015 and Beyond(使用 ES2015 以上异步控制流模式)"></a>Asynchronous Control Flow Patterns with ES2015 and Beyond(使用 ES2015 以上异步控制流模式)</h1><h2 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h2><p><code>Promise</code> 是一种抽象的对象，我们通常允许函数返回一个名为 <code>Promise</code> 的对象，它表示异步操作的最终结果。通常情况下，我们说当异步操作尚未完成时，我们说 <code>Promise</code> 对象处于 <code>pending</code> 状态，当操作成功完成时，我们说 <code>Promise</code> 对象处于 <code>fulfilled</code> 状态，当操作错误终止时，我们说 <code>Promise</code> 对象处于 <code>rejected</code> 状态。一旦 <code>Promise</code> 处于 <code>fulfilled</code> 或 <code>rejected</code>，我们认为当前异步操作结束。</p>
+        
+          <a class="article-more-a" href="/2018/06/23/Node-js-设计模式读书笔记-第四章/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/23/Node-js-设计模式读书笔记-第四章/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-kryo-vs-avro-vs-protobuf-vs-thrift-vs-jce" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -995,82 +1071,6 @@
 
 
   
-    <article id="post-Node-js-设计模式读书笔记-第一章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/11/Node-js-设计模式读书笔记-第一章/">《Node.js 设计模式》读书笔记 第一章</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/11/Node-js-设计模式读书笔记-第一章/" class="archive-article-date">
-  	<time datetime="2018-05-11T12:00:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Welcome-to-the-Node-js-Platform"><a href="#Welcome-to-the-Node-js-Platform" class="headerlink" title="Welcome to the Node.js Platform"></a>Welcome to the Node.js Platform</h1><h2 id="Small-modules-小模块"><a href="#Small-modules-小模块" class="headerlink" title="Small modules(小模块)"></a>Small modules(小模块)</h2><p><code>Node.js</code>使用<code>module</code>(模块)的概念组织代码的结构。<br><code>package</code>可提供复用的模块，有一个 module 作为入口。<br><code>Node.js</code>中，致力于设计小模块，为了代码的简洁，更为了更好地控制作用域。有两个主要原则：</p>
-        
-          <a class="article-more-a" href="/2018/05/11/Node-js-设计模式读书笔记-第一章/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/11/Node-js-设计模式读书笔记-第一章/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -1200,11 +1200,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1213,6 +1213,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">RPC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1240,23 +1248,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">JS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1265,10 +1269,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">HTTP/2</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">JS</a>
               </li>
              
               <li class="article-tag-list-item">

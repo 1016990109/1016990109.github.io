@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://1016990109.github.io/assets/img/stacked_order.png">
 <meta property="og:image" content="http://1016990109.github.io/assets/img/rwd-vs-adapt-example.gif">
 <meta property="og:image" content="http://1016990109.github.io/assets/img/vertical-align.jpg">
-<meta property="og:updated_time" content="2018-09-20T13:44:37.183Z">
+<meta property="og:updated_time" content="2018-09-22T02:10:47.748Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端基础之CSS">
 <meta name="twitter:description" content="CSS 选择器的优先级内联样式 &amp;gt; ID 选择器 &amp;gt; 类选择器、属性选择器和伪类选择器(:hover,:first-child，:after 之类) &amp;gt; 标签（类型）选择器和伪元素选择器(::after,::first-letter,::selection等等)  CSS2 用的是 :after，而 CSS3 用的是 ::after。  相同则比较数量每一级的数量总和。">
@@ -403,6 +403,18 @@
 <li>视窗单位<br><code>CSS</code> 新特性中提供了一种新的单位 <code>vw</code>。了解过这个单位的同学都知道，浏览器 <code>100vw</code> 表示的就是浏览器的视窗宽度(Viewport)。那么只要宽高设置好比例的 <code>vw</code> 就可以了。</li>
 <li><code>grid</code> 布局<br>不常用。</li>
 </ul>
+<h2 id="强制同步布局"><a href="#强制同步布局" class="headerlink" title="强制同步布局"></a>强制同步布局</h2><p>将一帧送到屏幕会采用如下顺序：</p>
+<p><code>JavaScript</code> -&gt; <code>Style</code> -&gt; <code>Layout</code> -&gt; <code>Paint</code> -&gt; <code>Composite</code></p>
+<p>首先 <code>JavaScript</code> 运行，然后计算样式，然后布局。但是，可以使用 <code>JavaScript</code> 强制浏览器提前执行布局。这被称为<strong>强制同步布局</strong>。</p>
+<p>典型的情况就是，在读操作之前进行了写操作：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">logBoxHeight</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  box.classList.add(<span class="string">'super-big'</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Gets the height of the box in pixels</span></span><br><span class="line">  <span class="comment">// and logs it out.</span></span><br><span class="line">  <span class="built_in">console</span>.log(box.offsetHeight)</span><br><span class="line"></span><br><span class="line">  <span class="comment">//这里只要用上一帧的 offsetHeight 就可以了，取完值再对页面进行更新或者所谓的动画</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>为了回答高度问题，浏览器必须先应用样式更改（由于增加了 <code>super-big</code> 类），然后运行布局。这时它才能返回正确的高度。这是不必要的，并且可能是开销很大的工作。</p>
+<p>这里有个强制同步布局的例子：<a href="https://googlesamples.github.io/web-fundamentals/tools/chrome-devtools/rendering-tools/forcedsync.html" target="_blank" rel="noopener">演示</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// animation loop</span></span><br><span class="line"><span class="comment">/* // [START forcedsync] */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">update</span>(<span class="params">timestamp</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> m = <span class="number">0</span>; m &lt; movers.length; m++) &#123;</span><br><span class="line">    movers[m].style.left =</span><br><span class="line">      (<span class="built_in">Math</span>.sin(movers[m].offsetTop + timestamp / <span class="number">1000</span>) + <span class="number">1</span>) * <span class="number">500</span> + <span class="string">'px'</span></span><br><span class="line">    <span class="comment">// movers[m].style.left = ((Math.sin(m + timestamp/1000)+1) * 500) + 'px';</span></span><br><span class="line">  &#125;</span><br><span class="line">  raf = <span class="built_in">window</span>.requestAnimationFrame(update)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的代码中，在 <code>requestAnimationFrame</code> 的回调函数中，每个 <code>mover</code> 都触发了一次强制同步布局，所以本该在一帧内只布局一次，却在上面代码中布局了 <code>movers.length</code> 次，造成了卡顿。</p>
+<blockquote>
+<p>在 <code>Chrome DevTools</code> 中还可以诊断 <strong>强制同步布局</strong>。打开 <code>Performance</code> 面板(老版本是 <code>Timeline</code> 面板)，开始记录，结束之后可以查看 <code>FPS</code> 较低的帧，看问题在哪，可以看到在调用栈中，某个函数耗时较长，而且如果触发了强制同步布局，鼠标移动到上面去会有个 <code>Forced reflow</code> 提示，可能存在性能瓶颈，接在点击该执行函数就可以看到在哪触发的强制同步布局。具体 <code>Chrome DevTools</code> 如何操作查看 <a href="https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/" target="_blank" rel="noopener">Get Started With Analyzing Runtime Performance</a>。</p>
+</blockquote>
 
       
 
@@ -528,7 +540,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS-选择器的优先级"><span class="toc-number">1.</span> <span class="toc-text">CSS 选择器的优先级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重置（resetting）CSS-和-标准化（normalizing）CSS-的区别"><span class="toc-number">2.</span> <span class="toc-text">重置（resetting）CSS 和 标准化（normalizing）CSS 的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Float-定位"><span class="toc-number">3.</span> <span class="toc-text">Float 定位</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#z-index"><span class="toc-number">4.</span> <span class="toc-text">z-index</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#格式化上下文-Block-Formatting-Context"><span class="toc-number">5.</span> <span class="toc-text">格式化上下文(Block Formatting Context)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BFC-特性："><span class="toc-number">5.1.</span> <span class="toc-text">BFC 特性：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#不同浏览器的样式兼容性问题"><span class="toc-number">6.</span> <span class="toc-text">不同浏览器的样式兼容性问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何为功能受限的浏览器提供页面"><span class="toc-number">7.</span> <span class="toc-text">如何为功能受限的浏览器提供页面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用-CSS-隐藏页面元素"><span class="toc-number">8.</span> <span class="toc-text">用 CSS 隐藏页面元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#媒体查询"><span class="toc-number">9.</span> <span class="toc-text">媒体查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解释浏览器如何确定哪些元素与-CSS-选择器匹配"><span class="toc-number">10.</span> <span class="toc-text">解释浏览器如何确定哪些元素与 CSS 选择器匹配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#box-sizing"><span class="toc-number">11.</span> <span class="toc-text">box-sizing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#block、inline-与-inline-block-区别"><span class="toc-number">12.</span> <span class="toc-text">block、inline 与 inline-block 区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#relative、fixed、absolute-和-static"><span class="toc-number">13.</span> <span class="toc-text">relative、fixed、absolute 和 static</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#响应式设计与自适应设计不同"><span class="toc-number">14.</span> <span class="toc-text">响应式设计与自适应设计不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#视网膜分辨率处理"><span class="toc-number">15.</span> <span class="toc-text">视网膜分辨率处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#translate-vs-postion-absolute"><span class="toc-number">16.</span> <span class="toc-text">translate vs postion absolute</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#translate3d-vs-translate"><span class="toc-number">17.</span> <span class="toc-text">translate3d vs translate</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#垂直水平居中"><span class="toc-number">18.</span> <span class="toc-text">垂直水平居中</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#水平居中"><span class="toc-number">18.1.</span> <span class="toc-text">水平居中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#垂直居中"><span class="toc-number">18.2.</span> <span class="toc-text">垂直居中</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#长宽比固定"><span class="toc-number">19.</span> <span class="toc-text">长宽比固定</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS-选择器的优先级"><span class="toc-number">1.</span> <span class="toc-text">CSS 选择器的优先级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重置（resetting）CSS-和-标准化（normalizing）CSS-的区别"><span class="toc-number">2.</span> <span class="toc-text">重置（resetting）CSS 和 标准化（normalizing）CSS 的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Float-定位"><span class="toc-number">3.</span> <span class="toc-text">Float 定位</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#z-index"><span class="toc-number">4.</span> <span class="toc-text">z-index</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#格式化上下文-Block-Formatting-Context"><span class="toc-number">5.</span> <span class="toc-text">格式化上下文(Block Formatting Context)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BFC-特性："><span class="toc-number">5.1.</span> <span class="toc-text">BFC 特性：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#不同浏览器的样式兼容性问题"><span class="toc-number">6.</span> <span class="toc-text">不同浏览器的样式兼容性问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何为功能受限的浏览器提供页面"><span class="toc-number">7.</span> <span class="toc-text">如何为功能受限的浏览器提供页面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用-CSS-隐藏页面元素"><span class="toc-number">8.</span> <span class="toc-text">用 CSS 隐藏页面元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#媒体查询"><span class="toc-number">9.</span> <span class="toc-text">媒体查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解释浏览器如何确定哪些元素与-CSS-选择器匹配"><span class="toc-number">10.</span> <span class="toc-text">解释浏览器如何确定哪些元素与 CSS 选择器匹配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#box-sizing"><span class="toc-number">11.</span> <span class="toc-text">box-sizing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#block、inline-与-inline-block-区别"><span class="toc-number">12.</span> <span class="toc-text">block、inline 与 inline-block 区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#relative、fixed、absolute-和-static"><span class="toc-number">13.</span> <span class="toc-text">relative、fixed、absolute 和 static</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#响应式设计与自适应设计不同"><span class="toc-number">14.</span> <span class="toc-text">响应式设计与自适应设计不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#视网膜分辨率处理"><span class="toc-number">15.</span> <span class="toc-text">视网膜分辨率处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#translate-vs-postion-absolute"><span class="toc-number">16.</span> <span class="toc-text">translate vs postion absolute</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#translate3d-vs-translate"><span class="toc-number">17.</span> <span class="toc-text">translate3d vs translate</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#垂直水平居中"><span class="toc-number">18.</span> <span class="toc-text">垂直水平居中</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#水平居中"><span class="toc-number">18.1.</span> <span class="toc-text">水平居中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#垂直居中"><span class="toc-number">18.2.</span> <span class="toc-text">垂直居中</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#长宽比固定"><span class="toc-number">19.</span> <span class="toc-text">长宽比固定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#强制同步布局"><span class="toc-number">20.</span> <span class="toc-text">强制同步布局</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -692,11 +704,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -705,6 +717,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">RPC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -732,23 +752,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">JS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -757,10 +773,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">HTTP/2</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">JS</a>
               </li>
              
               <li class="article-tag-list-item">

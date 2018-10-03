@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://1016990109.github.io">
-  <title>Tag: 数据库 | 七秒悲伤的博客</title>
+  <title>《Node.js 设计模式》读书笔记 第八章 | 七秒悲伤的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个深藏功与名的软件开发爱好者">
-<meta property="og:type" content="website">
-<meta property="og:title" content="七秒悲伤的博客">
-<meta property="og:url" content="http://1016990109.github.io/tags/数据库/index.html">
+  <meta name="description" content="Universal JavaScript for Web Applications(Web 应用的通用 JavaScript)Sharing code with browser(和浏览器共享代码)Universal Module Definition(UMD)一般来说需要同时满足浏览器和服务端要求，最常用的就是使用 UMD 规范了，umd 是 AMD 和 CommonJS 的糅合。先判断是否支持">
+<meta name="keywords" content="读书笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《Node.js 设计模式》读书笔记 第八章">
+<meta property="og:url" content="http://1016990109.github.io/2018/09/25/Node-js-设计模式读书笔记-第八章/index.html">
 <meta property="og:site_name" content="七秒悲伤的博客">
-<meta property="og:description" content="一个深藏功与名的软件开发爱好者">
+<meta property="og:description" content="Universal JavaScript for Web Applications(Web 应用的通用 JavaScript)Sharing code with browser(和浏览器共享代码)Universal Module Definition(UMD)一般来说需要同时满足浏览器和服务端要求，最常用的就是使用 UMD 规范了，umd 是 AMD 和 CommonJS 的糅合。先判断是否支持">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-03T01:06:18.706Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="七秒悲伤的博客">
-<meta name="twitter:description" content="一个深藏功与名的软件开发爱好者">
+<meta name="twitter:title" content="《Node.js 设计模式》读书笔记 第八章">
+<meta name="twitter:description" content="Universal JavaScript for Web Applications(Web 应用的通用 JavaScript)Sharing code with browser(和浏览器共享代码)Universal Module Definition(UMD)一般来说需要同时满足浏览器和服务端要求，最常用的就是使用 UMD 规范了，umd 是 AMD 和 CommonJS 的糅合。先判断是否支持">
   
     <link rel="alternative" href="/atom.xml" title="七秒悲伤的博客" type="application/atom+xml">
   
@@ -167,71 +169,215 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Node-js-设计模式读书笔记-第八章" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/06/05/关系型数据库存储树形结构/" class="archive-article-date">
-  	<time datetime="2018-06-05T08:05:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-05</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/06/05/关系型数据库存储树形结构/">关系型数据库存储树形结构</a>
+    <h1 class="article-title" itemprop="name">
+      《Node.js 设计模式》读书笔记 第八章
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/09/25/Node-js-设计模式读书笔记-第八章/" class="archive-article-date">
+  	<time datetime="2018-09-25T03:54:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Universal-JavaScript-for-Web-Applications-Web-应用的通用-JavaScript"><a href="#Universal-JavaScript-for-Web-Applications-Web-应用的通用-JavaScript" class="headerlink" title="Universal JavaScript for Web Applications(Web 应用的通用 JavaScript)"></a>Universal JavaScript for Web Applications(Web 应用的通用 JavaScript)</h1><h2 id="Sharing-code-with-browser-和浏览器共享代码"><a href="#Sharing-code-with-browser-和浏览器共享代码" class="headerlink" title="Sharing code with browser(和浏览器共享代码)"></a>Sharing code with browser(和浏览器共享代码)</h2><h3 id="Universal-Module-Definition-UMD"><a href="#Universal-Module-Definition-UMD" class="headerlink" title="Universal Module Definition(UMD)"></a>Universal Module Definition(UMD)</h3><p>一般来说需要同时满足浏览器和服务端要求，最常用的就是使用 <code>UMD</code> 规范了，<code>umd</code> 是 <code>AMD</code> 和 <code>CommonJS</code> 的糅合。先判断是否支持 <code>AMD</code>（通过判断 <code>define</code> 是否存在），存在则使用 <code>AMD</code> 方式加载模块。再判断是否支持 <code>Node.js</code> 的模块（<code>exports</code>）是否存在，存在则使用 <code>Node.js</code> 模块模式。如果两个都不存在，那么可能就使用全局变量来定义了(一般根据传入的 <code>root</code>，可能是执行的 <code>this</code>)。</p>
+<p>给个例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">;(<span class="function"><span class="keyword">function</span>(<span class="params">root, factory</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> define === <span class="string">'function'</span> &amp;&amp; define.amd) &#123;</span><br><span class="line">    define([<span class="string">'mustache'</span>], factory)</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">module</span> === <span class="string">'object'</span> &amp;&amp; <span class="keyword">typeof</span> <span class="built_in">module</span>.exports === <span class="string">'object'</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> mustache = <span class="built_in">require</span>(<span class="string">'mustache'</span>)</span><br><span class="line">    <span class="built_in">module</span>.exports = factory(mustache)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    root.UmdModule = factory(root.Mustache)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)(<span class="keyword">this</span>, <span class="function"><span class="keyword">function</span>(<span class="params">mustache</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> template = <span class="string">'&lt;h1&gt;Hello &lt;i&gt;&#123;&#123;name&#125;&#125;&lt;/i&gt;&lt;/h1&gt;'</span></span><br><span class="line">  mustache.parse(template)</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    sayHello: <span class="function"><span class="keyword">function</span>(<span class="params">toWhom</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> mustache.render(template, &#123; <span class="attr">name</span>: toWhom &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="ES2015-Modules"><a href="#ES2015-Modules" class="headerlink" title="ES2015 Modules"></a>ES2015 Modules</h3><p><code>ES2015</code> 模块充分利用了 <code>AMD</code> 和 <code>CommonJS</code> 的优点：</p>
+<ul>
+<li>像 <code>CommonJS</code> 一样，<code>ES2015</code> 模块提供了简洁的语法，单独使用 <code>export</code> 导出模块而不用 <code>module.export = ...</code>，并且支持循环依赖。</li>
+<li>像 <code>AMD</code> 一样，<code>ES2015</code> 模块直接就支持异步模块加载和可配置模块加载。</li>
+</ul>
+<h2 id="Introducing-Webpack-Webpack-介绍"><a href="#Introducing-Webpack-Webpack-介绍" class="headerlink" title="Introducing Webpack(Webpack 介绍)"></a>Introducing Webpack(Webpack 介绍)</h2><p><code>Webpack</code> 帮助我们将用 <code>Node.js</code> 模块规范些的代码编译成能在浏览器上运行的代码，解决了 <code>require</code> 在浏览器中的问题(浏览器是没有 <code>require</code> 函数的)。</p>
+<p>上面的 <code>UMD</code> 代码变得更简洁：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mustache = <span class="built_in">require</span>(<span class="string">'mustache'</span>)</span><br><span class="line"><span class="keyword">var</span> template = <span class="string">'&lt;h1&gt;Hello &lt;i&gt;&#123;&#123;name&#125;&#125;&lt;/i&gt;&lt;/h1&gt;'</span></span><br><span class="line">mustache.parse(template)</span><br><span class="line"><span class="built_in">module</span>.exports.sayHello = <span class="function"><span class="keyword">function</span>(<span class="params">toWhom</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> mustache.render(template, &#123; <span class="attr">name</span>: toWhom &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ol>
+<li>自动提供 <code>Node.js</code> 核心模块的浏览器兼容，如 <code>http</code>、<code>assert</code>、<code>events</code> 等等。<code>fs</code> 模块是不支持的。</li>
+<li>如果不自动支持，可以手动引入兼容包，也就是 <code>polyfill</code> 这类的。</li>
+<li>能从不同模块生成 <code>bundles</code>。</li>
+<li>对源文件可做额外的操作，利用 <code>loaders</code> 和 <code>plugins</code> 来完成。</li>
+<li>可以非常容易地通过任务执行管理器(例如 <code>Gulp</code> 或 <code>Grunt</code>)来执行 <code>Webpack</code>。</li>
+<li>可以管理除 <code>JS</code> 文件外的文件预处理，如样式表文件、图片、字体、模板等等。</li>
+<li>配置 <code>Webpack</code> 来分离依赖，组织代码为多个 <code>chunk</code>，做到动态加载，等需要的时候再加载。</li>
+</ol>
+<h3 id="Using-ES2015-with-Webpack-在-Webpack-中使用-ES2015"><a href="#Using-ES2015-with-Webpack-在-Webpack-中使用-ES2015" class="headerlink" title="Using ES2015 with Webpack(在 Webpack 中使用 ES2015)"></a>Using ES2015 with Webpack(在 Webpack 中使用 ES2015)</h3><p>前面有说到利用 <code>loaders</code> 和 <code>plugins</code> 来做额外的做操作，这里就利用 <code>babel-loader</code> 来将 <code>ES6</code> 的语法转为 <code>ES5</code>，只需要在 <code>webpack.config.js</code> 中配置：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: path.join(__dirname, <span class="string">'src'</span>, <span class="string">'main.js'</span>),</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.join(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">    filename: <span class="string">'bundle.js'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    loaders: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: path.join(__dirname, <span class="string">'src'</span>),</span><br><span class="line">        loader: <span class="string">'babel-loader'</span>,</span><br><span class="line">        query: &#123;</span><br><span class="line">          presets: [<span class="string">'es2015'</span>]</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Fundamentals-of-cross-platform-development-跨平台开发基础"><a href="#Fundamentals-of-cross-platform-development-跨平台开发基础" class="headerlink" title="Fundamentals of cross-platform development(跨平台开发基础)"></a>Fundamentals of cross-platform development(跨平台开发基础)</h2><p>为不同平台开发最主要的一个问题就是如何共享一个组件的公共部分(除去平台特定的部分)。</p>
+<h3 id="Runtime-code-branching-运行时代码分支"><a href="#Runtime-code-branching-运行时代码分支" class="headerlink" title="Runtime code branching(运行时代码分支)"></a>Runtime code branching(运行时代码分支)</h3><p>当需要对平台定制化代码时，很容易就想到要根据当前的环境来加载不同的模块：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">'undefined'</span> &amp;&amp; <span class="built_in">window</span>.document) &#123;</span><br><span class="line">  <span class="built_in">require</span>(<span class="string">'clientModule'</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">require</span>(<span class="string">'serverModule'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是这有个问题就是，所有的模块都会被打包进去，会导致最终代码的大小太大。</p>
+<h3 id="Build-time-code-branching-编译时代码分支"><a href="#Build-time-code-branching-编译时代码分支" class="headerlink" title="Build-time code branching(编译时代码分支)"></a>Build-time code branching(编译时代码分支)</h3><p>使用 <code>Webpack</code> 可以在编译时就将代码进行分割，只讲需要用的代码打包进最终包。</p>
+<p>为了完成编译时代码分支，我们使用了两个内置的插件 <code>DefinePlugin</code> 和 <code>UglifyJsPlugin</code> 连接的管道。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//main.js</span></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> __BROWSER__ !== <span class="string">'undefined'</span>) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Hey browser!'</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Hey Node.js!'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//webpack.config.js</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> definePlugin = <span class="keyword">new</span> webpack.DefinePlugin(&#123;</span><br><span class="line">  <span class="string">"__BROWSER__"</span>: <span class="literal">true</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> uglifyJsPlugin = <span class="keyword">new</span> webpack.UglifyJsPlugin(&#123;</span><br><span class="line">  beautify: <span class="literal">true</span>,</span><br><span class="line">  dead_code: <span class="literal">true</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: path.join(__dirname, <span class="string">'src'</span>, <span class="string">'main.js'</span>),</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.join(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">    filename: <span class="string">'bundle.js'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [definePlugin, uglifyJsPlugin]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>DefinePlugin</code> 用来定义一个在源代码中能访问的一个全局变量，<code>UglifyJsPlugin</code> 用来减少最终生成的代码体积(因为去除了<strong>无用代码</strong>，这是在运行时代码分支里存在的问题，当然同时会去除掉一些空格之类的空白字符以及替换变量名等等)。</p>
+<blockquote>
+<p>需要注意的是，<code>DefinePlugin</code> 其实是在编译的时候找到源码中所有的 <code>__BROWSER__</code> 变量，然后将其替换为 <code>true</code>，和普通地声明一个全局变量不同。</p>
+</blockquote>
+<h3 id="Module-swapping-模块交换"><a href="#Module-swapping-模块交换" class="headerlink" title="Module swapping(模块交换)"></a>Module swapping(模块交换)</h3><p>有点时候我们会已知某些模块是不需要的，需要用其他模块来代替，这个时候再构建过程中去替换。</p>
+<p><code>Webpack</code> 使用 <code>NormalModuleReplacementPlugin</code> 来完成这件事，匹配对应的正则表达式，然后用定义的模块替换掉匹配的模块。</p>
+<p>这样有时候就很容易地将 <code>Node.js</code> 环境下运行的代码转换成浏览器运行的代码。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/学习//" class="article-tag-list-link color3">学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
+      
 
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://1016990109.github.io/2018/09/25/Node-js-设计模式读书笔记-第八章/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/09/13/前端基础之JS内存管理/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">前端基础之JS内存管理</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Universal-JavaScript-for-Web-Applications-Web-应用的通用-JavaScript"><span class="toc-number">1.</span> <span class="toc-text">Universal JavaScript for Web Applications(Web 应用的通用 JavaScript)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Sharing-code-with-browser-和浏览器共享代码"><span class="toc-number">1.1.</span> <span class="toc-text">Sharing code with browser(和浏览器共享代码)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Universal-Module-Definition-UMD"><span class="toc-number">1.1.1.</span> <span class="toc-text">Universal Module Definition(UMD)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ES2015-Modules"><span class="toc-number">1.1.2.</span> <span class="toc-text">ES2015 Modules</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Introducing-Webpack-Webpack-介绍"><span class="toc-number">1.2.</span> <span class="toc-text">Introducing Webpack(Webpack 介绍)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#优点"><span class="toc-number">1.2.1.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Using-ES2015-with-Webpack-在-Webpack-中使用-ES2015"><span class="toc-number">1.2.2.</span> <span class="toc-text">Using ES2015 with Webpack(在 Webpack 中使用 ES2015)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fundamentals-of-cross-platform-development-跨平台开发基础"><span class="toc-number">1.3.</span> <span class="toc-text">Fundamentals of cross-platform development(跨平台开发基础)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Runtime-code-branching-运行时代码分支"><span class="toc-number">1.3.1.</span> <span class="toc-text">Runtime code branching(运行时代码分支)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Build-time-code-branching-编译时代码分支"><span class="toc-number">1.3.2.</span> <span class="toc-text">Build-time code branching(编译时代码分支)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Module-swapping-模块交换"><span class="toc-number">1.3.3.</span> <span class="toc-text">Module swapping(模块交换)</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Node-js-设计模式读书笔记-第八章" data-title="《Node.js 设计模式》读书笔记 第八章" data-url="http://1016990109.github.io/2018/09/25/Node-js-设计模式读书笔记-第八章/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"hcw13"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -254,9 +400,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
