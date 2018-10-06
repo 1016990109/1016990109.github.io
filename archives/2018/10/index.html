@@ -6,20 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://1016990109.github.io">
-  <title>Python 处理excel文件 | 七秒悲伤的博客</title>
+  <title>Archives: 2018/10 | 七秒悲伤的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="最近需要用到Python去处理excel，目标是根据用户输入的信息，先显示每列的列名以及这一列示例行（取前两行信息），然后根据输入的列号删除对应的列。 网上搜索了下主要有几种方案： 1. 使用xlrd、xlwt、xlutils组合这种方案比较常见，而且读取和写入速度较快，但是只能操作2003版本之前的xls文件，处理不了xlsx，所以想要处理2003版本之后的请绕道。  注意！xlutils复制的">
-<meta name="keywords" content="python">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Python 处理excel文件">
-<meta property="og:url" content="http://1016990109.github.io/2018/05/09/Python-处理excel文件/index.html">
+  <meta name="description" content="一个深藏功与名的软件开发爱好者">
+<meta property="og:type" content="website">
+<meta property="og:title" content="七秒悲伤的博客">
+<meta property="og:url" content="http://1016990109.github.io/archives/2018/10/index.html">
 <meta property="og:site_name" content="七秒悲伤的博客">
-<meta property="og:description" content="最近需要用到Python去处理excel，目标是根据用户输入的信息，先显示每列的列名以及这一列示例行（取前两行信息），然后根据输入的列号删除对应的列。 网上搜索了下主要有几种方案： 1. 使用xlrd、xlwt、xlutils组合这种方案比较常见，而且读取和写入速度较快，但是只能操作2003版本之前的xls文件，处理不了xlsx，所以想要处理2003版本之后的请绕道。  注意！xlutils复制的">
+<meta property="og:description" content="一个深藏功与名的软件开发爱好者">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-10T09:01:45.774Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python 处理excel文件">
-<meta name="twitter:description" content="最近需要用到Python去处理excel，目标是根据用户输入的信息，先显示每列的列名以及这一列示例行（取前两行信息），然后根据输入的列号删除对应的列。 网上搜索了下主要有几种方案： 1. 使用xlrd、xlwt、xlutils组合这种方案比较常见，而且读取和写入速度较快，但是只能操作2003版本之前的xls文件，处理不了xlsx，所以想要处理2003版本之后的请绕道。  注意！xlutils复制的">
+<meta name="twitter:title" content="七秒悲伤的博客">
+<meta name="twitter:description" content="一个深藏功与名的软件开发爱好者">
   
     <link rel="alternative" href="/atom.xml" title="七秒悲伤的博客" type="application/atom+xml">
   
@@ -169,201 +167,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Python-处理excel文件" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      Python 处理excel文件
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/10/03/Node-js-设计模式读书笔记-第九章/" class="archive-article-date">
+  	<time datetime="2018-10-03T01:07:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-03</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/10/03/Node-js-设计模式读书笔记-第九章/">《Node.js 设计模式》读书笔记 第九章</a>
     </h1>
   
 
-        
-        <a href="/2018/05/09/Python-处理excel文件/" class="archive-article-date">
-  	<time datetime="2018-05-09T14:42:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近需要用到Python去处理excel，目标是根据用户输入的信息，先显示每列的列名以及这一列示例行（取前两行信息），然后根据输入的列号删除对应的列。</p>
-<p>网上搜索了下主要有几种方案：</p>
-<h3 id="1-使用xlrd、xlwt、xlutils组合"><a href="#1-使用xlrd、xlwt、xlutils组合" class="headerlink" title="1. 使用xlrd、xlwt、xlutils组合"></a>1. 使用xlrd、xlwt、xlutils组合</h3><p>这种方案比较常见，而且读取和写入速度较快，但是只能操作2003版本之前的xls文件，处理不了xlsx，所以想要处理2003版本之后的请绕道。</p>
-<blockquote>
-<p>注意！<br>xlutils复制的excel格式上会存在一些问题，我在使用的时候就因为这个原因而弃用了，灰底的表格会变成深蓝色底的，难以接受。 </p>
-</blockquote>
-<a id="more"></a>
-<p>xlrd用来读取excel内容，xlwt写入excel内容，xlutils封装了一些常用的操作excel的函数供用户使用，一些使用如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#打开excel文件</span></span><br><span class="line">workbook = xlrd.open_workbook(<span class="string">'myexcel.xls'</span>)</span><br><span class="line"><span class="comment">#获取表单</span></span><br><span class="line">worksheet = workbook.sheet_by_index(<span class="number">0</span>)</span><br><span class="line"><span class="comment">#读取数据</span></span><br><span class="line">data = worksheet.cell_value(<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line"><span class="comment">##另一种获取数据，但这种是包含数据类型的，需要内容可通过value获取</span></span><br><span class="line">data2 = worksheet.cell(<span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line"><span class="comment">#----xlwt库</span></span><br><span class="line"><span class="comment">#新建excel</span></span><br><span class="line">wb = xlwt.Workbook()</span><br><span class="line"><span class="comment">#添加工作薄</span></span><br><span class="line">sh = wb.add_sheet(<span class="string">'Sheet1'</span>)</span><br><span class="line"><span class="comment">#写入数据</span></span><br><span class="line">sh.write(<span class="number">0</span>,<span class="number">0</span>,<span class="string">'data'</span>)</span><br><span class="line"><span class="comment">#保存文件</span></span><br><span class="line">wb.save(<span class="string">'myexcel.xls'</span>)</span><br><span class="line"><span class="comment">#----xlutils库</span></span><br><span class="line"><span class="comment">#打开excel文件</span></span><br><span class="line">book = xlrd.open_workbook(<span class="string">'myexcel.xls'</span>)</span><br><span class="line"><span class="comment">#复制一份</span></span><br><span class="line">new_book = xlutils.copy(book)</span><br><span class="line"><span class="comment">#拿到工作薄</span></span><br><span class="line">worksheet = new_book.getsheet(<span class="number">0</span>)</span><br><span class="line"><span class="comment">#写入数据</span></span><br><span class="line">worksheet.write(<span class="number">0</span>,<span class="number">0</span>,<span class="string">'new data'</span>)</span><br><span class="line"><span class="comment">#保存</span></span><br><span class="line">new_book.save()</span><br></pre></td></tr></table></figure>
-<h3 id="2-使用openpyxl"><a href="#2-使用openpyxl" class="headerlink" title="2. 使用openpyxl"></a>2. 使用openpyxl</h3><p>与xlrd、xlwt、xlutils组合不同，openpyxl只支持excel 2003之后的也就是xlsx文件，示例如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> openpyxl</span><br><span class="line"><span class="comment"># 新建文件</span></span><br><span class="line">workbook = openpyxl.Workbook() </span><br><span class="line"><span class="comment"># 写入文件</span></span><br><span class="line">sheet = workbook.activesheet[<span class="string">'A1'</span>]=<span class="string">'data'</span></span><br><span class="line"><span class="comment"># 保存文件 </span></span><br><span class="line">workbook.save(<span class="string">'test.xlsx'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#或者</span></span><br><span class="line"><span class="comment">#打开文件</span></span><br><span class="line">wb = openpyxl.load_workbook(<span class="string">'test.xlsx'</span>)</span><br><span class="line"><span class="comment">#读取数据</span></span><br><span class="line">ws = wb.active</span><br><span class="line">cols = ws.columns</span><br><span class="line">cols[<span class="number">0</span>][<span class="number">1</span>].value = <span class="string">'data'</span></span><br></pre></td></tr></table></figure>
-<h3 id="3-使用win32com操作系统的Excel程序"><a href="#3-使用win32com操作系统的Excel程序" class="headerlink" title="3. 使用win32com操作系统的Excel程序"></a>3. 使用win32com操作系统的Excel程序</h3><p>这种方式约束较多，要求Windows + Microsoft Excel，是使用win32com库来操作Excel程序来完成对excel文件的操作，官方的API特别的复杂，要找到自己需要的API还是要费一番功夫的，但是相应的能做的事也就多了，你能在Excel程序中做的事，几乎使用win32com都能做，具体可用的可查看官方的<a href="https://documentation.devexpress.com/OfficeFileAPI/12078/Spreadsheet-Document-API/Examples/Worksheets" target="_blank" rel="noopener">文档</a>，几乎和vb程序差不多，不用看c++的。<br>举一些我在项目中用到的例子：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#打开应用</span></span><br><span class="line">xlApp = win32com.client.Dispatch(<span class="string">'Excel.Application'</span>)</span><br><span class="line"><span class="comment">#打开表格</span></span><br><span class="line">xlBook = xlApp.Workbook.Open(<span class="string">'test.xls'</span>)</span><br><span class="line"><span class="comment">#保存文件</span></span><br><span class="line">xlBook.Save()</span><br><span class="line"><span class="comment">#另存为</span></span><br><span class="line">xlBook.SaveAs(<span class="string">'new.xls'</span>)</span><br><span class="line"><span class="comment">#关闭文件</span></span><br><span class="line">xlBook.Close(SaveChanges=<span class="number">0</span>)</span><br><span class="line"><span class="comment">#获得sheet，传入sheet名字</span></span><br><span class="line">sht = xlBook.Worksheets(<span class="string">'Sheet1'</span>)</span><br><span class="line"><span class="comment">#获得sheet2，传入index</span></span><br><span class="line">sht = xlBook.worksheets[index]</span><br><span class="line"><span class="comment">#获得单元格内容</span></span><br><span class="line">data =  sht.Cells(row, col).Value</span><br><span class="line"><span class="comment">#设置单元格内容</span></span><br><span class="line">sht.Cells(row, col).Value = <span class="string">'New Value'</span></span><br><span class="line"><span class="comment">#获得一块</span></span><br><span class="line">myRange = sht.Range(sht.Cells(row1, col1), sht.Cells(row2, col2)).Value</span><br><span class="line"><span class="comment">#选择sheet</span></span><br><span class="line">sht.Activate</span><br><span class="line"><span class="comment">#获得一列</span></span><br><span class="line">sht.Columns(index)</span><br><span class="line"><span class="comment">#删除一列</span></span><br><span class="line">sht.Columns(<span class="number">1</span>).Delete()</span><br></pre></td></tr></table></figure>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上就是3种常用操作excel的python库，读者可根据自己的情况选择合适的库。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://1016990109.github.io/2018/05/09/Python-处理excel文件/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2018/05/11/Node-js-设计模式读书笔记-第一章/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          《Node.js 设计模式》读书笔记 第一章
-        
-      </div>
-    </a>
   
   
-    <a href="/2018/05/06/Vue-过渡-动画/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Vue 过渡&amp;动画</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-使用xlrd、xlwt、xlutils组合"><span class="toc-number">1.</span> <span class="toc-text">1. 使用xlrd、xlwt、xlutils组合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-使用openpyxl"><span class="toc-number">2.</span> <span class="toc-text">2. 使用openpyxl</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-使用win32com操作系统的Excel程序"><span class="toc-number">3.</span> <span class="toc-text">3. 使用win32com操作系统的Excel程序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number"></span> <span class="toc-text">总结</span></a>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  <div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Python-处理excel文件" data-title="Python 处理excel文件" data-url="http://1016990109.github.io/2018/05/09/Python-处理excel文件/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"hcw13"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -386,8 +243,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
