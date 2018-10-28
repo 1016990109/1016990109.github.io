@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://1016990109.github.io/assets/img/app-build-components.png">
 <meta property="og:image" content="http://1016990109.github.io/assets/img/chrome_priority.png">
 <meta property="og:image" content="http://1016990109.github.io/assets/img/res-prio-timeout.png">
-<meta property="og:updated_time" content="2018-09-17T01:59:15.366Z">
+<meta property="og:updated_time" content="2018-10-12T01:15:18.695Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端基础之浏览器性能优化">
 <meta name="twitter:description" content="渲染性能重绘重排以下三种情况会导致网页重新渲染：  修改 DOM 修改样式表 用户事件（比如鼠标悬停、页面滚动、输入框键入文字、改变窗口大小等等）">
@@ -310,7 +310,7 @@
 <h2 id="离线"><a href="#离线" class="headerlink" title="离线"></a>离线</h2><p>一些需要离线的资源(下次也能用上，如购物车)也可以考虑放到本地存储里，如 <code>localStorage</code>、<code>sessionStorage</code> 等等。</p>
 <p>离线的图片可以使用 <code>Cache API</code> 来完成，详情查看 <a href="https://developers.google.cn/web/fundamentals/instant-and-offline/web-storage/cache-api?hl=zh-cn" target="_blank" rel="noopener">Using the Cache API</a>。</p>
 <p>当数据量较大的时候，就可能用到 <code>IndexedDB</code> 来存储了。注意使用的时候需要注意并不是所有的类型都能写到 <code>IndexedDB</code> 中的，<code>IOS</code> 上的 <code>Safari</code> 是不能存储 <code>Blob</code> 类型的数据的，但是 <code>ArrayBuffer</code> 类型就是比较通用的了。写入可能失败，开发者需要意识到这一点，添加错误的监听函数。</p>
-<h2 id="使用-CDN-加速"><a href="#使用-CDN-加速" class="headerlink" title="使用 CDN 加速"></a>使用 CDN 加速</h2><p>todo</p>
+<h2 id="使用-CDN-加速"><a href="#使用-CDN-加速" class="headerlink" title="使用 CDN 加速"></a>使用 CDN 加速</h2><p>一般网站还会使用 <code>CDN</code> 来加速，使用离用户最近的节点给用户提供资源。详情查看 <a href="https://www.cnblogs.com/losbyday/p/5843960.html" target="_blank" rel="noopener">CDN 技术详解</a>。</p>
 <h2 id="使用-HTTP-缓存"><a href="#使用-HTTP-缓存" class="headerlink" title="使用 HTTP 缓存"></a>使用 HTTP 缓存</h2><p>详情查看另一篇博客 <a href="/2018/08/09/前端基础之网络/#强缓存与协商缓存">前端基础之网络–强缓存与协商缓存</a>。</p>
 <h2 id="关键路径渲染优化"><a href="#关键路径渲染优化" class="headerlink" title="关键路径渲染优化"></a>关键路径渲染优化</h2><p>详情查看另一篇博客 <a href="/2018/08/09/前端基础之关键路径渲染优化/index.html">前端基础之关键路径渲染优化</a>。</p>
 <h2 id="PRPL-模式"><a href="#PRPL-模式" class="headerlink" title="PRPL 模式"></a>PRPL 模式</h2><p><code>PRPL</code> 是一种用于结构化和提供 <code>Progressive Web App</code> (<code>PWA</code>) 的模式，该模式强调应用交付和启动的性能。 它代表：</p>
@@ -648,15 +648,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Shell</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -676,11 +676,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -724,15 +724,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -744,6 +736,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">JS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">eventloop</a>
               </li>
              
@@ -752,7 +756,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">JS</a>
+                <a href="javascript:void(0)" class="js-tag color4">原型链</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">基本数据类型</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -768,27 +776,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">原型链</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">基本数据类型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">性能优化</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SSR</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">服务端渲染</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -817,6 +805,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">点击劫持</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SSR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">服务端渲染</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
             
             <div class="clearfix"></div>
