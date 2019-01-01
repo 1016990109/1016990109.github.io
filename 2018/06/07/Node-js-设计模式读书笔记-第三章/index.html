@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="七秒悲伤的博客">
 <meta property="og:description" content="Asynchorous Control Flow Patterns with Callbacks(使用回调的异步控制流模式)异步的代码使得难以预测语句的执行顺序，所以在一些场景(比如遍历一些文件，执行一系列任务等等)下，这就要求开发者去使用一些方法或技术来防止编写出低效和难以阅读的代码。 The difficulties of asynchonous programming(异步编程的困难) KI">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-11T12:04:13.032Z">
+<meta property="og:updated_time" content="2018-11-30T08:52:27.119Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Node.js 设计模式》读书笔记 第三章">
 <meta name="twitter:description" content="Asynchorous Control Flow Patterns with Callbacks(使用回调的异步控制流模式)异步的代码使得难以预测语句的执行顺序，所以在一些场景(比如遍历一些文件，执行一系列任务等等)下，这就要求开发者去使用一些方法或技术来防止编写出低效和难以阅读的代码。 The difficulties of asynchonous programming(异步编程的困难) KI">
@@ -275,7 +275,7 @@
 <h4 id="Fixing-race-conditions-with-concurrent-tasks-修复并发任务中竞争条件"><a href="#Fixing-race-conditions-with-concurrent-tasks-修复并发任务中竞争条件" class="headerlink" title="Fixing race conditions with concurrent tasks(修复并发任务中竞争条件)"></a>Fixing race conditions with concurrent tasks(修复并发任务中竞争条件)</h4><p>在传统的多线程中处理竞争条件通常是锁、互斥条件、信号量和监视器，这些是多线程语言并行化的最复杂的方面之一，对性能也有很大的影响。但是 <code>Node.js</code> 就不同了，它本身就是运行在一个单线程上，这就变得简单多了。但是这不意味着就没有竞争条件了，相反还很普遍。就拿上面的爬虫例子来说，如果有两个爬虫同时运行，都在操作同一个 <code>URL</code> 时，<code>fs.readFile</code> 都读取不到文件，那么两个爬虫就同时去下载这个链接，这就导致了会同时写入内容到同一个文件中。修复办法很简单，在两个 <code>spider</code> 外面定义一个共享的变量记录爬取的链接，如果爬取过则另外一个 <code>spider</code> 就不再爬取：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> spidering = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">   <span class="function"><span class="keyword">function</span> <span class="title">spider</span>(<span class="params">url, nesting, callback</span>) </span>&#123;</span><br><span class="line">     <span class="keyword">if</span>(spidering.has(url)) &#123;</span><br><span class="line">       <span class="keyword">return</span> process.nextTick(callback);</span><br><span class="line">     &#125;</span><br><span class="line">     spidering.set(url, <span class="literal">true</span>);</span><br><span class="line"><span class="comment">//...</span></span><br></pre></td></tr></table></figure>
 <h3 id="Limited-parallel-execution-有限制的并行执行"><a href="#Limited-parallel-execution-有限制的并行执行" class="headerlink" title="Limited parallel execution(有限制的并行执行)"></a>Limited parallel execution(有限制的并行执行)</h3><p>不对并行任务做控制的话很容易导致昂贵的开销，例如同时读取很多文件会导致系统资源不足，在 web 应用中还可能导致 <code>DoS</code> 攻击，所以限制同一时间任务的执行数是非常重要的。</p>
-<h4 id="Limiting-the-concurrency-限制并行数"><a href="#Limiting-the-concurrency-限制并行数" class="headerlink" title="Limiting the concurrency(限制并行数)"></a>Limiting the concurrency(限制并行数)</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> tasks = ...</span><br><span class="line"><span class="keyword">let</span> concurrency = <span class="number">2</span>, running = <span class="number">0</span>, completed = <span class="number">0</span>, index = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">next</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">while</span>(running &lt; concurrency &amp;&amp; index &lt; tasks.length) &#123;</span><br><span class="line">    task = tasks[index++];</span><br><span class="line">    task(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span>(completed === tasks.length) &#123;</span><br><span class="line">        <span class="keyword">return</span> finish();</span><br><span class="line">      &#125;</span><br><span class="line">      completed++, running--;</span><br><span class="line">      next();</span><br><span class="line">&#125;);</span><br><span class="line">running++; &#125;</span><br><span class="line">&#125; next();</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">finish</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//all tasks finished</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Limiting-the-concurrency-限制并行数"><a href="#Limiting-the-concurrency-限制并行数" class="headerlink" title="Limiting the concurrency(限制并行数)"></a>Limiting the concurrency(限制并行数)</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> tasks = []</span><br><span class="line"><span class="keyword">let</span> concurrency = <span class="number">2</span>,</span><br><span class="line">  running = <span class="number">0</span>,</span><br><span class="line">  completed = <span class="number">0</span>,</span><br><span class="line">  index = <span class="number">0</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">next</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">while</span> (running &lt; concurrency &amp;&amp; index &lt; tasks.length) &#123;</span><br><span class="line">    task = tasks[index++]</span><br><span class="line">    task(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (completed === tasks.length) &#123;</span><br><span class="line">        <span class="keyword">return</span> finish()</span><br><span class="line">      &#125;</span><br><span class="line">      completed++, running--</span><br><span class="line">      next()</span><br><span class="line">    &#125;)</span><br><span class="line">    running++</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">next()</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">finish</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//all tasks finished</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>上面所展示的模式就可以限制同时最大任务数为 2，启动时同时开始最大任务数的任务，之后每当有一个任务结束时，就会从剩下的任务中挑出一个任务开始执行，保持在限制范围内的最多任务同时进行。</p>
 <h4 id="Globally-limiting-the-concurrency-全局地限制并发数"><a href="#Globally-limiting-the-concurrency-全局地限制并发数" class="headerlink" title="Globally limiting the concurrency(全局地限制并发数)"></a>Globally limiting the concurrency(全局地限制并发数)</h4><blockquote>
 <p><code>Node.js</code> 0.11 版本以前是默认限制同一个主机名下最大 <code>HTTP</code> 连接数为 5 的，这个可以满足我们的需要。但是在之后的版本就取消了这个默认限制了。</p>
@@ -473,7 +473,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 七秒悲伤
+    		&copy; 2019 七秒悲伤
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -636,14 +636,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTML</a>
               </li>
              
@@ -653,6 +645,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">HTTP/2</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -668,15 +668,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">内存管理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">原型链</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">基本数据类型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">内存管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">性能优化</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -688,7 +692,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">性能优化</a>
+                <a href="javascript:void(0)" class="js-tag color4">SSR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">服务端渲染</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -721,14 +729,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">点击劫持</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SSR</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">服务端渲染</a>
               </li>
             
             <div class="clearfix"></div>
