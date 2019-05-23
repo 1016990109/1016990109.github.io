@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://1016990109.github.io/"/>
-  <updated>2019-05-22T12:52:13.973Z</updated>
+  <updated>2019-05-23T03:24:29.448Z</updated>
   <id>http://1016990109.github.io/</id>
   
   <author>
@@ -17,11 +17,31 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>服务端渲染 VS 预渲染</title>
+    <link href="http://1016990109.github.io/2019/05/22/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93VS%E9%A2%84%E6%B8%B2%E6%9F%93/"/>
+    <id>http://1016990109.github.io/2019/05/22/服务端渲染VS预渲染/</id>
+    <published>2019-05-22T12:54:04.000Z</published>
+    <updated>2019-05-23T03:24:29.448Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="服务端渲染（ssr）"><a href="#服务端渲染（ssr）" class="headerlink" title="服务端渲染（ssr）"></a>服务端渲染（ssr）</h2><h3 id="什么是服务端渲染"><a href="#什么是服务端渲染" class="headerlink" title="什么是服务端渲染"></a>什么是服务端渲染</h3><p>服务端将完整的页面 <code>HTML</code> 输出到客户端显示，与 <code>SPA</code> （Single-Page-Application）使用 <code>js</code> 渲染页面不同。</p><a id="more"></a><h3 id="为什么使用服务端渲染"><a href="#为什么使用服务端渲染" class="headerlink" title="为什么使用服务端渲染"></a>为什么使用服务端渲染</h3><ul><li>更好的 <code>SEO</code></li><li>更快的内容到达时间</li></ul><h2 id="预渲染（prerendering）"><a href="#预渲染（prerendering）" class="headerlink" title="预渲染（prerendering）"></a>预渲染（prerendering）</h2><h3 id="什么是预渲染"><a href="#什么是预渲染" class="headerlink" title="什么是预渲染"></a>什么是预渲染</h3><p>无需使用 <code>Web</code> 服务器实时动态编译 <code>HTML</code>，而是在构建时（<code>build time</code>）就生成静态 <code>HTML</code> 文件，直接把没有动态内容的页面预先构建好。</p><h2 id="为什么使用预渲染"><a href="#为什么使用预渲染" class="headerlink" title="为什么使用预渲染"></a>为什么使用预渲染</h2><p>设置预渲染更简单，并可以将我们的前端做为一个完全静态的站点。例如本博客 <code>Hexo</code>。</p><blockquote><p>如果使用 <code>webpack</code>，可以使用插件 <code>prerender-spa-plugin</code> 轻松地添加预渲染。</p></blockquote><h2 id="二者区别（适用场景）"><a href="#二者区别（适用场景）" class="headerlink" title="二者区别（适用场景）"></a>二者区别（适用场景）</h2><ul><li>预渲染的使用场景更多是我们所说的静态页面的形式。服务端渲染适用于大型的、页面数据处理较多且较为复杂的、与服务端有数据交互的功能型网站，一个明显的使用场景就是电商网站。</li><li>预渲染对部署目标服务器没有额外要求，而服务端渲染，至少需要服务端有代码的执行能力以执行生成逻辑。</li><li>与上一条区别类似的，预渲染对内容生产者有一定使用要求因为生成代码的步骤往往也由他们完成，比如 <code>Jekyll</code> 需要 <code>Ruby</code> 环境。</li><li>预渲染比较难加入观众互动机制，比如用户评价、提问，需要通过一些额外方式整合，而服务端渲染对处理文章内容和用户互动内容的逻辑实际是一致的，都是将内容嵌入特定的布局模版然后反馈结果给客户端。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;服务端渲染（ssr）&quot;&gt;&lt;a href=&quot;#服务端渲染（ssr）&quot; class=&quot;headerlink&quot; title=&quot;服务端渲染（ssr）&quot;&gt;&lt;/a&gt;服务端渲染（ssr）&lt;/h2&gt;&lt;h3 id=&quot;什么是服务端渲染&quot;&gt;&lt;a href=&quot;#什么是服务端渲染&quot; class=&quot;headerlink&quot; title=&quot;什么是服务端渲染&quot;&gt;&lt;/a&gt;什么是服务端渲染&lt;/h3&gt;&lt;p&gt;服务端将完整的页面 &lt;code&gt;HTML&lt;/code&gt; 输出到客户端显示，与 &lt;code&gt;SPA&lt;/code&gt; （Single-Page-Application）使用 &lt;code&gt;js&lt;/code&gt; 渲染页面不同。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="前端" scheme="http://1016990109.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Mac 实用工具</title>
     <link href="http://1016990109.github.io/2019/05/22/Mac-%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/"/>
     <id>http://1016990109.github.io/2019/05/22/Mac-实用工具/</id>
     <published>2019-05-22T12:14:01.000Z</published>
-    <updated>2019-05-22T12:52:13.973Z</updated>
+    <updated>2019-05-22T12:54:33.158Z</updated>
     
     <content type="html"><![CDATA[<p>最近突然想整理一些 Mac 上实用的工具，万一以后电脑挂了，也不至于忘记自己安装过哪些有意思或有用的软件了。</p><h2 id="Turbo"><a href="#Turbo" class="headerlink" title="Turbo"></a>Turbo</h2><p><code>Turbo</code> 是一个浏览器兼容性工具，包括主流浏览器（IE、Chrome、FireFox、Safari、Opera）的各种版本，可以方便前端开发人员快速测试网站的一个兼容性，因为一台电脑装这么多版本的浏览器也是挺费事的，还浪费空间，说不定还会有什么冲突。</p><a id="more"></a><blockquote><p>注意：笔者在测试过程中并不能测试本地的地址，可能是哪里姿势不对吧，如果有读者在 Mac 上测试可以的话，麻烦给我留言哦(⊙o⊙)（邮箱：<a href="mailto:1016990109@qq.com" target="_blank" rel="noopener">1016990109@qq.com</a>）。</p></blockquote><h2 id="Charles"><a href="#Charles" class="headerlink" title="Charles"></a>Charles</h2><p>一个简易抓包工具，对比 <code>WireShark</code> 更适合新手。</p><p><code>Charles</code> 通过将自己设置成系统的网络访问代理服务器，使得所有的网络访问请求都通过它来完成，从而实现了网络封包的截取和分析。</p><p>除了在做移动开发中调试端口外，<code>Charles</code> 也可以用于分析第三方应用的通讯协议。配合 <code>Charles</code> 的 <code>SSL</code> 功能，<code>Charles</code> 还可以分析 <code>Https</code> 协议。</p><p>使用方法可以参考 <a href="https://blog.devtang.com/2015/11/14/charles-introduction/" target="_blank" rel="noopener">Charles 入门到精通</a>。</p><blockquote><p>这里注意：<code>Charles</code> 可以自己抓取自身的验证身份的网络包，在试用期内可以修改网络返回的包数据，从而破解该软件。</p></blockquote><h2 id="iTerm2"><a href="#iTerm2" class="headerlink" title="iTerm2"></a>iTerm2</h2><p>Mac 上比自带终端好用的替代品，可以分屏、多窗口、多标签，还可以自定义配色等等。</p><p>按住 Command 键可以智能打开链接、文件等等，Command + ; 可以自动补全。</p><p>其他功能可参考 <a href="https://www.iterm2.com/documentation.html" target="_blank" rel="noopener">https://www.iterm2.com/documentation.html</a>。</p><h2 id="Dr-Unarchiver"><a href="#Dr-Unarchiver" class="headerlink" title="Dr.Unarchiver"></a>Dr.Unarchiver</h2><p>Mac 上为数不多的免费解压缩软件，几乎支持所有压缩包格式，如 <code>zip</code>、<code>rar</code>、<code>7z</code>等等，默认的解压工具每次点击都会自动解压，有时候也挺烦的，我只是希望看看压缩包内容啊有木有！~</p><h2 id="Parallels-Desktop"><a href="#Parallels-Desktop" class="headerlink" title="Parallels Desktop"></a>Parallels Desktop</h2><p>Mac 究极好用的虚拟机软件，跑 Windows 打游戏很流畅的，笔者就靠它来打英雄联盟了，它也支持一些复杂的设置，在 Mac 和虚拟机中共享文件、程序等等，可以说真是非常方便了，比 Windows 上那啥 VMWare 好用一百倍！</p><h2 id="Boom-3D"><a href="#Boom-3D" class="headerlink" title="Boom 3D"></a>Boom 3D</h2><p>一款声音渲染软件，用了这个软件听什么音乐都很带感了，笔者更喜欢使用自适应的配置，感觉声音效果最好。</p><h2 id="Mounty"><a href="#Mounty" class="headerlink" title="Mounty"></a>Mounty</h2><p>有一款 <code>NTFS</code> 格式的硬盘却配了一台 Mac 笔记本怎么办，头都大了，只能读不能写。还好免费的 <code>Mounty</code> 可以帮助写入硬盘，不然就得重新格式化了~~~</p><h2 id="Transmit"><a href="#Transmit" class="headerlink" title="Transmit"></a>Transmit</h2><p>一款用于 <code>FTP</code> 传输文件的软件。</p><h2 id="Axure8"><a href="#Axure8" class="headerlink" title="Axure8"></a>Axure8</h2><p>一款优秀的原型设计软件，可以自己引入一些库，快速画出网站或移动端的原型。</p><h2 id="LICEcap"><a href="#LICEcap" class="headerlink" title="LICEcap"></a>LICEcap</h2><p>一个轻量小巧的录屏软件，但又减小了视频大小直接转为 GIF 格式的图片，非常 Nice！可以自由拖动录制窗口哦。</p><h2 id="Beyond-Compare"><a href="#Beyond-Compare" class="headerlink" title="Beyond Compare"></a>Beyond Compare</h2><p>快速比较两个文件（夹）的异同，找不到其他好用的工具了，<code>JetBrain</code> 出品的软件只能简单地做两个文件的比较，而不能比较文件夹。有时候复制了一个文件夹做了一些改动，又不知道改了啥时非常好用。</p><h2 id="Alfred"><a href="#Alfred" class="headerlink" title="Alfred"></a>Alfred</h2><p>比自带的 Spotlight 好用多了好么，可以快速息屏，访问粘贴板，预览候选项等等。专业版还可以引入各种工作流帮助提高工作效率，如有道翻译、GitLab快速访问、微信小助手、devdoc文档、Proxy-Helper快速切换代理等等。</p><h2 id="InsomniaX"><a href="#InsomniaX" class="headerlink" title="InsomniaX"></a>InsomniaX</h2><p>可以防止电脑自动息屏和自动睡眠，有时候挂一个要下载很久的文件，电脑总是睡眠受不了啊！</p><h2 id="iStat-Menus"><a href="#iStat-Menus" class="headerlink" title="iStat Menus"></a>iStat Menus</h2><p>Mac 系统信息展示工具，在状态栏显示电量、网速、内存等等，都能查看到非常详细的信息，连电池循环次数，ip地址等都能查看。</p>]]></content>
     
@@ -32,6 +52,8 @@
     
     </summary>
     
+    
+      <category term="随笔" scheme="http://1016990109.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
@@ -477,29 +499,6 @@
       <category term="网络" scheme="http://1016990109.github.io/tags/%E7%BD%91%E7%BB%9C/"/>
     
       <category term="HTTP/2" scheme="http://1016990109.github.io/tags/HTTP-2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>前端基础之关键路径渲染优化</title>
-    <link href="http://1016990109.github.io/2018/08/09/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%85%B3%E9%94%AE%E8%B7%AF%E5%BE%84%E6%B8%B2%E6%9F%93%E4%BC%98%E5%8C%96/"/>
-    <id>http://1016990109.github.io/2018/08/09/前端基础之关键路径渲染优化/</id>
-    <published>2018-08-09T15:14:24.000Z</published>
-    <updated>2018-08-15T11:00:03.092Z</updated>
-    
-    <content type="html"><![CDATA[<p>浏览器接收到服务器返回的 <code>HTML</code>、<code>CSS</code> 和 <code>JavaScript</code> 字节数据并对其进行解析和转变成像素的渲染过程被称为关键渲染路径。通过优化关键渲染路径即可以缩短浏览器渲染页面的时间。</p><p>浏览器渲染页面前需要先构建 <code>DOM</code> 和 <code>CSSOM</code> 树。因此，我们需要确保尽快将 <code>HTML</code> 和 <code>CSS</code> 都提供给浏览器。</p><a id="more"></a><h2 id="文档对象模型-DOM"><a href="#文档对象模型-DOM" class="headerlink" title="文档对象模型 (DOM)"></a>文档对象模型 (DOM)</h2><p>先看一下浏览器是如何构建 <code>DOM</code> 的：</p><p><img src="/assets/img/dom-full-process.png" alt="dom full process"></p><ol><li>转换： 浏览器从磁盘或网络读取 <code>HTML</code> 的原始字节，并根据文件的指定编码（例如 <code>UTF-8</code>）将它们转换成各个字符。</li><li>令牌化： 浏览器将字符串转换成 <code>W3C HTML5</code> 标准规定的各种令牌，例如，<code>&lt;html&gt;</code>、<code>&lt;body&gt;</code>，以及其他尖括号内的字符串。每个令牌都具有特殊含义和一组规则。</li><li>词法分析： 发出的令牌转换成定义其属性和规则的“对象”。</li><li><code>DOM</code> 构建： 最后，由于 <code>HTML</code> 标记定义不同标记之间的关系（一些标记包含在其他标记内），创建的对象链接在一个树数据结构内，此结构也会捕获原始标记中定义的父项-子项关系：<code>HTML</code> 对象是 <code>body</code> 对象的父项，<code>body</code> 是 <code>paragraph</code> 对象的父项，依此类推。</li></ol><h2 id="CSS-对象模型-CSSOM"><a href="#CSS-对象模型-CSSOM" class="headerlink" title="CSS 对象模型 (CSSOM)"></a>CSS 对象模型 (CSSOM)</h2><p>与处理 <code>HTML</code> 时一样，我们需要将收到的 <code>CSS</code> 规则转换成某种浏览器能够理解和处理的东西。因此，我们会重复 <code>HTML</code> 过程，不过是为 <code>CSS</code> 而不是 <code>HTML</code>：</p><p><img src="/assets/img/cssom-construction.png" alt="cssom construction"></p><p>这就是构建 <code>CSSOM</code> 树的过程。</p><h2 id="构建渲染树"><a href="#构建渲染树" class="headerlink" title="构建渲染树"></a>构建渲染树</h2><p>我们根据 <code>HTML</code> 和 <code>CSS</code> 输入构建了 <code>DOM</code> 树和 <code>CSSOM</code> 树。不过，它们都是独立的对象，分别网罗文档不同方面的信息：一个描述内容，另一个则是描述需要对文档应用的样式规则。需要将二者结合生成渲染树才是渲染到屏幕上的东西。</p><p><img src="/assets/img/render-tree-construction.png" alt="render tree construction"></p><p>为构建渲染树，浏览器大体上完成了下列工作：</p><p>1.从 <code>DOM</code> 树的根节点开始遍历每个可见节点。</p><ul><li>某些节点不可见（例如脚本标记、元标记等），因为它们不会体现在渲染输出中，所以会被忽略。</li><li>某些节点通过 <code>CSS</code> 隐藏，因此在渲染树中也会被忽略，例如，上例中的 <code>span</code> 节点—不会出现在渲染树中，—因为有一个显式规则在该节点上设置了 <code>display: none</code> 属性。(值得注意的是<code>visibility: hidden</code> 属性并不算是不可见属性，它的语义是隐藏元素，但元素仍然占据着布局空间，所以它会被渲染成一个空框)</li></ul><p>2.对于每个可见节点，为其找到适配的 <code>CSSOM</code> 规则并应用它们。</p><p>3.发射可见节点，连同其内容和计算的样式。</p><p>渲染树构建完毕后，浏览器得到了每个可见节点的内容与其样式，下一步工作则需要计算每个节点在窗口内的确切位置与大小，也就是 <strong>布局阶段</strong>。</p><p>布局阶段会从渲染树的根节点开始遍历，然后确定每个节点对象在页面上的确切大小与位置，布局阶段的输出是一个盒子模型，它会精确地捕获每个元素在屏幕内的确切位置与大小，所有相对的测量值也都会被转换为屏幕内的绝对像素值。</p><h2 id="关键渲染路径"><a href="#关键渲染路径" class="headerlink" title="关键渲染路径"></a>关键渲染路径</h2><p>1.处理 HTML 标记并构建 DOM 树。</p><p>2.处理 CSS 标记并构建 CSSOM 树。</p><p>3.将 DOM 与 CSSOM 合并成一个渲染树。</p><p>4.根据渲染树来布局，以计算每个节点的几何信息。</p><p>5.将各个节点绘制到屏幕上。</p><p><strong>优化关键渲染路径_就是指最大限度缩短执行上述第 1 步至第 5 步耗费的总时间</strong></p><h2 id="阻塞渲染的-CSS"><a href="#阻塞渲染的-CSS" class="headerlink" title="阻塞渲染的 CSS"></a>阻塞渲染的 CSS</h2><p><code>CSS</code> 是阻塞渲染的资源。需要将它尽早、尽快地下载到客户端，以便缩短首次渲染的时间。</p><p>通过使用媒体查询，我们可以根据特定用例（比如显示或打印），也可以根据动态情况（比如屏幕方向变化、尺寸调整事件等）定制外观。<strong>声明样式表资产时，请密切注意媒体类型和查询，因为它们将严重影响关键渲染路径的性能</strong>。</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"style.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"print.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">media</span>=<span class="string">"print"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"other.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">media</span>=<span class="string">"(min-width: 40em)"</span>&gt;</span></span><br></pre></td></tr></table></figure><p>像上面的第一个适用所有情况，故而会阻塞渲染；而第二个和第三个分别适应打印时和屏幕宽度大于 <code>40em</code> 时，所以不会阻塞渲染。</p><blockquote><p>请注意“阻塞渲染”仅是指浏览器是否需要暂停网页的首次渲染，直至该资源准备就绪。无论哪一种情况，浏览器仍会下载 <code>CSS</code> 资源，只不过不阻塞渲染的资源优先级较低罢了。</p></blockquote><h2 id="优化-JavaScript"><a href="#优化-JavaScript" class="headerlink" title="优化 JavaScript"></a>优化 JavaScript</h2><ul><li><code>JavaScript</code> 可以查询和修改 <code>DOM</code> 与 <code>CSSOM</code>。</li><li><code>JavaScript</code> 执行会阻止 <code>CSSOM</code>。</li><li>除非将 <code>JavaScript</code> 显式声明为异步，否则它会阻止构建 <code>DOM</code>。</li></ul><p>可以将脚本标记为异步防止阻塞 <code>DOM</code> 和 <code>CSSOM</code> 构建：</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"app.js"</span> <span class="attr">async</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure><h2 id="优化关键渲染路径总结"><a href="#优化关键渲染路径总结" class="headerlink" title="优化关键渲染路径总结"></a>优化关键渲染路径总结</h2><ul><li><p>关键资源：可能阻塞网页首次渲染的资源。</p></li><li><p>关键路径长度：获取关键资源所需的往返次数或总时间。</p></li><li><p>关键字节：所有关键资源文件大小的总和。</p></li></ul><p>优化关键渲染路径就是在对关键资源、关键路径长度和关键字节进行优化。关键资源越少，浏览器在渲染前的准备工作就越少；同样，关键路径长度和关键字节关系到浏览器下载资源的效率，它们越少，浏览器下载资源的速度就越快。</p><blockquote><p>评估关键渲染路径可以使用 <code>Lighthouse</code> 审核页面，参阅 <a href="https://developers.google.cn/web/tools/lighthouse/?hl=zh-cn" target="_blank" rel="noopener">使用 Lighthouse 审核网络应用</a>。</p></blockquote><h2 id="PageSpeed-规则和建议"><a href="#PageSpeed-规则和建议" class="headerlink" title="PageSpeed 规则和建议"></a>PageSpeed 规则和建议</h2><ul><li><p>优化 <code>JavaScript</code> 的使用<br>避免同步服务器调用<br>延迟解析 <code>JavaScript</code>，<code>async</code> 和 <code>defer</code><br>避免运行时间长的 <code>JavaScript</code></p></li><li><p>优化 CSS 的使用<br>将 <code>CSS</code> 置于文档 <code>head</code> 标签内，尽早下载<br>避免使用 <code>CSS import</code>，它们会在关键路径中增加往返次数<br>内联阻塞渲染的 <code>CSS</code>，这样不会增加关键路径中增加往返次数</p></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;浏览器接收到服务器返回的 &lt;code&gt;HTML&lt;/code&gt;、&lt;code&gt;CSS&lt;/code&gt; 和 &lt;code&gt;JavaScript&lt;/code&gt; 字节数据并对其进行解析和转变成像素的渲染过程被称为关键渲染路径。通过优化关键渲染路径即可以缩短浏览器渲染页面的时间。&lt;/p&gt;
-&lt;p&gt;浏览器渲染页面前需要先构建 &lt;code&gt;DOM&lt;/code&gt; 和 &lt;code&gt;CSSOM&lt;/code&gt; 树。因此，我们需要确保尽快将 &lt;code&gt;HTML&lt;/code&gt; 和 &lt;code&gt;CSS&lt;/code&gt; 都提供给浏览器。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="前端" scheme="http://1016990109.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-      <category term="性能优化" scheme="http://1016990109.github.io/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
     
   </entry>
   
