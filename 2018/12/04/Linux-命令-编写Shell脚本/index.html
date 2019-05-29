@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="七秒悲伤的博客">
 <meta property="og:description" content="编写第一个 Shell 脚本 编写一个脚本 使脚本可执行 把脚本放到 Shell 能找到的地方">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-29T09:43:29.911Z">
+<meta property="og:updated_time" content="2019-05-29T15:25:40.599Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux 命令 —— 编写Shell脚本">
 <meta name="twitter:description" content="编写第一个 Shell 脚本 编写一个脚本 使脚本可执行 把脚本放到 Shell 能找到的地方">
@@ -204,7 +204,381 @@
 <p>所以如果我们创建了一个 <code>bin</code> 目录，并把我们的脚本放在这个目录下，那么这个脚本就应该像其它程序一样开始工作了。如果这个 <code>PATH</code> 变量不包含这个目录，我们能够轻松地添加它，通过在我们的 <code>.bashrc</code> 文件中包含下面这一行文本：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=~/bin:<span class="string">"<span class="variable">$PATH</span>"</span></span><br></pre></td></tr></table></figure>
 <p>可以通过 “sourcing” .bashrc 文件来使得修改立即生效，这个 <code>.</code> 和 <code>source</code> 是同样的作用，一个 <code>shell</code> 内建命令，用来读取一个指定的 <code>shell</code> 命令文件。</p>
-<p>未完待续…</p>
+<h2 id="Shell-基本语法"><a href="#Shell-基本语法" class="headerlink" title="Shell 基本语法"></a>Shell 基本语法</h2><h3 id="变量和常量"><a href="#变量和常量" class="headerlink" title="变量和常量"></a>变量和常量</h3><p><strong>变量的使用</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 赋值</span></span><br><span class="line">foo=<span class="string">"yes"</span></span><br><span class="line"><span class="comment"># 使用</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$foo</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意如果名字错的话输出空，因为当 <code>shell</code> 遇到错误名字（这里是 <code>fool</code>）的时候, 它很高兴地创建了变量 <code>fool</code> 并且赋给 <code>fool</code> 一个空的默认值。</p>
+</blockquote>
+<p>变量名有以下 3 条限制：</p>
+<ul>
+<li>变量名可由字母数字字符（字母和数字）和下划线字符组成。</li>
+<li>变量名的第一个字符必须是一个字母或一个下划线。</li>
+<li>变量名中不允许出现空格和标点符号。</li>
+</ul>
+<p><strong>将命令结果赋值给变量</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var=`<span class="built_in">command</span>`</span><br><span class="line"></span><br><span class="line">var=$(<span class="built_in">command</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>常量的使用</strong></p>
+<p><code>shell</code> 不能辨别变量和常量；它们大多数情况下是为了方便程序员。一个常用惯例是指定大写字母来表示常量，小写字母表示真正的变量。</p>
+<p><strong>其他使用技巧</strong></p>
+<p>在参数展开过程中，变量名可能被花括号 “{}” 包围着。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv <span class="variable">$filename</span> <span class="variable">$&#123;filename&#125;</span>1</span><br></pre></td></tr></table></figure>
+<p>如上操作就能在文件名后面加 “1”。</p>
+<p><strong>here documents</strong></p>
+<p><code>command &lt;&lt; token</code> 被称为 <code>here documents</code>。这里的 <code>command</code> 是一个可以接受标准输入的命令名，<code>token</code> 是一个用来指示嵌入文本结束的字符串。</p>
+<p><code>here documents</code> 很大程度上和 <code>echo</code> 一样，除了默认情况下，<code>here documents</code> 中的单引号和双引号会失去它们在 <code>shell</code> 中的特殊含义。如果我们把重定向操作符从 “&lt;&lt;” 改为 “&lt;&lt;-”，<code>shell</code> 会忽略在此 <code>here document</code> 中开头的 tab 字符。</p>
+<h3 id="if-分支"><a href="#if-分支" class="headerlink" title="if 分支"></a>if 分支</h3><p><code>if</code> 语法如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> commands; <span class="keyword">then</span></span><br><span class="line">     commands</span><br><span class="line">[<span class="keyword">elif</span> commands; <span class="keyword">then</span></span><br><span class="line">     commands...]</span><br><span class="line">[<span class="keyword">else</span></span><br><span class="line">     commands]</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<h4 id="退出状态"><a href="#退出状态" class="headerlink" title="退出状态"></a>退出状态</h4><p>当命令执行完毕后，命令（包括我们编写的脚本和 shell 函数）会给系统发送一个值，叫做退出状态。 这个值是一个 0 到 255 之间的整数，说明命令执行成功或是失败。按照惯例，一个零值说明成功，其它所有值说明失败。而 <code>$?</code> 则是上一条命令执行的退出状态。</p>
+<h4 id="测试文件表达式（经常在-if-中使用）"><a href="#测试文件表达式（经常在-if-中使用）" class="headerlink" title="测试文件表达式（经常在 if 中使用）"></a>测试文件表达式（经常在 <code>if</code> 中使用）</h4><table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>条件为真则返回 True</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>file1 -ef file2</td>
+<td>file1 和 file2 拥有相同的索引号（通过硬链接两个文件名指向相同的文件）。</td>
+</tr>
+<tr>
+<td>file1 -nt file2</td>
+<td>file1 新于 file2。</td>
+</tr>
+<tr>
+<td>file1 -ot file2</td>
+<td>file1 早于 file2。</td>
+</tr>
+<tr>
+<td>-b file</td>
+<td>file 存在并且是一个块（设备）文件。</td>
+</tr>
+<tr>
+<td>-c file</td>
+<td>file 存在并且是一个字符（设备）文件。</td>
+</tr>
+<tr>
+<td>-d file</td>
+<td>file 存在并且是一个目录。</td>
+</tr>
+<tr>
+<td>-e file</td>
+<td>file 存在。</td>
+</tr>
+<tr>
+<td>-f file</td>
+<td>file 存在并且是一个普通文件。</td>
+</tr>
+<tr>
+<td>-g file</td>
+<td>file 存在并且设置了组 ID。</td>
+</tr>
+<tr>
+<td>-G file</td>
+<td>file 存在并且由有效组 ID 拥有。</td>
+</tr>
+<tr>
+<td>-k file</td>
+<td>file 存在并且设置了它的“sticky bit”。</td>
+</tr>
+<tr>
+<td>-L file</td>
+<td>file 存在并且是一个符号链接。</td>
+</tr>
+<tr>
+<td>-O file</td>
+<td>file 存在并且由有效用户 ID 拥有。</td>
+</tr>
+<tr>
+<td>-p file</td>
+<td>file 存在并且是一个命名管道。</td>
+</tr>
+<tr>
+<td>-r file</td>
+<td>file 存在并且可读（有效用户有可读权限）。</td>
+</tr>
+<tr>
+<td>-s file</td>
+<td>file 存在且其长度大于零。</td>
+</tr>
+<tr>
+<td>-S file</td>
+<td>file 存在且是一个网络 socket。</td>
+</tr>
+<tr>
+<td>-t fd f</td>
+<td>d 是一个定向到终端／从终端定向的文件描述符 。 这可以被用来决定是否重定向了标准输入／输出错误。</td>
+</tr>
+<tr>
+<td>-u file</td>
+<td>file 存在并且设置了 setuid 位。</td>
+</tr>
+<tr>
+<td>-w file</td>
+<td>file 存在并且可写（有效用户拥有可写权限）。</td>
+</tr>
+<tr>
+<td>-x file</td>
+<td>file 存在并且可执行（有效用户有执行／搜索权限）。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="字符串表达式"><a href="#字符串表达式" class="headerlink" title="字符串表达式"></a>字符串表达式</h4><table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>条件为真则返回 True</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>string</td>
+<td>string 不为 null。</td>
+</tr>
+<tr>
+<td>-n string</td>
+<td>字符串 string 的长度大于零。</td>
+</tr>
+<tr>
+<td>-z string</td>
+<td>字符串 string 的长度为零。</td>
+</tr>
+<tr>
+<td>string1 = string2 <br> string1 == string2</td>
+<td>string1 和 string2 相同。 单或双等号都可以，不过双等号更受欢迎。</td>
+</tr>
+<tr>
+<td>string1 != string2</td>
+<td>string1 和 string2 不相同。</td>
+</tr>
+<tr>
+<td>string1 &gt; string2</td>
+<td>sting1 排列在 string2 之后。</td>
+</tr>
+<tr>
+<td>string1 &lt; string2</td>
+<td>string1 排列在 string2 之前。</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>注意：当与 <code>test</code> 一块使用的时候， &gt; 和 &lt; 表达式操作符必须用引号引起来（或者是用反斜杠转义）。如果不这样，它们会被 <code>shell</code> 解释为重定向操作符，造成潜在的破坏结果。例如 <code>[ ab &lt; bc ]</code> 是会报错的，读者可自行尝试。</p>
+</blockquote>
+<h4 id="测试整数表达式"><a href="#测试整数表达式" class="headerlink" title="测试整数表达式"></a>测试整数表达式</h4><table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>条件为真则返回 True</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>integer1 -eq integer2</td>
+<td>integer1 等于 integer2。</td>
+</tr>
+<tr>
+<td>integer1 -ne integer2</td>
+<td>integer1 不等于 integer2。</td>
+</tr>
+<tr>
+<td>integer1 -le integer2</td>
+<td>integer1 小于或等于 integer2。</td>
+</tr>
+<tr>
+<td>integer1 -lt integer2</td>
+<td>integer1 小于 integer2。</td>
+</tr>
+<tr>
+<td>integer1 -ge integer2</td>
+<td>integer1 大于或等于 integer2。</td>
+</tr>
+<tr>
+<td>integer1 -gt integer2</td>
+<td>integer1 大于 integer2。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="命令"><a href="#命令" class="headerlink" title="[[ ]]命令"></a>[[ ]]命令</h4><p><code>[[ expression ]]</code> 类似于 <code>test</code>，<code>expression</code> 是一个表达式，其计算结果为真或假。这个<code>[[ ]]</code>命令非常 相似于 <code>test</code> 命令（它支持所有的表达式），但是增加了一个重要的新的字符串表达式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string1 =~ regex</span><br></pre></td></tr></table></figure>
+<p>如果 <code>string1</code> 匹配扩展的正则表达式 <code>regex</code> 则返回真。</p>
+<p><code>[[ ]]</code> 添加的另一个功能是==操作符支持类型匹配，正如路径名展开所做的那样。例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FILE=foo.bar</span><br><span class="line"><span class="keyword">if</span> [[ <span class="variable">$FILE</span> == foo.* ]]; <span class="keyword">then</span> <span class="built_in">echo</span> <span class="string">"<span class="variable">$FILE</span> matches pattern 'foo.*'"</span>;<span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<h4 id="命令（只针对整数）"><a href="#命令（只针对整数）" class="headerlink" title="(())命令（只针对整数）"></a>(())命令（只针对整数）</h4><p><code>(())</code> 可以非常方便的操作整数，可以正常使用 <code>&gt;</code>、<code>&lt;</code>、<code>==</code> 等很直观的操作。例如 <code>if ((INT == 0)); then echo &quot;INT is zero.&quot;</code>。</p>
+<h4 id="结合表达式"><a href="#结合表达式" class="headerlink" title="结合表达式"></a>结合表达式</h4><table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>测试</th>
+<th>[[ ]] and (( ))</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AND</td>
+<td>-a</td>
+<td>&amp;&amp;</td>
+</tr>
+<tr>
+<td>OR</td>
+<td>-o</td>
+<td>&#124;&#124;</td>
+</tr>
+<tr>
+<td>NOT</td>
+<td>!</td>
+<td>!</td>
+</tr>
+</tbody>
+</table>
+<p>我们也可以对表达式使用圆括号，为的是分组。如果不使用括号，那么否定只应用于第一个表达式，而不是两个组合的表达式。用 <code>test</code> 可以这样来编码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ ! \( <span class="variable">$INT</span> -ge <span class="variable">$MIN_VAL</span> -a <span class="variable">$INT</span> -le <span class="variable">$MAX_VAL</span> \) ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"<span class="variable">$INT</span> is outside <span class="variable">$MIN_VAL</span> to <span class="variable">$MAX_VAL</span>."</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"<span class="variable">$INT</span> is in range."</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>可以发现圆括号是要转义的！！！</p>
+</blockquote>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>1.<code>test</code> 中可用的比较运算符只有 <code>==</code> 和 <code>!=</code>，两者都是用于字符串比较的，不可用于整数比较，整数比较只能使用 <code>-eq</code>, <code>-gt</code> 这种形式。无论是字符串比较还是整数比较都千万不要使用大于号小于号。当然，如果你实在想用也是可以的，对于字符串比较可以使用尖括号的转义形式， 如果比较”ab”和”bc”：<code>[ ab \&lt; bc ]</code>，结果为真，也就是返回状态为 0。</p>
+<p>2.字符串比较时可以把右边的作为一个模式（这是右边的字符串不加双引号的情况下。如果右边的字符串加了双引号，则认为是一个文本字符串。），而不仅仅是一个字符串，比如 <code>[[ hello == hell? ]]</code>，结果为真（当然只针对 <code>[[]]</code>，普通 <code>test</code> 和 <code>[]</code> 不支持正则模式比较）。</p>
+<p>3.<code>(( ))</code> 结构扩展并计算一个算术表达式的值。如果表达式值为 0，会返回 1 或假作为退出状态码。一个非零值的表达式返回一个 0 或真作为退出状态码。这个结构和先前 <code>test</code> 命令及 <code>[]</code> 结构的讨论刚好相反。</p>
+<p>4.<code>[ ... ]</code>为 <code>shell</code> 命令，所以在其中的表达式应是它的命令行参数，所以串比较操作符 <code>&gt;</code> 与 <code>&lt;</code> 必须转义，否则就变成 <code>IO</code> 改向操作符了。在 <code>[[</code> 中 <code>&lt;</code> 与 <code>&gt;</code> 不需转义；<br>由于 “[[“ 是关键字，不会做命令行扩展，因而相对的语法就稍严格些。例如在[ … ]中可以用引号括起操作符，因为在做命令行扩展时会去掉这些引号，而在[[ … ]]则不允许这样做。</p>
+<h3 id="while-until-循环"><a href="#while-until-循环" class="headerlink" title="while/until 循环"></a>while/until 循环</h3><h4 id="while"><a href="#while" class="headerlink" title="while"></a>while</h4><p>语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> commands; <span class="keyword">do</span> commands; <span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<p><code>break</code> 命令被用来退出循环，<code>continue</code> 命令用来直接执行下一个循环。</p>
+<h4 id="until"><a href="#until" class="headerlink" title="until"></a>until</h4><p>语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">until commands; <span class="keyword">do</span> commands; <span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<h3 id="case"><a href="#case" class="headerlink" title="case"></a>case</h3><p>语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> word <span class="keyword">in</span></span><br><span class="line">    [pattern [| pattern]...) commands ;;]...</span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure>
+<p>注意这里的模式（<code>pattern</code>）是有格式要求的，可以发现都是以 <code>)</code> 结尾！而每一条命令后都是<strong>两个分号</strong>！！</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a)</td>
+<td>若单词为 “a”，则匹配</td>
+</tr>
+<tr>
+<td>[[:alpha:]])</td>
+<td>若单词是一个字母字符，则匹配</td>
+</tr>
+<tr>
+<td>???)</td>
+<td>若单词只有 3 个字符，则匹配</td>
+</tr>
+<tr>
+<td>*.txt)</td>
+<td>若单词以 “.txt” 字符结尾，则匹配</td>
+</tr>
+<tr>
+<td>*)</td>
+<td>匹配任意单词。把这个模式做为 <code>case</code> 命令的最后一个模式，是一个很好的做法， 可以捕捉到任意一个与先前模式不匹配的数值；也就是说，捕捉到任何可能的无效值。</td>
+</tr>
+</tbody>
+</table>
+<p>添加的 “;;&amp;” 的语法允许 <code>case</code> 语句继续执行下一条测试，而不是简单地终止运行。如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="variable">$REPLY</span> <span class="keyword">in</span></span><br><span class="line">    [[:upper:]])    <span class="built_in">echo</span> <span class="string">"'<span class="variable">$REPLY</span>' is upper case."</span> ;;&amp;</span><br><span class="line">    [[:lower:]])    <span class="built_in">echo</span> <span class="string">"'<span class="variable">$REPLY</span>' is lower case."</span> ;;&amp;</span><br><span class="line">    [[:alpha:]])    <span class="built_in">echo</span> <span class="string">"'<span class="variable">$REPLY</span>' is alphabetic."</span> ;;&amp;</span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure>
+<h3 id="位置参数"><a href="#位置参数" class="headerlink" title="位置参数"></a>位置参数</h3><p><code>shell</code> 提供了一个称为位置参数的变量集合，这个集合包含了命令行中所有独立的单词。这些变量按照从 0 到 9 给予命名。</p>
+<p>位置参数 <code>$0</code> 总会包含命令行中出现的第一个单词，也就是已执行程序的路径名。而 <code>$1</code>、<code>$2</code>、<code>$i</code>……等等都是第 i 个参数。另外 <code>shell</code> 还提供了一个名为 <code>$#</code>，可以得到命令行参数个数的变量。</p>
+<blockquote>
+<p>注意： 实际上通过参数展开方式你可以访问的参数个数多于 9 个。只要指定一个大于 9 的数字，用花括号把该数字括起来就可以。 例如 <code>${10}</code>、 <code>${55}</code>、<code>${211}</code>等等。</p>
+</blockquote>
+<p><strong>shift 访问多个参数</strong></p>
+<p>执行一次 <code>shift</code> 命令，就会导致所有的位置参数“向下移动一个位置”。事实上，用 <code>shift</code> 命令也可以处理只有一个参数的情况（除了其值永远不会改变的变量 <code>$0</code>）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># posit-param2: script to display all arguments</span></span><br><span class="line">count=1</span><br><span class="line"><span class="keyword">while</span> [[ <span class="variable">$#</span> -gt 0 ]]; <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"Argument <span class="variable">$count</span> = <span class="variable">$1</span>"</span></span><br><span class="line">    count=$((count + 1))</span><br><span class="line">    <span class="built_in">shift</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<h3 id="for-循环"><a href="#for-循环" class="headerlink" title="for 循环"></a>for 循环</h3><p>语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> variable [<span class="keyword">in</span> words]; <span class="keyword">do</span></span><br><span class="line">    commands</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<p>例子：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 普通用法</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> A B C D; <span class="keyword">do</span> <span class="built_in">echo</span> <span class="variable">$i</span>; <span class="keyword">done</span></span><br><span class="line"><span class="comment"># 花括号</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> &#123;A..D&#125;; <span class="keyword">do</span> <span class="built_in">echo</span> <span class="variable">$i</span>; <span class="keyword">done</span></span><br><span class="line"><span class="comment"># 路径名展开</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> distros*.txt; <span class="keyword">do</span> <span class="built_in">echo</span> <span class="variable">$i</span>; <span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<p><code>C</code> 语言格式语法，我们熟知的循环：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (( expression1; expression2; expression3 )); <span class="keyword">do</span></span><br><span class="line">    commands</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<h2 id="错误追踪"><a href="#错误追踪" class="headerlink" title="错误追踪"></a>错误追踪</h2><p><code>bash</code> 提供了一种名为追踪的方法，这种方法可通过 <code>-x</code> 选项和 <code>set</code> 命令加上 <code>-x</code> 选项两种途径实现。</p>
+<p>1.<code>-x</code> 选项。给脚本第一行加上 <code>-x</code>:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/bin/bash -x</span></span><br></pre></td></tr></table></figure>
+<p>2.<code>set</code> 命令加上 <code>-x</code> 选项,为脚本中的一块选择区域，而不是整个脚本启用追踪。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> -x <span class="comment"># Turn on tracing</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$number</span> = 1 ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"Number is equal to 1."</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"Number is not equal to 1."</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">set</span> +x <span class="comment"># Turn off tracing</span></span><br></pre></td></tr></table></figure>
+<h2 id="字符串和数字"><a href="#字符串和数字" class="headerlink" title="字符串和数字"></a>字符串和数字</h2><h3 id="参数展开"><a href="#参数展开" class="headerlink" title="参数展开"></a>参数展开</h3><h4 id="基本参数"><a href="#基本参数" class="headerlink" title="基本参数"></a>基本参数</h4><p><code>$a</code> 会变成变量 a 所包含的值。简单参数也可能用花括号引起来：<code>${a}</code>，虽然这对展开没有影响，但若该变量 a 与其它的文本相邻，可能会把 <code>shell</code> 搞糊涂了，例如上文有提到的 <code>${filename}1</code> 可以在文件名后加 “1”。通过把数字包裹在花括号中，可以访问大于 9 的位置参数。例如，访问第十一个位置参数可以使用 <code>${11}</code>。</p>
+<h4 id="管理空变量的展开"><a href="#管理空变量的展开" class="headerlink" title="管理空变量的展开"></a>管理空变量的展开</h4><ul>
+<li><code>${parameter:-word}</code>，若 parameter 没有设置（例如，不存在）或者为空，展开结果是 word 的值。若 parameter 不为空，则展开结果是 parameter 的值。</li>
+<li><code>${parameter:=word}</code>，若 parameter 没有设置或为空，展开结果是 word 的值。另外，<strong>word 的值会赋值给 parameter</strong>。 若 parameter 不为空，展开结果是 parameter 的值。</li>
+<li><code>${parameter:?word}</code>，若 parameter 没有设置或为空，<strong>这种展开导致脚本带有错误退出，并且 word 的内容会发送到标准错误</strong>。若 parameter 不为空，展开结果是 parameter 的值。</li>
+<li><code>${parameter:+word}</code>，若 parameter 没有设置或为空，展开结果为空。若 parameter 不为空， 展开结果是 word 的值会替换掉 parameter 的值；然而，<strong>parameter 的值不会改变</strong>。</li>
+</ul>
+<h4 id="返回变量名的参数展开"><a href="#返回变量名的参数展开" class="headerlink" title="返回变量名的参数展开"></a>返回变量名的参数展开</h4><ul>
+<li><code>${!prefix*}</code> 或 <code>${!prefix@}</code> 展开会返回以 <code>prefix</code> 开头的已有变量名。</li>
+<li><code>${#parameter}</code> 展开成由 <code>parameter</code> 所包含的字符串的长度。通常，<code>parameter</code> 是一个字符串；然而，如果 <code>parameter</code> 是 <code>@</code> 或者是 <code>*</code> 的话，则展开结果是位置参数的个数，例如 <code>${#@}</code> 返回位置参数的个数。</li>
+<li><code>${parameter:offset}</code> 或 <code>${parameter:offset:length}</code>，这些展开用来从 <code>parameter</code> 所包含的字符串中提取一部分字符。提取的字符始于第 <code>offset</code> 个字符（从字符串开头算起）直到字符串的末尾，除非指定提取的长度。</li>
+<li><code>${parameter#pattern}</code>、<code>${parameter##pattern}</code>，这些展开会从 <code>paramter</code> 所包含的字符串中清除开头一部分文本，这些字符要匹配定义的 <code>pattern</code>。<code>pattern</code> 是通配符模式，就如那些用在路径名展开中的模式。这两种形式的差异之处是该 <code>#</code> 形式清除最短的匹配结果，而该 <code>##</code> 模式清除最长的匹配结果。</li>
+<li><code>${parameter%pattern}</code>、<code>${parameter%%pattern}</code>，这些展开和上面的 <code>#</code> 和 <code>## 展开一样，除了它们清除的文本从</code>parameter` 所包含字符串的末尾开始，而不是开头。</li>
+<li><code>${parameter/pattern/string}</code>、<code>${parameter//pattern/string}</code>、<code>${parameter/#pattern/string}</code>、<code>${parameter/%pattern/string}</code>，这种形式的展开对 <code>parameter</code> 的内容执行查找和替换操作。如果找到了匹配通配符 <code>pattern</code> 的文本，则用 <code>string</code> 的内容替换它。在正常形式下，只有第一个匹配项会被替换掉。在该 <code>//</code> 形式下，所有的匹配项都会被替换掉。该 <code>/#</code> 要求匹配项出现在字符串的开头，而 <code>/%</code> 要求匹配项出现在字符串的末尾。<code>/string</code> 可能会省略掉，这样会导致删除匹配的文本</li>
+</ul>
+<h3 id="大小写转换"><a href="#大小写转换" class="headerlink" title="大小写转换"></a>大小写转换</h3><ol>
+<li><code>declare -u/-l variable</code> 强制变量 <code>variable</code> 总是为大写（-u）或小写（-l）。</li>
+<li>参数展开大小写转换。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>格式</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>${parameter,,}</code></td>
+<td>把 <code>parameter</code> 的值全部展开成小写字母。</td>
+</tr>
+<tr>
+<td><code>${parameter,}</code></td>
+<td>仅仅把 <code>parameter</code> 的第一个字符展开成小写字母。</td>
+</tr>
+<tr>
+<td><code>${parameter^^}</code></td>
+<td>把 <code>parameter</code> 的值全部转换成大写字母。</td>
+</tr>
+<tr>
+<td><code>${parameter^}</code></td>
+<td>仅仅把 <code>parameter</code> 的第一个字符转换成大写字母（首字母大写）。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 自动创建</span></span><br><span class="line">a[1]=foo</span><br><span class="line"><span class="comment"># declare 显示声明</span></span><br><span class="line"><span class="built_in">declare</span> -a a</span><br></pre></td></tr></table></figure>
+<h3 id="赋值"><a href="#赋值" class="headerlink" title="赋值"></a>赋值</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 单个赋值</span></span><br><span class="line">name[subscript]=value</span><br><span class="line"><span class="comment"># 多个值赋值</span></span><br><span class="line">name=(value1 value2 ...)e</span><br></pre></td></tr></table></figure>
+<h3 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="variable">$a</span>; <span class="keyword">do</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="variable">$i</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>建议用引号括起来遍历，这样能正常访问字符串。<code>for i in &quot;${!foo[@]}&quot;;do command;done</code>。</p>
+</blockquote>
+<h3 id="长度"><a href="#长度" class="headerlink" title="长度"></a>长度</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a[100]=foo</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;#a[@]&#125;</span> <span class="comment"># number of array elements</span></span><br><span class="line"><span class="comment"># 1，未把前面元素初始化，所以不计入数组长度</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;#a[100]&#125;</span> <span class="comment"># length of element 100</span></span><br><span class="line"><span class="comment"># 3，第 100 个元素的长度，即 foo 的长度</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="string">"<span class="variable">$&#123;!foo[@]&#125;</span>"</span>; <span class="keyword">do</span> <span class="built_in">echo</span> <span class="variable">$i</span>; <span class="keyword">done</span></span><br><span class="line"><span class="comment"># $&#123;!array[*]&#125; 或 $&#123;!array[@]&#125; 遍历时得到的是数组下标</span></span><br></pre></td></tr></table></figure>
+<h3 id="数组末尾添加元素"><a href="#数组末尾添加元素" class="headerlink" title="数组末尾添加元素"></a>数组末尾添加元素</h3><p><code>+=</code> 赋值操作即可，<code>foo+=(d e f)</code>。</p>
+<h3 id="数组排序"><a href="#数组排序" class="headerlink" title="数组排序"></a>数组排序</h3><p>使用管道排序：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">a=(f e d c b a)</span><br><span class="line">a_sorted=($(<span class="keyword">for</span> i <span class="keyword">in</span> <span class="string">"<span class="variable">$&#123;a[@]&#125;</span>"</span>; <span class="keyword">do</span> <span class="built_in">echo</span> <span class="variable">$i</span>; <span class="keyword">done</span> | sort))</span><br></pre></td></tr></table></figure>
+<h3 id="删除数组"><a href="#删除数组" class="headerlink" title="删除数组"></a>删除数组</h3><p>使用 <code>unset array</code> 删除数组，而 <code>unset &#39;array[index]&#39;</code> 删除单个元素，注意要<strong>加引号</strong>防止展开操作，且下标是<strong>从 0 开始</strong>数的。</p>
+<h3 id="关联数组（通常认知的-Map）"><a href="#关联数组（通常认知的-Map）" class="headerlink" title="关联数组（通常认知的 Map）"></a>关联数组（通常认知的 Map）</h3><p>关联数组使用字符串而不是整数作为数组索引。 这种功能给出了一种有趣的新方法来管理数据，其实就是一个 <code>Map</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">declare</span> -A colors</span><br><span class="line">colors[<span class="string">"red"</span>]=<span class="string">"#ff0000"</span></span><br><span class="line">colors[<span class="string">"green"</span>]=<span class="string">"#00ff00"</span></span><br><span class="line">colors[<span class="string">"blue"</span>]=<span class="string">"#0000ff"</span></span><br></pre></td></tr></table></figure>
+<p>不同于整数索引的数组，仅仅引用它们就能创建数组，关联数组必须用带有 -A 选项的 declare 命令创建。访问关联数组元素的方式几乎与整数索引数组相同：<code>echo ${colors[&quot;blue&quot;]}</code>。</p>
+<h2 id="高级操作"><a href="#高级操作" class="headerlink" title="高级操作"></a>高级操作</h2><h3 id="组命令和子-shell"><a href="#组命令和子-shell" class="headerlink" title="组命令和子 shell"></a>组命令和子 shell</h3><p><code>bash</code> 允许把命令组合在一起。可以通过两种方式完成；要么用一个 <code>group</code> 命令，要么用一个子 <code>shell</code>。 这里是每种方式的语法示例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># group</span></span><br><span class="line">&#123; command1; command2; [command3; ...] &#125;</span><br><span class="line"><span class="comment"># 子 shell</span></span><br><span class="line">(command1; command2; [command3;...])</span><br></pre></td></tr></table></figure>
+<p>组命令用花括号把它的命令包裹起来，而子 <code>shell</code> 用括号。值得注意的是，鉴于 <code>bash</code> 实现组命令的方式，<strong>花括号与命令之间必须有一个空格，并且最后一个命令必须用一个分号或者一个换行符终止</strong>。</p>
+<blockquote>
+<p>一个组命令在当前 <code>shell</code> 中执行它的所有命令，而一个子 <code>shell</code>（顾名思义）在当前 <code>shell</code> 的一个 子副本中执行它的命令。这意味着运行环境被复制给了一个新的 <code>shell</code> 实例。当这个子 <code>shell</code> 退出时，环境副本会消失，所以在子 <code>shell</code> 环境（包括变量赋值）中的任何更改也会消失。因此，在大多数情况下，除非脚本要求一个子 <code>shell</code>，组命令比子 <code>shell</code> 更受欢迎。组命令运行很快并且占用的内存也少。</p>
+</blockquote>
+<h3 id="进程替换"><a href="#进程替换" class="headerlink" title="进程替换"></a>进程替换</h3><p>问题：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"foo"</span> | <span class="built_in">read</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$REPLY</span></span><br></pre></td></tr></table></figure>
+<p>该 <code>REPLY</code> 变量的内容总是为空，是因为这个 <code>read</code> 命令在一个子 <code>shell</code> 中执行，所以当该子 <code>shell</code> 终止的时候，它的 <code>REPLY</code> 副本会被毁掉。因为<strong>管道线中的命令总是在子 <code>shell</code> 中执行</strong>，任何给变量赋值的命令都会遭遇这样的问题。幸运地是，<code>shell</code> 提供了一种奇异的展开方式，叫做进程替换，它可以用来解决这种麻烦。进程替换有两种表达方式：</p>
+<p>一种适用于产生标准输出的进程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt; (list)</span><br></pre></td></tr></table></figure>
+<p>另一种适用于接受标准输入的进程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; (list)</span><br></pre></td></tr></table></figure>
+<p>例如解决上述提出的问题：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">read</span> &lt; &lt;(<span class="built_in">echo</span> <span class="string">"foo"</span>)</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$REPLY</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意两个 <code>&lt;</code> 之间是有空格，两个连在一起则是 <a href="#变量和常量">here documents</a>。</p>
+</blockquote>
+<h3 id="陷阱（trap）"><a href="#陷阱（trap）" class="headerlink" title="陷阱（trap）"></a>陷阱（trap）</h3><p>语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">trap</span> argument signal [signal...]</span><br></pre></td></tr></table></figure>
+<p>这里的 <code>argument</code> 是一个字符串，它被读取并被当作一个命令，<code>signal</code> 是一个信号的说明，它会触发执行所要解释的命令。这里的 <code>argument</code> 可以是简单的一条命令，也可以是一个<strong>函数</strong>。</p>
+<h3 id="异步执行"><a href="#异步执行" class="headerlink" title="异步执行"></a>异步执行</h3><h4 id="wait"><a href="#wait" class="headerlink" title="wait"></a>wait</h4><p><code>wait</code> 命令导致一个父脚本暂停运行，直到一个特定的进程（例如，子脚本）运行结束。语法为 <code>wait pid</code>，其中 <code>pid</code> 为特定进程的 id。</p>
 
       
 
@@ -326,7 +700,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#编写第一个-Shell-脚本"><span class="toc-number">1.</span> <span class="toc-text">编写第一个 Shell 脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#格式"><span class="toc-number">1.1.</span> <span class="toc-text">格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#可执行权限"><span class="toc-number">1.2.</span> <span class="toc-text">可执行权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#脚本文件位置"><span class="toc-number">1.3.</span> <span class="toc-text">脚本文件位置</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#编写第一个-Shell-脚本"><span class="toc-number">1.</span> <span class="toc-text">编写第一个 Shell 脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#格式"><span class="toc-number">1.1.</span> <span class="toc-text">格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#可执行权限"><span class="toc-number">1.2.</span> <span class="toc-text">可执行权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#脚本文件位置"><span class="toc-number">1.3.</span> <span class="toc-text">脚本文件位置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Shell-基本语法"><span class="toc-number">2.</span> <span class="toc-text">Shell 基本语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#变量和常量"><span class="toc-number">2.1.</span> <span class="toc-text">变量和常量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#if-分支"><span class="toc-number">2.2.</span> <span class="toc-text">if 分支</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#退出状态"><span class="toc-number">2.2.1.</span> <span class="toc-text">退出状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#测试文件表达式（经常在-if-中使用）"><span class="toc-number">2.2.2.</span> <span class="toc-text">测试文件表达式（经常在 if 中使用）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#字符串表达式"><span class="toc-number">2.2.3.</span> <span class="toc-text">字符串表达式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#测试整数表达式"><span class="toc-number">2.2.4.</span> <span class="toc-text">测试整数表达式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#命令"><span class="toc-number">2.2.5.</span> <span class="toc-text">[[ ]]命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#命令（只针对整数）"><span class="toc-number">2.2.6.</span> <span class="toc-text">(())命令（只针对整数）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#结合表达式"><span class="toc-number">2.2.7.</span> <span class="toc-text">结合表达式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#总结"><span class="toc-number">2.2.8.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#while-until-循环"><span class="toc-number">2.3.</span> <span class="toc-text">while/until 循环</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#while"><span class="toc-number">2.3.1.</span> <span class="toc-text">while</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#until"><span class="toc-number">2.3.2.</span> <span class="toc-text">until</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#case"><span class="toc-number">2.4.</span> <span class="toc-text">case</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#位置参数"><span class="toc-number">2.5.</span> <span class="toc-text">位置参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#for-循环"><span class="toc-number">2.6.</span> <span class="toc-text">for 循环</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#错误追踪"><span class="toc-number">3.</span> <span class="toc-text">错误追踪</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串和数字"><span class="toc-number">4.</span> <span class="toc-text">字符串和数字</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#参数展开"><span class="toc-number">4.1.</span> <span class="toc-text">参数展开</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本参数"><span class="toc-number">4.1.1.</span> <span class="toc-text">基本参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#管理空变量的展开"><span class="toc-number">4.1.2.</span> <span class="toc-text">管理空变量的展开</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#返回变量名的参数展开"><span class="toc-number">4.1.3.</span> <span class="toc-text">返回变量名的参数展开</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#大小写转换"><span class="toc-number">4.2.</span> <span class="toc-text">大小写转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数组"><span class="toc-number">5.</span> <span class="toc-text">数组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建"><span class="toc-number">5.1.</span> <span class="toc-text">创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#赋值"><span class="toc-number">5.2.</span> <span class="toc-text">赋值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#遍历"><span class="toc-number">5.3.</span> <span class="toc-text">遍历</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#长度"><span class="toc-number">5.4.</span> <span class="toc-text">长度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组末尾添加元素"><span class="toc-number">5.5.</span> <span class="toc-text">数组末尾添加元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组排序"><span class="toc-number">5.6.</span> <span class="toc-text">数组排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除数组"><span class="toc-number">5.7.</span> <span class="toc-text">删除数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关联数组（通常认知的-Map）"><span class="toc-number">5.8.</span> <span class="toc-text">关联数组（通常认知的 Map）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#高级操作"><span class="toc-number">6.</span> <span class="toc-text">高级操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#组命令和子-shell"><span class="toc-number">6.1.</span> <span class="toc-text">组命令和子 shell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进程替换"><span class="toc-number">6.2.</span> <span class="toc-text">进程替换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#陷阱（trap）"><span class="toc-number">6.3.</span> <span class="toc-text">陷阱（trap）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#异步执行"><span class="toc-number">6.4.</span> <span class="toc-text">异步执行</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#wait"><span class="toc-number">6.4.1.</span> <span class="toc-text">wait</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -458,19 +832,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Shell</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -482,7 +856,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -490,23 +864,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">优化</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">spring cloud</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color3">优化</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RPC</a>
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -515,6 +881,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">php</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RPC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -546,31 +920,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTML</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">eventloop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事件循环</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">原型链</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">JS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">内存管理</a>
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -582,11 +936,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">JS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">原型链</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数组</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">内存管理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -598,11 +964,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SSR</a>
+                <a href="javascript:void(0)" class="js-tag color5">eventloop</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">服务端渲染</a>
+                <a href="javascript:void(0)" class="js-tag color5">事件循环</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -634,7 +1004,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+                <a href="javascript:void(0)" class="js-tag color4">SSR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">服务端渲染</a>
               </li>
             
             <div class="clearfix"></div>
