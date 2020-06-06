@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="http://1016990109.github.io">
   <title>5月28日学习笔记 | 七秒悲伤的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="函数、方法、接口闭包GOLANG 类似于 Node.js 可使用闭包，使得变量只在作用域有效。举个典型的例子： 123456789func main() &amp;#123;	for i := 0; i &amp;lt; 3; i++ &amp;#123;		defer func()&amp;#123; println(i) &amp;#125; ()	&amp;#125;&amp;#125;// Output:// 3// 3// 3 上述代码输出会">
+  <meta name="description" content="函数、方法、接口闭包GOLANG 类似于 Node.js 可使用闭包，使得变量只在作用域有效。举个典型的例子：">
 <meta name="keywords" content="GOLANG">
 <meta property="og:type" content="article">
 <meta property="og:title" content="5月28日学习笔记">
 <meta property="og:url" content="http://1016990109.github.io/2020/03/24/GOLANG-学习/index.html">
 <meta property="og:site_name" content="七秒悲伤的博客">
-<meta property="og:description" content="函数、方法、接口闭包GOLANG 类似于 Node.js 可使用闭包，使得变量只在作用域有效。举个典型的例子： 123456789func main() &amp;#123;	for i := 0; i &amp;lt; 3; i++ &amp;#123;		defer func()&amp;#123; println(i) &amp;#125; ()	&amp;#125;&amp;#125;// Output:// 3// 3// 3 上述代码输出会">
+<meta property="og:description" content="函数、方法、接口闭包GOLANG 类似于 Node.js 可使用闭包，使得变量只在作用域有效。举个典型的例子：">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://1016990109.github.io/assets/img/golang_init_flow.png">
-<meta property="og:updated_time" content="2020-05-07T00:41:13.789Z">
+<meta property="og:updated_time" content="2020-06-06T09:52:50.385Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="5月28日学习笔记">
-<meta name="twitter:description" content="函数、方法、接口闭包GOLANG 类似于 Node.js 可使用闭包，使得变量只在作用域有效。举个典型的例子： 123456789func main() &amp;#123;	for i := 0; i &amp;lt; 3; i++ &amp;#123;		defer func()&amp;#123; println(i) &amp;#125; ()	&amp;#125;&amp;#125;// Output:// 3// 3// 3 上述代码输出会">
+<meta name="twitter:description" content="函数、方法、接口闭包GOLANG 类似于 Node.js 可使用闭包，使得变量只在作用域有效。举个典型的例子：">
 <meta name="twitter:image" content="http://1016990109.github.io/assets/img/golang_init_flow.png">
   
     <link rel="alternative" href="/atom.xml" title="七秒悲伤的博客" type="application/atom+xml">
@@ -192,6 +192,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="函数、方法、接口"><a href="#函数、方法、接口" class="headerlink" title="函数、方法、接口"></a>函数、方法、接口</h2><h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><p><code>GOLANG</code> 类似于 <code>Node.js</code> 可使用闭包，使得变量只在作用域有效。举个典型的例子：</p>
+<a id="more"></a>
 <figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">3</span>; i++ &#123;</span><br><span class="line">		<span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span>&#123; <span class="built_in">println</span>(i) &#125; ()</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Output:</span></span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
 <p>上述代码输出会是连续的三个 <code>3</code>，因为 <code>defer</code> 匿名函数中引用的是在 <code>main</code> 函数中的局部变量 <code>i</code>，而 <code>i</code> 在 <code>for</code> 循环结束后就已经变成 <code>3</code> 了，这和 <code>Node.js</code> 是类似的：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//注意这里不能用 es6 的 let，因为 let 会使得 i 变为局部变量，在每一次循环中都会有独立的作用域（类似 GOLANG 中的 i:=i）</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(i)</span><br><span class="line">    &#125;, <span class="number">0</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Output:</span></span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
@@ -498,15 +499,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">GOLANG</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">GOLANG</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -518,6 +515,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
               </li>
              
@@ -526,23 +527,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Node</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">优化</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">前端</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">tensorflow</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Node</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -562,7 +551,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">spring cloud</a>
+                <a href="javascript:void(0)" class="js-tag color3">优化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">tensorflow</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -590,23 +587,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">spring cloud</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">源码</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">php</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -618,6 +607,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">网络</a>
               </li>
              
@@ -626,7 +623,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">原型链</a>
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -654,11 +651,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">基本数据类型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">性能优化</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">基本数据类型</a>
+                <a href="javascript:void(0)" class="js-tag color4">原型链</a>
               </li>
              
               <li class="article-tag-list-item">
