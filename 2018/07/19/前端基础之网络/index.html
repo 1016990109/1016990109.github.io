@@ -24,7 +24,7 @@
 <meta property="og:image" content="http://1016990109.github.io/assets/img/tcp_slow_start.png">
 <meta property="og:image" content="http://1016990109.github.io/assets/img/tcp_fast_start.png">
 <meta property="og:image" content="http://1016990109.github.io/assets/img/CSRF.jpg">
-<meta property="og:updated_time" content="2018-10-08T07:11:58.486Z">
+<meta property="og:updated_time" content="2020-06-06T10:23:28.938Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端基础之网络">
 <meta name="twitter:description" content="网络模型  TCP/IP 四层模型  应用层、运输层、网际层和网络接口层。从实质上讲，只有上边三层，网络接口层没有什么具体的内容。HTTP 对应应用层。  OSI 七层模型  应用层（Application）、表示层（Presentation）、会话层（Session）、传输层（Transport）、网络层（Network）、数据链路层（Data Link）、物理层（Physical）。HTTP">
@@ -297,6 +297,13 @@
 <blockquote>
 <p>如何确认是真正的服务器的公钥？权威机构颁发证书，操作系统内置了权威机构的公钥(或者后面自行安装的 <strong>根证书</strong>)，权威机构使用它的秘钥加密服务器的公钥和其他一些信息生成 <strong>数字证书</strong>，并使用 <strong>数字签名</strong>的方式对这个下发的证书做校验。客户端确认确实是服务器的公钥之后再使用该公钥非对称加密一个用来后续加密传输数据所用的对称加密的秘钥。</p>
 </blockquote>
+<p><strong>私钥签名，公钥验签</strong></p>
+<p>因为在数据传输过程中有可能被篡改，因此我们要使用数字签名技术来校验发送人的身份，并且事后发送人不能抵赖。下面是数字签名的过程：用户还是 A 和 B</p>
+<ol>
+<li>B 向 A 发送信息并且用约定好的摘要算法，把 信息 生成一个摘要，同时 B 用自己的私钥对这个摘要进行加密，生成的加密摘要就叫 B 的签名(<strong>证书中的签名</strong>)</li>
+<li>把该信息和摘要一块发送给 A(在计算机存储)</li>
+<li>A 收到 B 发送的信息，把该信息用相同的摘要算法生成一个摘要，然后用 B 的公钥(<strong>权威机构公钥</strong>)解密 A 发送过来的摘要，得到一个明文摘要，对比这个明文摘要和 B 生成的摘要(<strong>对比用公钥解密的摘要和数字证书中明文摘要，确认确实是权威机构颁发的</strong>)，如果相同说明该信息是 B 发送的并且该信息没有被篡改过。</li>
+</ol>
 <blockquote>
 <p>缺点：<code>HTTPS</code> 使页面加载时间延长，增加数据开销，经济开销，连接缓存问题。</p>
 </blockquote>
@@ -359,9 +366,9 @@
 <h4 id="document-domain"><a href="#document-domain" class="headerlink" title="document.domain"></a>document.domain</h4><p>对于主域名相同，而子域名不同的情况，可以使用 <code>document.domain</code> 来跨域 这种方式非常适用于 <code>iframe</code> 跨域的情况，主域名指的是一级域名（如：<code>baidu.com</code>，<code>qq.com</code> 而不是 <code>www.baidu.com</code>之类的），跨域的时候需要两边都设置 <code>document.domain = ***</code>。</p>
 <h4 id="window-name"><a href="#window-name" class="headerlink" title="window.name"></a>window.name</h4><p>页面如果设置了 <code>window.name</code>，那么在不关闭页面的情况下，即使进行了页面跳转 <code>location.href=...</code>，这个 <code>window.name</code> 还是会保留。</p>
 <p>利用 <code>window.name</code> 的性质，我们可以在 <code>iframe</code> 中加载一个跨域页面。这个页面载入之后，让它设置自己的 <code>window.name</code>，然后再让它进行当前页面的跳转，跳转到与 <code>iframe</code> 外的页面同域的页面，此时 <code>window.name</code> 是不会改变的。这样，<code>iframe</code> 内外就属于同一个域了，且 <code>window.name</code> 还是跨域的页面所设置的值。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//a页面的代码</span></span><br><span class="line">iframe = <span class="built_in">document</span>.createElement(<span class="string">'iframe'</span>)</span><br><span class="line">iframe.style.display = <span class="string">'none'</span></span><br><span class="line"><span class="keyword">var</span> state = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">iframe.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (state === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="comment">//第二次监听onload，说明iframe已经第二次跳转和当前域一样了，这时候可以取window.name的值了</span></span><br><span class="line">    <span class="keyword">var</span> data = iframe.contentWindow.name</span><br><span class="line">    <span class="built_in">console</span>.log(data)</span><br><span class="line">    iframe.contentWindow.document.write(<span class="string">''</span>)</span><br><span class="line">    iframe.contentWindow.close()</span><br><span class="line">    <span class="built_in">document</span>.body.removeChild(iframe)</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (state === <span class="number">0</span>) &#123;</span><br><span class="line">    state = <span class="number">1</span></span><br><span class="line">    iframe.contentWindow.location = <span class="string">'http://m.zhuanzhuan.58.com:8887/b.html'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.body.appendChild(iframe)</span><br><span class="line"></span><br><span class="line"><span class="comment">//b页面代码</span></span><br><span class="line"><span class="built_in">window</span>.name = <span class="string">'hello'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//a页面的代码</span></span><br><span class="line">iframe = <span class="built_in">document</span>.createElement(<span class="string">"iframe"</span>);</span><br><span class="line">iframe.style.display = <span class="string">"none"</span>;</span><br><span class="line"><span class="keyword">var</span> state = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">iframe.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (state === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="comment">//第二次监听onload，说明iframe已经第二次跳转和当前域一样了，这时候可以取window.name的值了</span></span><br><span class="line">    <span class="keyword">var</span> data = iframe.contentWindow.name;</span><br><span class="line">    <span class="built_in">console</span>.log(data);</span><br><span class="line">    iframe.contentWindow.document.write(<span class="string">""</span>);</span><br><span class="line">    iframe.contentWindow.close();</span><br><span class="line">    <span class="built_in">document</span>.body.removeChild(iframe);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (state === <span class="number">0</span>) &#123;</span><br><span class="line">    state = <span class="number">1</span>;</span><br><span class="line">    iframe.contentWindow.location = <span class="string">"http://m.zhuanzhuan.58.com:8887/b.html"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">document</span>.body.appendChild(iframe);</span><br><span class="line"></span><br><span class="line"><span class="comment">//b页面代码</span></span><br><span class="line"><span class="built_in">window</span>.name = <span class="string">"hello"</span>;</span><br></pre></td></tr></table></figure>
 <h4 id="location-hash"><a href="#location-hash" class="headerlink" title="location.hash"></a>location.hash</h4><p>很少用，和 <code>window.name</code> 一样，因为子 <code>iframe</code> 有修改父框架的 <code>location.hash</code> 的权限，从而传递值，不过大小有限。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//a页面代码相同</span></span><br><span class="line"><span class="comment">//b页面</span></span><br><span class="line">parent.location.hash = <span class="string">'hello'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//a页面代码相同</span></span><br><span class="line"><span class="comment">//b页面</span></span><br><span class="line">parent.location.hash = <span class="string">"hello"</span>;</span><br></pre></td></tr></table></figure>
 <h4 id="postMessage-实现页面间通信"><a href="#postMessage-实现页面间通信" class="headerlink" title="postMessage 实现页面间通信"></a>postMessage 实现页面间通信</h4><p>语法：<code>otherWindow.postMessage(message, targetOrigin, [transfer])</code></p>
 <p>接收消息：<code>window.addEventListener(&quot;message&quot;, receiveMessage, false)</code></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">receiveMessage</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//some code</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -691,11 +698,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color2">GOLANG</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">GOLANG</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -707,15 +718,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">Node</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">优化</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -723,7 +734,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Node</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -743,15 +758,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">优化</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">前端</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">tensorflow</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">spring cloud</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -779,18 +798,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">spring cloud</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
@@ -803,10 +810,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">网络</a>
               </li>
              
@@ -815,7 +818,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -827,11 +830,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">JS</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">内存管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">原型链</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -844,26 +855,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">基本数据类型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">性能优化</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">原型链</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SSR</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">服务端渲染</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -892,6 +883,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">点击劫持</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">性能优化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SSR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">服务端渲染</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
             
             <div class="clearfix"></div>

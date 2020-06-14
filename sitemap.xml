@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://1016990109.github.io/2018/04/17/Vue%E5%9F%BA%E7%A1%80%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</loc>
+    
+    <lastmod>2020-06-10T16:13:48.902Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://1016990109.github.io/2018/07/19/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E4%B9%8B%E7%BD%91%E7%BB%9C/</loc>
+    
+    <lastmod>2020-06-06T10:23:28.938Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://1016990109.github.io/2020/03/24/GOLANG-%E5%AD%A6%E4%B9%A0/</loc>
     
-    <lastmod>2020-06-06T09:52:50.385Z</lastmod>
+    <lastmod>2020-06-06T10:22:05.679Z</lastmod>
     
   </url>
   
@@ -124,13 +138,6 @@
     <loc>http://1016990109.github.io/2018/08/02/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%B5%8F%E8%A7%88%E5%99%A8%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</loc>
     
     <lastmod>2018-10-12T01:15:18.695Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://1016990109.github.io/2018/07/19/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E4%B9%8B%E7%BD%91%E7%BB%9C/</loc>
-    
-    <lastmod>2018-10-08T07:11:58.486Z</lastmod>
     
   </url>
   
@@ -355,13 +362,6 @@
     <loc>http://1016990109.github.io/2018/05/05/VSCode%E9%85%8D%E7%BD%AE/</loc>
     
     <lastmod>2018-05-06T12:50:42.796Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://1016990109.github.io/2018/04/17/Vue%E5%9F%BA%E7%A1%80%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</loc>
-    
-    <lastmod>2018-05-06T12:49:35.543Z</lastmod>
     
   </url>
   
